@@ -1,0 +1,146 @@
+/*********************** Header static ***********************/
+.header
+    display: flex
+    justify-content: center
+    flex-direction: column
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 999
+    &-bars
+        display: none
+        font-size: 24px
+        color: #686868
+        &:hover
+            cursor: pointer
+            color: #3f3f3f
+.header-static
+    height: $header-static-height
+    width: 100%
+    background-color: #222222
+    font-size: 14.4px
+    font-weight: 450
+    font-family: "Open Sans", sans-serif
+    color: #bebebe
+    padding: 0 10px
+
+@media screen and (max-width: 576px)
+.static-icon
+    margin-right: 6px
+    font-size: 16px
+    .header-static__left
+        margin: 0 6px 0 0px
+    &.phone
+        transform: rotate(-45deg)
+
+.header-static__right
+    &-setting
+        color: #bebebe
+        margin-right: 8px
+        &:hover
+            color: $primary
+        &-text
+            margin-top: 2px
+    &-login
+        color: #bebebe
+
+/*********************** Header dynamic ***********************/
+.header-dynamic
+    min-height: $header-dynamic-height
+    width: 100%
+    padding-left: 20px
+    border-bottom: 1px solid $light-grey-color
+    background-color: $white
+    z-index: 2
+
+    &__logo
+        width: 10.9%
+        min-width: 150px
+        max-width: 200px
+        padding-top: 5px
+
+    &-img
+        width: 100%
+
+    &__category
+        font-size: 14px
+        font-weight: bold
+        text-transform: uppercase
+        flex: 1
+
+        &-list
+            display: flex
+            flex-wrap: wrap
+            margin: 0
+        &-item
+            margin: 0px 20px
+            line-height: 30px
+            &:hover
+                color: $primary
+                cursor: pointer
+            &.-search
+                cursor: pointer
+                &:hover
+                    color: $primary
+            &.has-dropdown
+                display: flex
+                align-items: center
+                position: relative
+        &-link
+            display: block
+            &.--active
+                color: $primary
+
+            &:hover
+                color: $primary
+    &__down-icon
+        margin-left: 4px
+        &:hover
+            cursor: pointer
+
+    &__right
+        margin-top: 1px
+        font-size: 25px
+        &.left-icon
+            cursor: pointer
+            margin-right: 30px
+
+        &.cart-icon
+            cursor: pointer
+.header-category__children-list
+    z-index: 2
+    position: absolute
+    display: none
+    top: 110%
+    left: 0
+    list-style: none
+    padding-left: 0px
+    background-color: $white
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.05)
+    border: 1px solid rgba(0, 0, 0, 0.05)
+    animation: appear ease-in 0.3s
+
+.header-category__children-item
+    padding: 9px 10px
+
+.header-category__children-link
+    display: block
+    width: 100%
+    font-size: 14px
+    color: #333
+
+// children product kind 2: hover
+.header-dynamic__category-item.has-dropdown:hover .header__category-dropdown
+    display: block
+    width: 232px
+    top: 100%
+    animation: appear linear 0.3s
+    z-index: 1
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2)
+
+@keyframes appear
+    from
+        opacity: 0
+    to
+        opacity: 1

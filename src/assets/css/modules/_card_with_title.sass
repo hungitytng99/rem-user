@@ -1,0 +1,46 @@
+.card-with-title
+    &__category
+        &-title
+            width: 100%
+            background-color: white
+            position: relative
+            text-transform: uppercase
+            margin-bottom: 15px
+            &::before
+                position: absolute
+                bottom: 0px
+                content: ''
+                width: 100%
+                height: 2px
+                background-color: $primary
+        &-text
+            height: 50px
+            display: flex
+        &-link
+            position: relative
+            display: inline-block
+            font-size: 18px
+            background-color: $primary
+            height: 50px
+            line-height: 50px
+            padding: 0px 10px
+            color: white
+            z-index: 1
+            &:hover
+                color: $white
+            &::before
+                position: absolute
+                top: 2px
+                right: -29px
+                content: ''
+                width: 0
+                height: 0
+                border-top: 35px solid transparent
+                border-bottom: 35px solid transparent
+                border-right: 35px solid $primary
+                transform: rotateZ(-45deg)
+@media screen and (max-width:480px)
+    .card-with-title__category-link
+        font-size: 16px
+        &::before
+            display: none

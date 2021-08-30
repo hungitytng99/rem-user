@@ -1,0 +1,59 @@
+.category
+    &__filter
+        &-title
+            font-weight: bold
+            font-size: 18px
+            text-transform: uppercase
+            position: relative
+            margin-bottom: 10px
+            &::after
+                position: absolute
+                content: ''
+                width: 50px
+                height: 1.5px
+                left: 0
+                top: 105%
+                background-color: $primary
+        &-price
+            padding: 15px
+            background-color: $white
+            border-radius: 4px
+
+            &-item
+                padding: 2px 0px
+                display: flex
+                align-items: center
+                & label
+                    padding-left: 8px
+                    padding-top: 2px
+        &-category
+            padding: 15px
+            background-color: $white
+            border-radius: 4px
+            margin-top: 15px
+            transition: all linear 0.3s
+            &-item
+                padding: 4px 0px
+                &:hover
+                    color: $primary
+                    cursor: pointer
+                    transform: translateX(3px)
+    &__has-more
+        background-color: $primary
+        width: 100px
+        color: $white
+        height: 34px
+        border-radius: 4px
+
+        display: flex
+        justify-content: center
+        align-items: center
+        transition: all 0.3s
+        &:hover
+            cursor: pointer
+            background-color: $primary_1
+
+        &-box
+            display: flex
+            justify-content: center
+            align-items: center

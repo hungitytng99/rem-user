@@ -1,0 +1,232 @@
+@import 'base_variables'
+*
+    box-sizing: inherit
+body
+    color: $text-color
+    font-family: 'Montserrat', sans-serif
+    font-size: 15px
+    margin: 0px
+    box-sizing: border-box
+    background-color: #f1f1f1
+h1
+    font-style: normal
+    font-weight: bold
+    font-size: 40px
+    line-height: 60px
+h2
+    font-style: normal
+    font-weight: bold
+    line-height: 46px
+    margin: 0
+h3
+    font-style: normal
+    font-weight: bold
+    font-size: 30px
+    line-height: 32px
+    margin-bottom: 0px
+h4
+    font-style: normal
+    font-weight: bold
+    font-size: 26px
+    line-height: 35px
+h5
+    font-style: normal
+    font-weight: bold
+    font-size: 22px
+    line-height: 30px
+h6
+    font-style: normal
+    font-weight: bold
+    font-size: 20px
+    line-height: 27px
+a:hover
+    color: $primary
+    cursor: pointer
+button:focus
+    outline: none
+
+.btn
+    padding: 6px 0px
+    width: 100px
+    background-color: $primary
+    border-radius: 4px
+
+    font-size: 14px
+    color: $white
+    border: none
+    font-family: $primary_font_family
+
+.btn:hover
+    cursor: pointer
+    // background-color: $primary-3
+    color: $white_1
+    outline: none
+.btn:focus
+    outline: none
+    box-shadow: none
+ul
+    list-style: none
+    margin: 0
+    padding: 0
+ul.has-liststyle li::before
+    content: "\2022"
+    color: $primary
+    font-weight: bold
+    display: inline-block
+    width: 1em
+    margin-left: -10px
+    font-size: 17px
+a
+    text-decoration: none
+    color: $black
+p
+    margin-bottom: 0px
+    margin: 0px
+ol
+    margin-bottom: 0px !important
+input
+    border: none
+textarea
+    resize: none
+input:focus
+    outline: none
+
+.display-none
+    display: none
+.display-block
+    display: block
+.active
+    color: $primary
+.text_over_flow_1
+    display: -webkit-box !important
+    -webkit-line-clamp: 1
+    -webkit-box-orient: vertical
+    overflow: hidden
+    text-overflow: ellipsis
+.text_over_flow_2
+    display: -webkit-box !important
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+    overflow: hidden
+    text-overflow: ellipsis
+.text_over_flow_3
+    display: -webkit-box !important
+    -webkit-line-clamp: 3
+    -webkit-box-orient: vertical
+    overflow: hidden
+    text-overflow: ellipsis
+.text_over_flow_13
+    display: -webkit-box !important
+    -webkit-line-clamp: 13
+    -webkit-box-orient: vertical
+    overflow: hidden
+    text-overflow: ellipsis
+.flex-center
+    display: flex
+    justify-content: center
+    align-items: center
+
+.flex-spacebetween
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.hidden
+    display: none
+p.carousel-status
+    display: none
+.img
+    animation: appear linear 1s
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    left: 0
+    z-index: 4
+    width: 100%
+
+    &-box
+        margin-bottom: 8px
+        position: relative
+        width: 100%
+        height: 0
+        padding-top: 100%
+        overflow: hidden
+.z-index-2
+    z-index: 2
+// For react modal
+.Modal
+    background-color: $white
+    padding: 20px
+    border: 1px solid #eaeaea
+    animation: appear linear 0.3s
+    width: 300px
+    &:focus
+        outline: none
+.Overlay
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 999
+    display: flex
+    justify-content: center
+    align-items: center
+    animation: appear linear 0.3s
+    background-color: rgba(0, 0, 0, 0.3)
+.layout__content
+    min-height: calc( 100vh - 130px )
+@mixin image-box($heightScale)
+    display: block
+    position: relative
+    width: 100%
+    height: 0
+    padding-top: $heightScale
+    overflow: hidden
+
+@media (min-width: 440px)
+    .Modal
+        width: 400px
+@media (min-width: 576px)
+    .Modal
+        width: 540px
+@media (min-width: 768px)
+    .Modal
+        width: 700px
+@media (min-width: 992px)
+    .Modal
+        width: 850px
+
+@media (min-width: 1200px)
+.container
+    max-width: 1260px
+@media screen and (max-width: 992px)
+    .hide-on-992
+        display: none !important
+    .show-on-992
+        display: block !important
+@media screen and (max-width: 768px)
+    .hide-on-768
+        display: none
+@media screen and (max-width: 576px)
+    .hide-on-576
+        display: none
+    .show-on-576
+        display: block !important
+    .show-on-576-flex
+        display: flex !important
+@media screen and (max-width: 480px)
+    .hide-on-480
+        display: none
+@keyframes appear
+    from
+        opacity: 0
+    to
+        opacity: 1
+@keyframes move-right
+    from
+        opacity: 0.5
+        transform: translateX(-100%)
+    to
+        opacity: 1
+        transform: translateX(0)

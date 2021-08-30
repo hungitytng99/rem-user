@@ -1,0 +1,54 @@
+.news
+    position: relative
+    &__header
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding-top: 5px
+        &-title
+            text-transform: uppercase
+            text-align: center
+    &__decorate
+        width: 160px
+        margin: 15px 0px
+        &-img
+            &-box
+                @include image-box(10.45%)
+    &__image
+        transition: all 0.4s
+        &-box
+            @include image-box(62.5%)
+        &:hover
+            transform: scale(1.1)
+    &__link
+        display: block
+        background-color: $white
+        border-radius: 4px
+        margin-bottom: 15px
+        padding-bottom: 8px
+    &__date
+        display: flex
+        align-items: center
+        margin: 3px 0px
+        color: #333 
+        padding: 0px 8px
+        &-icon
+            font-size: 16px
+            margin-right: 6px
+            margin-bottom: 2px
+    &__title
+        font-weight: 600
+        text-transform: uppercase
+        color: #333
+        margin: 0px 8px
+        &.larger
+            font-size: 20px
+            font-weight: 700 
+            text-transform: none
+    &__demo-content
+        margin: 0px 8px
+        color: #333
+        min-height: 44px
+            
+
+

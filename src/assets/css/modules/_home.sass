@@ -1,0 +1,73 @@
+.home
+    &__text
+        text-transform: uppercase
+
+        &-franco
+            color: $primary
+            font-size: 12px
+            font-weight: 800
+            letter-spacing: 6px
+            margin: 0
+
+        &-feature
+            font-size: 22px
+            font-weight: 700
+            text-shadow: 1px 0px 1px $light-grey-color
+            margin-bottom: 8px
+            margin-top: 16px
+            letter-spacing: 3px
+
+        &.-underline
+            height: 2px
+            width: 120px
+            background-color: $primary
+            margin-bottom: 15px
+    &__banner
+        &-img
+            position: relative
+            width: 100%
+            height: 0
+            padding-top: 33.8%
+            overflow: hidden
+    &__post
+        background-color: $white
+        padding: 15px
+        margin-bottom: 15px
+        border-radius: 4px
+        &-title
+            font-size: 22px
+    &__carousel-arrow
+        &-left
+            position: absolute,
+            z-index: 2,
+            top: calc(50%),
+            transform: translateY(-50%)
+            left: 10px
+            width: 35px
+            height: 35px
+            cursor: pointer
+            background-color: rgb(130,98,181,0.7)
+            border-radius: 50%
+            color: $white
+            display: flex
+            align-items: center
+            justify-content: center
+            &:hover
+                background-color: rgb(130,98,181,0.9)
+        &-right
+            position: absolute
+            z-index: 2
+            top: calc(50%)
+            transform: translateY(-50%),
+            right: 10px
+            width: 35px
+            height: 35px
+            cursor: pointer
+            background-color: rgb(130,98,181,0.7)
+            border-radius: 50%
+            color: $white
+            display: flex
+            align-items: center
+            justify-content: center
+            &:hover
+                background-color: rgb(130,98,181,0.9)

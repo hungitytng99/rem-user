@@ -1,0 +1,27 @@
+.detail-news
+    &__image
+        transition: all 0.4s
+        &-box
+            @include image-box(62.5%)
+        &:hover
+            transform: scale(1.1)
+    &__date
+        display: flex
+        align-items: center
+        margin: 3px 0px 15px 3px
+        color: #333
+        &-icon
+            font-size: 16px
+            margin-right: 6px
+            margin-bottom: 2px
+    &__title
+        font-weight: 600
+        text-transform: uppercase
+        color: #333
+        font-size: 20px
+        font-weight: 700
+    &__other
+        padding: 15px
+        background-color: $white
+    &__img
+        transition: all 0.3s
