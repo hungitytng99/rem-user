@@ -1,4 +1,4 @@
-import logo from 'assets/images/homepage/logo.jpg';
+import logo from 'assets/images/homepage/logo.webp';
 import product_6 from 'assets/images/homepage/products/camera.jpg';
 import banner_1 from 'assets/images/homepage/banner/home-banner-1.jpg';
 import banner_2 from 'assets/images/homepage/banner/home-banner-2.jpg';

@@ -1,146 +1,139 @@
-/*********************** Header static ***********************/
 .header
-    display: flex
-    justify-content: center
-    flex-direction: column
-    position: fixed
-    top: 0
-    left: 0
-    right: 0
-    z-index: 999
-    &-bars
-        display: none
-        font-size: 24px
-        color: #686868
-        &:hover
+    background: #fff
+    color: #666666!important
+    &-top
+        height: $header-top-height
+        padding: 10px 0px
+        border-bottom: 1px solid #ebebeb
+        & .contact
+            margin: 0px $content_margin_lr
+
+            &-item
+                display: inline-flex
+                justify-content: center
+                align-items: center
+                margin-right: 20px
+                &-icon
+                    color: #d61c1f
+                    display: block
+                    background: #f4f4f4
+                    border-radius: 100%
+                    height: 25.6px
+                    width: 25.6px
+                    line-height: 25.6px
+                    text-align: center
+                &-title
+                    color: #666666
+                    display: inline
+                    line-height: 25.6px
+                    margin-left: 10px
+
+                &:hover .contact-item-title
+                    color: #d61c1f
+
+    &-body
+        padding: 20px $content_margin_lr
+        display: flex
+        justify-content: space-between
+        align-items: center
+        & .logo
+            width: 187px
+            height: 63px
             cursor: pointer
-            color: #3f3f3f
-.header-static
-    height: $header-static-height
-    width: 100%
-    background-color: #222222
-    font-size: 14.4px
-    font-weight: 450
-    font-family: "Open Sans", sans-serif
-    color: #bebebe
-    padding: 0 10px
-
-@media screen and (max-width: 576px)
-.static-icon
-    margin-right: 6px
-    font-size: 16px
-    .header-static__left
-        margin: 0 6px 0 0px
-    &.phone
-        transform: rotate(-45deg)
-
-.header-static__right
-    &-setting
-        color: #bebebe
-        margin-right: 8px
-        &:hover
-            color: $primary
-        &-text
-            margin-top: 2px
-    &-login
-        color: #bebebe
-
-/*********************** Header dynamic ***********************/
-.header-dynamic
-    min-height: $header-dynamic-height
-    width: 100%
-    padding-left: 20px
-    border-bottom: 1px solid $light-grey-color
-    background-color: $white
-    z-index: 2
-
-    &__logo
-        width: 10.9%
-        min-width: 150px
-        max-width: 200px
-        padding-top: 5px
-
-    &-img
-        width: 100%
-
-    &__category
-        font-size: 14px
-        font-weight: bold
-        text-transform: uppercase
-        flex: 1
-
-        &-list
-            display: flex
-            flex-wrap: wrap
-            margin: 0
-        &-item
-            margin: 0px 20px
-            line-height: 30px
-            &:hover
-                color: $primary
+        & .nav
+            position: relative
+            & > .nav-item
                 cursor: pointer
-            &.-search
-                cursor: pointer
-                &:hover
-                    color: $primary
-            &.has-dropdown
                 display: flex
                 align-items: center
-                position: relative
-        &-link
-            display: block
-            &.--active
-                color: $primary
+                &:hover
+                    & .submenu
+                        display: block
 
-            &:hover
-                color: $primary
-    &__down-icon
-        margin-left: 4px
-        &:hover
-            cursor: pointer
+                & .title
+                    text-transform: uppercase
+                    font-weight: 700
+                    margin-right: 19px
+                    font-size: 17px
+                    &:hover
+                        color: #d61c1f
+                & .submenu
+                    position: absolute
+                    box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 7px 0px
+                    border-radius: 3px
+                    top: 50px
+                    background: #fff
+                    display: none
+                    transform-origin: 0% 0%
+                    animation: toggle_submenu 0.6s
+                    transition: 0.5s
+                    z-index: 1000
+                    & .single_list
+                        padding: 10px
+                        text-transform: uppercase
+                        min-width: 200px
+                        &:hover
+                            color: #d61c1f
 
-    &__right
-        margin-top: 1px
-        font-size: 25px
-        &.left-icon
-            cursor: pointer
-            margin-right: 30px
+                    & .menu_list
+                        width: 20%
+                        display: inline-block
+                        float: left
+                        & .title
+                            text-transform: uppercase
+                            font-size: 14px
+                            font-weight: bold
+                            margin-bottom: 20px
+                        & .subTitle
+                            margin-bottom: 16px
+                            &:hover
+                                color: #d61c1f
+                & .submenu_max_width
+                    padding: 10px
+                    width: 100%
+                    left: 0
+            & .search
+                cursor: pointer
+                &:hover
+                    color: #d61c1f
+                & .search-icon
+                    text-align: center
+                & .search-bar
+                    position: absolute
+                    box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 7px 0px
+                    border-radius: 3px
+                    top: 50px
+                    right: 0px
+                    background: #fff
+                    // display: none
+                    transform-origin: 0% 0%
+                    animation: toggle_submenu 0.6s
+                    transition: 0.5s
+                    padding: 10px
+                    z-index: 1000
+        & .toggle_mobile
+            display: none
+@keyframes toggle_submenu
+    0%
+        transform: perspective(600px) rotateX(-90deg)
+    100%
+        transform: perspective(600px) rotateX(0deg)
 
-        &.cart-icon
-            cursor: pointer
-.header-category__children-list
-    z-index: 2
-    position: absolute
+@media only screen and (max-width: 770px)
+    .header
+        &-top
+            display: none
+        &-body
+            padding: 10px 30px
+            & .nav
+                display: none
+            & .toggle_mobile
+                display: block
+                font-size: 32px
+                & label
+                    cursor: pointer
+
+#toogleSidebar ~ .sidebar
     display: none
-    top: 110%
-    left: 0
-    list-style: none
-    padding-left: 0px
-    background-color: $white
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.05)
-    border: 1px solid rgba(0, 0, 0, 0.05)
-    animation: appear ease-in 0.3s
-
-.header-category__children-item
-    padding: 9px 10px
-
-.header-category__children-link
+#toogleSidebar:checked ~ .sidebar
     display: block
-    width: 100%
-    font-size: 14px
-    color: #333
-
-// children product kind 2: hover
-.header-dynamic__category-item.has-dropdown:hover .header__category-dropdown
-    display: block
-    width: 232px
-    top: 100%
-    animation: appear linear 0.3s
-    z-index: 1
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2)
-
-@keyframes appear
-    from
-        opacity: 0
-    to
-        opacity: 1
