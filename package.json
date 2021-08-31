@@ -29,6 +29,7 @@
         "react-medium-image-zoom": "^4.3.4",
         "react-modal": "^3.14.3",
         "react-responsive-carousel": "^3.2.21",
+        "react-tabs": "^3.2.2",
         "react-tooltip": "^4.2.21",
         "sass": "^1.38.0",
         "yup": "^0.32.9"

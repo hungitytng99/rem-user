@@ -7,7 +7,7 @@ import { useState } from 'react';
 import Modal from 'react-modal';
 import Link from 'next/link'
 import Head from 'next/head'
-import { faCalendarAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt, faClock, faHandshake, faTimes, faTruckPickup } from '@fortawesome/free-solid-svg-icons';
 import Layout from 'components/Layout/Layout';
 import { faGift, faCheckCircle, faCheck } from '@fortawesome/free-solid-svg-icons'
 import CardWithTitle from 'ui-source/Card/CardWithTitle';
@@ -16,7 +16,8 @@ import Image from 'next/image'
 import { productService } from 'data-services/product';
 import { categoryService } from 'data-services/category';
 import { postService } from 'data-services/post';
-
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 Modal.setAppElement('#__next');
 // detailProduct = {},
@@ -79,91 +80,210 @@ const Product = (props) => {
                             </Breadcrumb>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
-
-
-                        </Col>
-                    </Row>
                     <Row className="product__detail">
                         <Col xs={12} md={8}>
                             <ImagesThumb listImages={image} />
+                            <div className="product__detail-info">
+                                <Tabs >
+                                    <TabList>
+                                        <Tab>Thông số sản phẩm</Tab>
+                                        <Tab>Hướng dẫn mua rèm</Tab>
+                                        <Tab>Video sản phẩm</Tab>
+                                    </TabList>
+                                    <TabPanel>
+                                        <ul className="product__info-list">
+                                            <li className="product__info-item">
+                                                <p>Mã sản phẩm: </p>
+                                                <span>RVH123456</span>
+                                            </li>
+                                            <li className="product__info-item">
+                                                <p>Chất liệu: </p>
+                                                <span>100% polyester</span>
+                                            </li>
+                                            <li className="product__info-item">
+                                                <p>Xuất sứ: </p>
+                                                <span>Hàn quốc</span>
+                                            </li>
+                                            <li className="product__info-item">
+                                                <p>Khổ rộng tối đa: </p>
+                                                <span>Hàn quốc</span>
+                                            </li>
+                                            <li className="product__info-item">
+                                                <p>Tính năng: </p>
+                                                <span>Cản sáng 80%, dễ vệ sinh.</span>
+                                            </li>
+                                            <li className="product__info-item">
+                                                <p>Độ dày: </p>
+                                                <span>0,55mm.</span>
+                                            </li>
+                                            <li className="product__info-item">
+                                                <p>Trọng lượng: </p>
+                                                <span>140g/m².</span>
+                                            </li>
+                                            <li className="product__info-item">
+                                                <p>Độ lặp: </p>
+                                                <span>vải 75mm/ sheer 50mm.</span>
+                                            </li>
+                                            <li className="product__info-item">
+                                                <p>Bảo hành: </p>
+                                                <span>02 năm do lỗi của Nhà sản xuất.</span>
+                                            </li>
+                                            <li className="product__info-item">
+                                                <p>Giá bán: </p>
+                                                <span>Tính theo m² và chưa bao gồm thuế VAT(10%).</span>
+                                            </li>
+                                        </ul>
+                                        <span style={{ fontStyle: 'italic' }}>
+                                            (Với mỗi bộ rèm nhỏ hơn 01 m² được tính tròn 01 m², chiều cao dưới 01 mét được tính tròn 01 mét).
+                                        </span>
+
+                                        <div style={{ marginTop: '35px' }}>
+                                            <span><strong>Rèm Vương Hồng</strong> mang đến cho quý khách các <strong>dịch vụ ưu đãi </strong> như:</span>
+                                        </div>
+                                        <ul style={{ listStyleType: 'circle', paddingLeft: '30px' }}>
+                                            <li style={{marginTop: '10px'}}>
+                                                <strong>Vận chuyển:</strong> Miễn phí vận chuyển và lắp đặt trong thành phố Hà Nội với đơn hàng trên 05m2, đơn hàng dưới 05m2 phụ thu thêm 100.000đ/đơn hàng.
+                                            </li>
+                                            <li style={{marginTop: '10px'}}>
+                                                <strong>Khuyến mại:</strong> Phụ kiện cơ bản (Bao gồm khóa chiều cao và chống kéo ngược).
+                                            </li>
+                                        </ul>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div className="product__guild-buy">
+                                            <div className="product__guild-buy-header">
+                                                Hướng dẫn đặt rèm
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div className="product__info-video">
+                                            <div className="product__info-video-header">
+                                               Chưa có video cho sản phẩm này
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                </Tabs>
+                            </div>
                         </Col>
-                        <Col xs={12} md={4}>
-                            <div className="product__detail-name text_over_flow_1">
-                                {detailProduct.name}
-                            </div>
-                            <div className="product__detail-status">
-                                Còn hàng
-                            </div>
-                            <div className="product__detail-type">
-                                <div className="product__detail-type-item">
-                                    <p>Thương hiệu: </p>
-                                    <Link href="/" >
-                                        <a>Rèm The Sun</a>
-                                    </Link>
+                        <Col xs={12} md={4} className="product__detail-box">
+                            <div style={{ position: 'sticky', top: '160px' }}>
+                                <div className="product__detail-name text_over_flow_1">
+                                    {detailProduct.name}
                                 </div>
-                                <div className="product__detail-type-item">
-                                    <p>Loại: </p>
-                                    <Link href="/" >
-                                        <a>Rèm vài 1 màu</a>
-                                    </Link>
+                                <div className="product__detail-status">
+                                    Còn hàng
                                 </div>
-                            </div>
-
-                            <div className="product__detail-new-price">
-                                {detailProduct.new_price}<span style={{ textDecoration: "underline" }}>đ</span>
-                                <span style={{ position: 'relative' }}>
-                                    /m
-                                    <span style={{ position: 'absolute', fontSize: '14px', right: '-8px', top: '0px' }}>2</span>
-                                </span>
-                            </div>
-
-                            <Row className="product__compute">
-                                <Col xs={6} className="product__compute-item">
-                                    <div className="product__compute-item-title">
-                                        Chiều rộng (mm)
+                                <div className="product__detail-type">
+                                    <div className="product__detail-type-item">
+                                        <p>Thương hiệu: </p>
+                                        <Link href="/" >
+                                            <a>Rèm Vương Hồng</a>
+                                        </Link>
                                     </div>
-                                    <input type="number" className="product__compute-item-input" placeholder="Chiều rộng" />
-                                </Col>
-                                <Col xs={6} className="product__compute-item">
-                                    <div className="product__compute-item-title">
-                                        Chiều dài (mm)
+                                    <div className="product__detail-type-item">
+                                        <p>Loại: </p>
+                                        <Link href="/" >
+                                            <a>Rèm vài 1 màu</a>
+                                        </Link>
                                     </div>
-                                    <input type="number" className="product__compute-item-input" placeholder="Chiều dài" />
-                                </Col>
+                                    <div className="product__detail-type-item">
+                                        <p>Mã sản phẩm: </p> <span> SKT123456</span>
+                                    </div>
+                                </div>
 
-                                <Col xs={6} className="product__compute-item">
-                                    <div className="product__compute-item-title">
-                                        Chiều rộng (mm)
-                                    </div>
-                                    <input disabled type="text" className="product__compute-item-input" placeholder="0" />
-                                </Col>
-
-                                <Col xs={6} className="product__compute-item">
-                                    <div className="product__compute-item-title">
-                                        Số bộ
-                                    </div>
-                                    <input type="number" min={1} className="product__compute-item-input" placeholder="1" />
-                                </Col>
-                            </Row>
-                            <div className="product__compute-result">
-                                <div className="product__compute-result-text">
+                                <div className="product__compute-header">
                                     Báo giá sơ bộ
                                 </div>
-                                <div className="product__compute-result-price">
-                                    880,000đ
-                                </div>
 
+                                <Row className="product__compute">
+                                    <Col xs={6} className="product__compute-item">
+                                        <div className="product__compute-item-title">
+                                            Chiều rộng (mm)
+                                        </div>
+                                        <input type="number" className="product__compute-item-input" placeholder="Chiều rộng" />
+                                    </Col>
+                                    <Col xs={6} className="product__compute-item">
+                                        <div className="product__compute-item-title">
+                                            Chiều dài (mm)
+                                        </div>
+                                        <input type="number" className="product__compute-item-input" placeholder="Chiều dài" />
+                                    </Col>
+
+                                    <Col xs={6} className="product__compute-item">
+                                        <div className="product__compute-item-title">
+                                            Chiều rộng (mm)
+                                        </div>
+                                        <input disabled type="text" className="product__compute-item-input" placeholder="0" />
+                                    </Col>
+
+                                    <Col xs={6} className="product__compute-item">
+                                        <div className="product__compute-item-title">
+                                            Số bộ
+                                        </div>
+                                        <input type="number" min={1} className="product__compute-item-input" placeholder="1" />
+                                    </Col>
+                                </Row>
+                                <Row className="product__compute-result">
+                                    <Col xs={6} className="product__compute-result-text">
+                                        Ước tính
+                                    </Col>
+                                    <Col xs={6} className="product__compute-result-price">
+                                        <div className="product__compute-result-price-box">880,000đ</div>
+                                    </Col>
+                                </Row>
+                                <div className="product__detail-contact">
+                                    <div onClick={showContactModal} className="product__detail-contact-link">
+                                        Liên hệ ngay
+                                    </div>
+                                </div>
+                                <div className="product__detail-support">
+                                    <div className="product__detail-support-header">
+                                        Nhấn gọi để rèm Vương Hồng được hỗ trợ quý khách
+                                    </div>
+                                    <div className="product__detail-support-phone">
+                                        <Link href="/">
+                                            <a>0912.3456.789</a>
+                                        </Link>
+                                        <span>(Tư vấn tại nhà 8h00 - 20h00)</span>
+                                    </div>
+                                    <div className="product__detail-support-header">
+                                        Rèm Vương Hồn cam kết
+                                    </div>
+                                    <ul className="product__detail-support-list">
+                                        <li className="product__detail-support-item">
+                                            <div className="product__detail-support-icon">
+                                                <FontAwesomeIcon icon={faTruckPickup} />
+                                            </div>
+                                            <div className="product__detail-support-text">
+                                                <p>Giao hàng miễn phí tại Bắc Ninh</p>
+                                                <span>(Đơn hàng từ 1,5 triệu đồng)</span>
+                                            </div>
+                                        </li>
+                                        <li className="product__detail-support-item">
+                                            <div className="product__detail-support-icon">
+                                                <FontAwesomeIcon icon={faClock} />
+                                            </div>
+                                            <div className="product__detail-support-text">
+                                                <p>Thi công lắp đặt chỉ sau 48h</p>
+                                            </div>
+                                        </li>
+                                        <li className="product__detail-support-item">
+                                            <div className="product__detail-support-icon">
+                                                <FontAwesomeIcon icon={faHandshake} />
+                                            </div>
+                                            <div className="product__detail-support-text">
+                                                <p>Bảo hành 2 năm</p>
+                                                <span>(do lỗi của nhà sản xuất)</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
 
-                            <div className="product__detail-contact">
-                                <div onClick={showContactModal} className="product__detail-contact-link">
-                                    Liên hệ ngay
-                                </div>
-                            </div>
                         </Col>
                     </Row>
+
                     <Row className="product__related-product">
                         <CardWithTitle title="Sản phẩm cùng danh mục">
                             <Row>
@@ -180,46 +300,6 @@ const Product = (props) => {
                             </Row>
                         </CardWithTitle>
                     </Row>
-                    {detailProduct.detail && <Row>
-                        <Col lg={8} className="product__description">
-                            <div dangerouslySetInnerHTML={{ __html: detailProduct.detail }}></div>
-                        </Col>
-                        {listPost.length > 0 && <Col lg={4} className="product__news">
-                            <div className="product__news-title">
-                                Tin tức mới
-                            </div>
-                            <ul className="product__news-list">
-                                {listPost.map((post) => {
-                                    return (
-                                        <li key={post.id} className="product__news-item">
-                                            <Link href={post.slug} passHref>
-                                                <a>
-                                                    <Row className="product__news-row">
-                                                        <Col lg={3}>
-                                                            <div className="product__news-item-img">
-                                                                <Image src={post.image} layout="fill" objectFit="cover" alt={post.name} />
-                                                            </div>
-                                                        </Col>
-                                                        <Col lg={9}>
-                                                            <div className="product__news-item-title text_over_flow_2">
-                                                                {post.name}
-                                                            </div>
-                                                            <div className="product__news-date">
-                                                                <FontAwesomeIcon className="product__news-date-icon" icon={faCalendarAlt} />
-                                                                <div className="product__news-date-product">{post.update_at}</div>
-                                                            </div>
-                                                        </Col>
-                                                    </Row>
-                                                </a>
-                                            </Link>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </Col>}
-                    </Row>
-                    }
-
                     <Row className="product__contact-form">
                         <div className="product__contact-form-header">Gửi cho chúng tôi thông tin của bạn</div>
                         <ContactForm
