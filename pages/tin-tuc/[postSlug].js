@@ -54,7 +54,7 @@ const DetailNews = (props) => {
                                     otherPost.map(post => {
                                         return (
                                             <li key={post.id} className="product__news-item">
-                                                <Link href={post.slug}>
+                                                <Link href={post.slug} passHref>
                                                     <a>
                                                         <Row className="product__news-row">
                                                             <Col lg={3}>
@@ -91,7 +91,7 @@ const DetailNews = (props) => {
                                     listCategory.map(category => {
                                         return (
                                             <li key={category.id} className="category__filter-category-item">
-                                                <Link href={category.slug}>
+                                                <Link href={category.slug} passHref>
                                                     <a>
                                                         {category.name}
                                                     </a>

@@ -30,7 +30,7 @@ function Footer() {
                                     GPKD
                                 </li>
                                 <li className="footer-contact__info-item">
-                                    <Link href="">
+                                    <Link href="" passHref>
                                         <a href="" className="footer-contact__info-link">
                                             <span>
                                                 <FontAwesomeIcon className="footer-contact__info-icon" icon={faMap} />
@@ -40,7 +40,7 @@ function Footer() {
                                     </Link>
                                 </li>
                                 <li className="footer-contact__info-item">
-                                    <Link href={{ pathname: 'tel:84966854224' }} >
+                                    <Link href={{ pathname: 'tel:84966854224' }} passHref>
                                         <a className="footer-contact__info-link">
                                             <span>
                                                 <FontAwesomeIcon className="footer-contact__info-icon" icon={faPhoneAlt} />
@@ -50,7 +50,7 @@ function Footer() {
                                     </Link>
                                 </li>
                                 <li className="footer-contact__info-item">
-                                    <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} >
+                                    <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} passHref>
                                         <a className="footer-contact__info-link">
                                             <span>
                                                 <FontAwesomeIcon className="footer-contact__info-icon" icon={faEnvelope} />
@@ -76,7 +76,7 @@ function Footer() {
                                     {listCategory.map((category) => {
                                         return (
                                             <li key={category.id} className="footer-contact__wrapper-item ">
-                                                <Link href={category.slug}>
+                                                <Link href={category.slug} passHref>
                                                     <a className="footer-contact__wrapper-link">{category.name}</a>
                                                 </Link>
                                             </li>

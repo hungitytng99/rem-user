@@ -99,13 +99,13 @@ const Product = (props) => {
                             <div className="product__detail-type">
                                 <div className="product__detail-type-item">
                                     <p>Thương hiệu: </p>
-                                    <Link href="/" >
+                                    <Link href="/" passHref >
                                         <a>Rèm The Sun</a>
                                     </Link>
                                 </div>
                                 <div className="product__detail-type-item">
                                     <p>Loại: </p>
-                                    <Link href="/" >
+                                    <Link href="/" passHref>
                                         <a>Rèm vài 1 màu</a>
                                     </Link>
                                 </div>

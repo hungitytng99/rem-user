@@ -16,14 +16,14 @@ export default function Sidebar() {
                 borderBottom: '1px solid gray'
             }}>
                 <span>MENU</span>
-                <label for="toogleSidebar"><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></label>
+                <label htmlFor="toogleSidebar"><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></label>
             </div>
             <div className='treeNode1'>
                 <div className="titleNode">
-                    <Link href="#">
+                    <Link href="#" passHref>
                         <span>Sản phẩm</span>
                     </Link>
-                    <label for="node1"><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></label>
+                    <label htmlFor="node1"><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></label>
                 </div>
                 <input id="node1" type="checkbox" />
                 <div className="childs">
@@ -32,10 +32,10 @@ export default function Sidebar() {
                             return (
                                 <div key={"sidebarsp" + index} className="treeNode2">
                                     <div className="titleNode">
-                                        <Link href="#">
+                                        <Link href="#" passHref>
                                             <span>{item.title}</span>
                                         </Link>
-                                        <label className="plus" for={"nodeC2_i" + index}>
+                                        <label className="plus" htmlFor={"nodeC2_i" + index}>
                                             <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
                                         </label>
 
@@ -47,7 +47,7 @@ export default function Sidebar() {
                                                 return (
                                                     <div key={"sidebarspchild" + i} className="treeNode3">
                                                         <div className="titleNode">
-                                                            <Link href="#">
+                                                            <Link href="#" passHref>
                                                                 <span>{sp}</span>
                                                             </Link>
                                                         </div>
@@ -66,58 +66,58 @@ export default function Sidebar() {
             </div>
             <div className='treeNode1'>
                 <div className="titleNode">
-                    <Link href="#">
+                    <Link href="#" passHref>
                         <span>Tư vấn</span>
                     </Link>
                 </div>
             </div>
             <div className='treeNode1'>
                 <div className="titleNode">
-                    <Link href="#">
+                    <Link href="#" passHref>
                         <span>Công trình</span>
                     </Link>
                 </div>
             </div>
             <div className='treeNode1'>
                 <div className="titleNode">
-                    <Link href="#">
+                    <Link href="#" passHref>
                         <span>Liên Hệ</span>
                     </Link>
                 </div>
             </div>
             <div className='treeNode1'>
                 <div className="titleNode">
-                    <Link href="#">
+                    <Link href="#" passHref>
                         <span>Thư viện ảnh</span>
                     </Link>
-                    <label for="node5"><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></label>
+                    <label htmlFor="node5"><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></label>
                 </div>
                 <input id="node5" type="checkbox" />
                 <div className="childs">
                     <div className="treeNode2">
                         <div className="titleNode">
-                            <Link href="#">
+                            <Link href="#" passHref>
                                 <span>Rèm vải</span>
                             </Link>
                         </div>
                     </div>
                     <div className="treeNode2">
                         <div className="titleNode">
-                            <Link href="#">
+                            <Link href="#" passHref>
                                 <span>Rèm cầu vồng</span>
                             </Link>
                         </div>
                     </div>
                     <div className="treeNode2">
                         <div className="titleNode">
-                            <Link href="#">
+                            <Link href="#" passHref>
                                 <span>Rèm gỗ</span>
                             </Link>
                         </div>
                     </div>
                     <div className="treeNode2">
                         <div className="titleNode">
-                            <Link href="#">
+                            <Link href="#" passHref>
                                 <span>Rèm văn phòng</span>
                             </Link>
                         </div>

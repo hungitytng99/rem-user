@@ -79,7 +79,7 @@ const Header = () => {
             <Container>
                 <div className="header-top">
                     <div className="contact">
-                        <Link href={{ pathname: 'tel:84966854224' }}>
+                        <Link href={{ pathname: 'tel:84966854224' }} passHref>
                             <a className="contact-item">
                                 <div className="contact-item-icon">
                                     <FontAwesomeIcon icon={faMobileAlt} />
@@ -89,7 +89,7 @@ const Header = () => {
                                 </div>
                             </a>
                         </Link>
-                        <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} >
+                        <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} passHref>
                             <a target="_blank" data-tip="Mail: sales@giangminhviet.com" className="contact-item">
                                 <div className="contact-item-icon">
                                     <FontAwesomeIcon icon={faEnvelope} />
@@ -104,7 +104,7 @@ const Header = () => {
             </Container>
             <Container>
                 <div className="header-body">
-                    <Link href="/">
+                    <Link href="/" passHref>
                         <div className="logo">
                             <Image src={ImagesPath.LOGO} alt="Trang Chủ" />
                         </div>
@@ -118,10 +118,10 @@ const Header = () => {
                                     sanpham.map((item, index) => {
                                         return (
                                             <div key={"spnode" + index} className="menu_list">
-                                                <Link href="#"><div className="title">{item.title}</div></Link>
+                                                <Link href="#" passHref><div className="title">{item.title}</div></Link>
                                                 {item.childs.map((sp, i) => {
                                                     return (
-                                                        <Link key={"spchild" + i} href="#"><div className="subTitle">{sp}</div></Link>
+                                                        <Link key={"spchild" + i} href="#" passHref><div className="subTitle">{sp}</div></Link>
                                                     )
                                                 })}
                                             </div>
@@ -141,15 +141,15 @@ const Header = () => {
                         <div className='nav-item'>
                             <span className='title'>Thư Viện Ảnh</span>
                             <div className='submenu'>
-                                <Link href="#"><div className="single_list">Rèm vải</div></Link>
-                                <Link href="#"><div className="single_list">Rèm cầu vồng</div></Link>
-                                <Link href="#"><div className="single_list">Rèm Gỗ</div></Link>
-                                <Link href="#"><div className="single_list">Rèm văn phòng</div></Link>
+                                <Link href="#" passHref><div className="single_list">Rèm vải</div></Link>
+                                <Link href="#" passHref><div className="single_list">Rèm cầu vồng</div></Link>
+                                <Link href="#" passHref><div className="single_list">Rèm Gỗ</div></Link>
+                                <Link href="#" passHref><div className="single_list">Rèm văn phòng</div></Link>
                             </div>
                         </div>
                         <div className="search">
                             <div className="search-icon" onClick={toggleSearhBar}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                 </svg>
                             </div>
@@ -173,7 +173,7 @@ const Header = () => {
                     </div>
 
                     <div className="toggle_mobile">
-                        <label for="toogleSidebar"><FontAwesomeIcon icon={faBars} /></label>
+                        <label htmlFor="toogleSidebar"><FontAwesomeIcon icon={faBars} /></label>
                     </div>
                 </div>
             </Container>
