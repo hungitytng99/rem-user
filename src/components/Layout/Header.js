@@ -143,30 +143,32 @@ const Header = () => {
     return (
         <header className="header">
             {/* {isShowLoading && <FullPageLoading opacity={0.5} />} */}
-            <div className="header-top">
-                <div className="contact">
-                    <Link href={{ pathname: 'tel:84966854224' }}>
-                        <a className="contact-item">
-                            <div className="contact-item-icon">
-                                <FontAwesomeIcon icon={faMobileAlt} />
-                            </div>
-                            <div className="contact-item-title">
-                                0982.345.6789
-                            </div>
-                        </a>
-                    </Link>
-                    <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} >
-                        <a target="_blank" data-tip="Mail: sales@giangminhviet.com" className="contact-item">
-                            <div className="contact-item-icon">
-                                <FontAwesomeIcon icon={faEnvelope} />
-                            </div>
-                            <div className="contact-item-title">
-                                rem@gmail.com
-                            </div>
-                        </a>
-                    </Link>
+            <Container>
+                <div className="header-top">
+                    <div className="contact">
+                        <Link href={{ pathname: 'tel:84966854224' }}>
+                            <a className="contact-item">
+                                <div className="contact-item-icon">
+                                    <FontAwesomeIcon icon={faMobileAlt} />
+                                </div>
+                                <div className="contact-item-title">
+                                    0982.345.6789
+                                </div>
+                            </a>
+                        </Link>
+                        <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} >
+                            <a target="_blank" data-tip="Mail: sales@giangminhviet.com" className="contact-item">
+                                <div className="contact-item-icon">
+                                    <FontAwesomeIcon icon={faEnvelope} />
+                                </div>
+                                <div className="contact-item-title">
+                                    rem@gmail.com
+                                </div>
+                            </a>
+                        </Link>
+                    </div>
                 </div>
-            </div>
+            </Container>
             <Container>
                 <div className="header-body">
                     <Link href="/">
