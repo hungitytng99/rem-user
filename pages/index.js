@@ -2,7 +2,7 @@ import Layout from 'components/Layout/Layout'
 import { ImagesPath } from 'constants/ImagesPath'
 import Head from 'next/head'
 import Image from 'next/image'
-import { Col, Row } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 import { Carousel } from 'react-responsive-carousel'
 import CardProduct from 'ui-source/Card/CardProduct'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -13,162 +13,158 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { categoryService } from 'data-services/category'
 import { productService } from 'data-services/product'
+import CardHotProduct from 'ui-source/Card/CardHotProduct'
+import CardPolicy from 'ui-source/Card/CardPolicy'
 
+const attr = {
+    img: "https://i.imgur.com/s8dwMxW.jpeg",
+    title: "So sánh các loại đồ gỗ được ",
+    desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
+    date: "09/06/2025",
+    vertical: true
+}
+const attr2 = {
+    img: "https://i.imgur.com/s8dwMxW.jpeg",
+    title: "So sánh các loại đồ gỗ được sử dụng làm rèm cửa hiện nay",
+    desc: "Rèm gỗ tự nhiên với vẻ đẹp mang đến sự gần gũi thiên nhiên cho không gian nội thất đang ngày càng chiếm được cảm tình của người tiêu dùng. Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
+    date: "09/06/2025",
+    vertical: false
+}
+const attr3 = {
+    img: "https://theme.hstatic.net/200000295586/1000722296/14/policy_icon1.png?v=292",
+    title: "Thương hiệu uy tín",
+    desc: "Hơn 10 năm kinh nghiệm, tỉ mỉ trong từng đường may mũi chỉ",
+
+}
 export default function Home(props) {
-  const { listHotProduct, listCategoryWithProduct } = props;
-  return (
-    <>
-      <Head>
-        <title>Trang chủ</title>
-      </Head>
-      <Layout>
-        <div className="home">
-          <Row className="home__carousel">
-            <Col xs={12}>
-              <Carousel
-                autoPlay={true}
-                interval={6000}
-                showArrows={false}
-                infiniteLoop={true}
-                showThumbs={false}
-                emulateTouch={true}
-              >
-                <div className="home__banner-img">
-                  <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_1} alt="giang minh viet banner" />
-                </div>
-                <div className="home__banner-img">
-                  <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_2} alt="giang minh viet banner handmade" />
-                </div>
-                <div className="home__banner-img">
-                  <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_3} alt="giang minh viet banner handmade" />
-                </div>
-              </Carousel>
-            </Col>
-          </Row>
-          <Row>
-            <div className="home__text ">
-              {/* <p className="home__text-franco ">Siêu khuyến mại</p> */}
-              <p className="home__text-feature ">Sản phẩm bán chạy</p>
-              <div className="home__text -underline "></div>
-            </div>
-          </Row>
-          <Row>
-            {
-              listHotProduct.map(hotProduct => {
-                return (
-                  <Col key={hotProduct.id} xs={12} sm={6} md={4} lg={3}>
-                    <CardProduct product={hotProduct} />
-                  </Col>
-                )
-              })
-            }
-          </Row>
-          <Row>
-            <Col>
-              <div className="home__post">
-                <h3 className="home__post-title">
-                  Camera Wifi Không dây Chính Hãng 100%, Mới Full Box, Giảm đến 69%
-                </h3>
-                <div className="home__post-content">
-                  <strong>Camera WiFi Không dây </strong> dễ sử dụng, <strong>CẮM LÀ CHẠY</strong> ai cũng có thể tự
-                  cài đặt và lắp đặt được. <strong>Camera Wifi </strong> rất linh hoạt, tiện lợi
-                  cho người dùng. Nếu sử dụng cho Gia đình, Cửa hàng, công ty vừa
-                  và nhỏ thì <strong>Camera Wifi </strong> sẽ là lựa chọn hàng đầu bở nó rất tiết kiệm
-                  chi phí so với camera giám sát có dây. Camera IP Giá Sỉ phân phối
-                  và lắp đặt camera uy tín hàng đầu Việt Nam. Chúng tôi phân phối <strong> Camera
-                    Wifi Reolink </strong> tại Việt Nam, là thương hiệu <strong>Camera Wifi Tốt Nhất</strong>,
-                  hoạt động ổn định với kết nối mạng băng tần kép 2,4 GHz và 5 GHz
-                  bắt tín hiệu cực mạnh.<strong>Camera Wifi </strong> nhưng có độ phân giải 5MP siêu
-                  nét 2K,  Zoom quang học 30 mét và nhiều tính năng thông minh.Khi
-                  chọn CAMERAIPGIASI bạn yên tâm 100% bởi chúng tôi chỉ Bán <strong>Camera Wifi
-                    chính hãng </strong>, chất lượng, cam kết mang đến trải nghiệm tốt nhất cho khách
-                  hàng.<strong>Camera Wifi </strong> siêu nét, đẳng cấp nhưng giá rất tốt và kèm nhiều
-                  khuyến mãi.Hỗ trợ giao hàng siêu tốc 30 phút đến 4h, Lắp đặt tại nhà,
-                  Bảo hành.Tư vấn miễn phí ngay bây giờ:
-                  <Link href="tel:0923444555"><a style={{ color: "#e14d43" }}><strong> 0923.444.555 – 0932.123.654</strong></a></Link>
-                </div>
-              </div>
-            </Col>
-          </Row>
-
-          {listCategoryWithProduct.map(categoryWithProduct => {
-            return (
-              categoryWithProduct.listProduct &&
-              <CardWithTitle key={categoryWithProduct.id}
-                title={categoryWithProduct.name}
-                link={categoryWithProduct.slug}
-              >
-                <Row>
-                  {
-                    categoryWithProduct.listProduct.map(product => {
-                      return (
-                        <Col key={product.id} xs={12} sm={6} md={4} lg={3}>
-                          <CardProduct product={product} />
+    const { listHotProduct, listCategoryWithProduct } = props;
+    return (
+        <>
+            <Head>
+                <title>Trang chủ</title>
+            </Head>
+            <Layout>
+                <div className="home">
+                    <Row className="home__carousel">
+                        <Col xs={12}>
+                            <Carousel
+                                autoPlay={true}
+                                interval={6000}
+                                showArrows={false}
+                                infiniteLoop={true}
+                                showThumbs={false}
+                                emulateTouch={true}
+                            >
+                                <div className="home__banner-img">
+                                    <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_1} alt="giang minh viet banner" />
+                                </div>
+                                <div className="home__banner-img">
+                                    <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_2} alt="giang minh viet banner handmade" />
+                                </div>
+                                <div className="home__banner-img">
+                                    <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_3} alt="giang minh viet banner handmade" />
+                                </div>
+                            </Carousel>
                         </Col>
-                      )
-                    })
-                  }
+                    </Row>
+                    <Row>
+                        <Container style={{ padding: "0px 30px" }}>
+                            <Row style={{ padding: "15px", background: "white" }}>
+                                <Col xs={4}>
+                                    <CardReview data={attr}></CardReview>
+                                </Col>
+                                <Col xs={4}>
+                                    <CardReview data={attr}></CardReview>
+                                </Col>
+                                <Col xs={4}>
+                                    <CardReview data={attr}></CardReview>
+                                </Col>
+                            </Row>
+                            <Row style={{ margin: "25px 0px" }}>
+                                <Col xs={3}>
+                                    <CardPolicy data={attr3}></CardPolicy>
+                                </Col>
+                                <Col xs={3}>
+                                    <CardPolicy data={attr3}></CardPolicy>
+                                </Col>
+                                <Col xs={3}>
+                                    <CardPolicy data={attr3}></CardPolicy>
+                                </Col>
+                                <Col xs={3}>
+                                    <CardPolicy data={attr3}></CardPolicy>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </Row>
+                    <Row>
+                        <Container>
+                            <h2>SẢN PHẨM BÁN CHẠY</h2>
+                            <h3>Các mẫu rèm cửa được khách hàng hay lựa chọn</h3>
+                            <div>
+                                <span>Rèm vải một màu</span>
+                                <span>Rèm cầu vồng</span>
+                                <span>Rèm Gỗ</span>
+                                <span>Rèm Cuốn</span>
+                                <span>Giàn Phơi Thông Minh</span>
+                            </div>
+                        </Container>
+                    </Row>
+                    <Row>
+                        <Col xs={4} style={{ marginBottom: "30px" }}>
+                            <CardHotProduct data={attr}></CardHotProduct>
+                        </Col>
+                        <Col xs={4} style={{ marginBottom: "30px" }}>
+                            <CardHotProduct data={attr}></CardHotProduct>
+                        </Col>
+                        <Col xs={4} style={{ marginBottom: "30px" }}>
+                            <CardHotProduct data={attr}></CardHotProduct>
+                        </Col>
+                        <Col xs={4} style={{ marginBottom: "30px" }}>
+                            <CardHotProduct data={attr}></CardHotProduct>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <h2>Góc tư vấn</h2>
+                        <h3>Lựa chọn và chăm sóc nhà cửa cùng Rèm The Sun</h3>
+                    </Row>
+                    <Row>
+                        <Col xs={4} style={{ marginBottom: "30px" }}>
+                            <CardProduct data={attr} />
+                        </Col>
+                        <Col xs={4} style={{ marginBottom: "30px" }}>
+                            <CardProduct data={attr} />
+                        </Col>
+                        <Col xs={4} style={{ marginBottom: "30px" }}>
+                            <CardProduct data={attr} />
+                        </Col>
+                    </Row>
+                    <CardProduct data={attr2} />
 
-                </Row>
-              </CardWithTitle>
-            )
-          })}
-
-
-          <CardWithTitle title="Cảm nhận của khách hàng">
-            <Carousel
-              showThumbs={false}
-              centerMode={true}
-              centerSlidePercentage={50}
-              selectedItem={1}
-              showIndicators={false}
-              renderArrowPrev={(onClickHandler, hasPrev, label) =>
-                hasPrev && (
-                  <div onClick={onClickHandler} title={label} className="home__carousel-arrow-left">
-                    <FontAwesomeIcon icon={faChevronLeft} />
-                  </div>
-                )
-              }
-              renderArrowNext={(onClickHandler, hasNext, label) =>
-                hasNext && (
-                  <div onClick={onClickHandler} title={label} className="home__carousel-arrow-right">
-                    <FontAwesomeIcon icon={faChevronRight} />
-                  </div>
-                )
-              }
-            >
-              <CardReview />
-              <CardReview />
-              <CardReview />
-            </Carousel>
-          </CardWithTitle>
-        </div>
-      </Layout>
-    </>
-
-
-  )
+                </div>
+            </Layout>
+        </>
+    )
 }
 
 export async function getServerSideProps() {
-  let listCategoryWithProduct = [];
-  let listHotProduct = [];
-  try {
-    listCategoryWithProduct = await categoryService.listCategoryWithProduct(
-      {}, { productsPerPage: 8, pageNumber: 1 }
-    );
-    listHotProduct = await productService.listHotProduct();
-    return {
-      props: {
-        listHotProduct: listHotProduct.data,
-        listCategoryWithProduct: listCategoryWithProduct.data,
-      },
-    };
-  } catch (error) {
-    return {
-      notFound: true
-    };
-  }
+    let listCategoryWithProduct = [];
+    let listHotProduct = [];
+    try {
+        listCategoryWithProduct = await categoryService.listCategoryWithProduct(
+            {}, { productsPerPage: 8, pageNumber: 1 }
+        );
+        listHotProduct = await productService.listHotProduct();
+        return {
+            props: {
+                listHotProduct: listHotProduct.data,
+                listCategoryWithProduct: listCategoryWithProduct.data,
+            },
+        };
+    } catch (error) {
+        return {
+            notFound: true
+        };
+    }
 
 }
 

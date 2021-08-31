@@ -100,7 +100,7 @@ function Footer() {
                         </Col>
                     </Row>
                 </Container>
-                <div style={{ borderTop: "1px solid gray" }}></div>
+                <div style={{ borderTop: "1px solid #e1e1e1" }}></div>
                 <Container >
                     <footer className="footer">
                         <div className="footer-cpright">
