@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { categoryService } from 'data-services/category';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMap, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
-
+import { ImagesPath } from 'constants/ImagesPath';
+import Image from 'next/image'
+import { faFacebook, faPinterest, faTelegramPlane, faYoutube } from '@fortawesome/free-brands-svg-icons';
 function Footer() {
     const [listCategory, setListCategory] = useState([]);
     useEffect(() => {
@@ -19,38 +21,56 @@ function Footer() {
             <footer className="footer__background ">
                 <Container className="footer">
                     <Row className="footer-contact">
-                        <Col className="footer-contact__item" md={3} sm={12} xs={12}>
-                            <div className="footer-contact__item-title ">
-                                Thông tin về shop
+                        <Col className="footer-contact__item" md={5} sm={12} xs={12}>
+                            <div className="footer-contact__item-logo ">
+                                <Image src={ImagesPath.LOGO} alt="Trang Chủ" />
                             </div>
-                            <div className="footer-contact__item-underline "></div>
-                            <div className="footer-contact__item-content ">
-                                <strong>Camera XXX</strong> phân phối Camera Wifi giá sỉ và lắp đặt Camera giám sát uy yín. Cam kết sản phẩm chính hãng, dịch vụ chuyên nghiệp, giá tốt nhất.
-                                <div><strong>Thời gian làm việc:</strong> 8h-17h Tất cả cá ngày trong tuần</div>
-                                <strong>Thông tin liên hệ:</strong> Công ty XXX
-                                <div><strong>Giấy chứng nhận đăng ký kinh doanh:</strong> 0316411013. Do sở kế hoạch đầu tư Thành Phố Hồ Chí Minh cấp ngày: 29/07/2020</div>
-                            </div>
-                            <ul className="footer-contact__item-icon-list ">
-                                <a href=" ">
-                                    <i className="footer-contact__item-icon-list -item fab fa-twitter "></i>
-                                </a>
-                                <a href=" ">
-                                    <i className="footer-contact__item-icon-list -item fab fa-linkedin-in "></i>
-                                </a>
-                                <a href=" ">
-                                    <i className="footer-contact__item-icon-list -item fab fa-behance "></i>
-                                </a>
-                                <a href=" ">
-                                    <i className="footer-contact__item-icon-list -item fab fa-dribbble "></i>
-                                </a>
+                            <ul className="footer-contact__info-list ">
+                                <li className="footer-contact__info-item">
+                                    GPKD
+                                </li>
+                                <li className="footer-contact__info-item">
+                                    <Link href="">
+                                        <a href="" className="footer-contact__info-link">
+                                            <span>
+                                                <FontAwesomeIcon className="footer-contact__info-icon" icon={faMap} />
+                                            </span>
+                                            Đường XXX YYY ZZZ Thành phố Bắc Ninh
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li className="footer-contact__info-item">
+                                    <Link href={{ pathname: 'tel:84966854224' }} >
+                                        <a className="footer-contact__info-link">
+                                            <span>
+                                                <FontAwesomeIcon className="footer-contact__info-icon" icon={faPhoneAlt} />
+                                            </span>
+                                            +1 23456789
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li className="footer-contact__info-item">
+                                    <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} >
+                                        <a className="footer-contact__info-link">
+                                            <span>
+                                                <FontAwesomeIcon className="footer-contact__info-icon" icon={faEnvelope} />
+                                            </span>
+                                            contact@camera.com
+
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    Giấy CNĐKKD: đang cập nhật <br />
+                                    Cơ quan cấp: đang cập nhật <br />
+                                    Địa chỉ :
+                                </li>
                             </ul>
                         </Col>
-                        <Col className="footer-contact__item" lg={1} sm={0} xs={0} />
                         <Col className="footer-contact__item" md={3} sm={12} xs={12}>
                             <div className="footer-contact__item-title ">
-                                Danh mục
+                                CÁC DANH MỤC
                             </div>
-                            <div className="footer-contact__item-underline "></div>
                             <div className="footer-contact__wrapper row ">
                                 <ul className="footer-contact__wrapper-list col xl-6 l-6 m-6 sm-6 c-6 ">
                                     {listCategory.map((category) => {
@@ -65,43 +85,29 @@ function Footer() {
                                 </ul>
                             </div>
                         </Col>
-                        <Col className="footer-contact__item" lg={1} sm={0} xs={0} />
-                        <Col className="footer-contact__item" md={3} sm={12} xs={12}>
+
+                        <Col className="footer-contact__item" md={4} sm={12} xs={12}>
                             <div className="footer-contact__item-title ">
-                                Địa chỉ shop
+                                CẬP NHẬT CHƯƠNG TRÌNH KHUYẾN MÃI
                             </div>
-                            <div className="footer-contact__item-underline "></div>
-                            <ul className="footer-contact__info-list ">
-                                <li className="footer-contact__info-item">
-                                    <Link href="">
-                                        <a href="" className="footer-contact__info-link">
-                                            <FontAwesomeIcon className="footer-contact__info-icon" icon={faMap} /> Đường XXX YYY ZZZ Thành phố Bắc Ninh
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="footer-contact__info-item">
-                                    <Link href={{ pathname: 'tel:84966854224' }} >
-                                        <a className="footer-contact__info-link">
-                                            <FontAwesomeIcon className="footer-contact__info-icon" icon={faPhoneAlt} />+1 23456789
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="footer-contact__info-item">
-                                    <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} >
-                                        <a className="footer-contact__info-link">
-                                            <FontAwesomeIcon className="footer-contact__info-icon" icon={faEnvelope} /> contact@camera.com
-                                        </a>
-                                    </Link>
-                                </li>
-                            </ul>
+                            <div className="enter_email">
+                                <input type="text" placeholder="Enter email..."></input>
+                                <span><FontAwesomeIcon icon={faTelegramPlane}></FontAwesomeIcon></span>
+                            </div>
+                            <p>
+                                Mỗi tháng chúng tôi đều có những đợt giảm giá dịch vụ và sản phẩm nhằm tri ân khách hàng. Vui lòng nhập địa chỉ email để cập nhật những chương trình khuyến mãi mới nhất từ Rèm The Sun.
+                            </p>
                         </Col>
                     </Row>
                 </Container>
-                <div className="footer-contact__item-underline "></div>
-                <Container>
+                <div style={{ borderTop: "1px solid gray" }}></div>
+                <Container >
                     <footer className="footer">
                         <div className="footer-cpright">
-                            <div className="footer-cpright__left ">Shop camera Bắc Ninh, 2021</div>
+                            Copyrights © 2018 by <Link href='/'> Rèm The Sun</Link>.
+                            <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'blue' }} icon={faFacebook}></FontAwesomeIcon>
+                            <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'red' }} icon={faYoutube}></FontAwesomeIcon>
+                            <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'purple' }} icon={faPinterest}></FontAwesomeIcon>
                         </div>
                     </footer>
                 </Container>

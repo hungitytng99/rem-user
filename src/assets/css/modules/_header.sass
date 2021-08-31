@@ -1,6 +1,11 @@
 .header
+    position: fixed
+    top: 0
+    z-index: 1000
+    width: 100%
     background: #fff
     color: #666666!important
+    box-shadow: 1px 1px 5px grey
     &-top
         height: $header-top-height
         padding: 10px 0px
@@ -138,6 +143,6 @@
                     cursor: pointer
 
 #toogleSidebar + .sidebar
-    display: none
+    transform: translateX(100%)
 #toogleSidebar:checked + .sidebar
-    display: block
+    transform: translateX(0%)
