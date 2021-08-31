@@ -4,29 +4,23 @@
     &__detail
         padding: 15px 0px
         &-name
-            font-size: 24px
-            padding-bottom: 16px
-            border-bottom: 1px solid #e2e2e2
-            margin-bottom: 10px
-            font-weight: 550
-            text-transform: uppercase
-        &-old-price
-            display: inline-block
-            height: 46px
-            line-height: 30px
-            font-size: 24px
+            font-size: 14px
             font-weight: 700
-            margin-right: 8px
-            text-decoration: line-through
-            color: #494949
-
+            text-transform: uppercase
+            margin-bottom: 5px
+        &-status
+            margin-bottom: 4px
+            color: #34c25c
+            border: 1px solid #34c25c
+            line-height: 20px
+            width: 80px
+            text-align: center
+            border-radius: 6px
         &-new-price
-            display: inline-block
-            height: 46px
-            line-height: 30px
             font-size: 26px
             font-weight: 700
             color: $primary
+            padding: 20px 0px
             & span
                 margin-left: 4px
 
@@ -53,30 +47,6 @@
                     color: #fff
                     background-color: $primary_1
                     cursor: pointer
-        &-sale
-            padding: 20px 10px 5px 10px
-            border: 1px solid #dcdcdc
-            margin-bottom: 10px
-            margin-top: 10px
-            position: relative
-            &-gift
-                background: $primary
-                display: inline-block
-                position: absolute
-                padding: 5px 10px
-                border-radius: 4px
-                top: -15px
-                color: $white
-                font-size: 13px
-                font-weight: bold
-            &-item
-                padding: 2px 0px 2px 25px
-                position: relative
-                font-size: 13px
-            &-icon
-                position: absolute
-                color: green
-                left: 5px
         &-special
             &-title
                 font-weight: bold
@@ -85,6 +55,36 @@
             & ul
                 list-style: inside
                 padding-left: 2px
+        &-type
+            display: flex
+            flex-wrap: wrap
+            &-item
+                display: flex
+                padding-right: 6px
+                margin-right: 6px
+                line-height: 16px
+                border-right: 1px solid #bbbbbb
+                & a
+                    color: $primary
+                    margin-left: 4px
+                    &:hover
+                        color: $primary_1
+    &__compute
+        &-item
+            margin-bottom: 10px
+            &-title
+                font-weight: 700
+                margin-bottom: 4px
+            &-input
+                border: 1px solid #a7a7a7
+                border-radius: 4px
+                padding: 8px 10px
+                width: 100%
+                line-height: 28px
+                &:hover
+                    border-color: $primary
+                &:focus
+                    border-color: $primary
     &__contact-form
         background-color: $white
         margin: 30px 0px
@@ -145,7 +145,7 @@
             margin-bottom: 10px
             border-radius: 4px
         &-date
-           
+
             display: flex
             align-items: center
             margin-top: 3px

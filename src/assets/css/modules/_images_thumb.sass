@@ -5,10 +5,10 @@
         display: flex
         justify-content: center
         align-items: center
-        margin-top: 15px
+        flex-direction: column
     &__item
-        width: 70px
-        height: 70px
+        width: 90px
+        height: 90px
         margin: 1px 4px
         overflow: hidden
         display: flex
@@ -16,7 +16,7 @@
         &:hover
             cursor: pointer
         &.selected
-            border: 2px solid #000
+            border: 2px solid $primary_1
         &-img
             width: 100%
             // object-fit: contain

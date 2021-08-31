@@ -3,50 +3,58 @@ import { Col, Row } from 'react-bootstrap';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 // [{ src: ImagesPath.PRODUCT.src, alt: "" }, { src: ImagesPath.PRODUCT_2.src, alt: "" }, { src: ImagesPath.SP.src, alt: "" }]
-const ImagesThumb = ({ listImages = [] }) => {
+const ImagesThumb = ({ listImages }) => {
+    let count = -1;
+    console.log(listImages);
+    listImages = listImages.map((item, index) => {
+        count++;
+        return {
+            id: count,
+            isSelected: index == 0,
+            ...item,
+        }
+    })
+    const [listImagesStatus, setlistImagesStatus] = useState(listImages)
     const [currentImageSelected, setCurrentImageSelected] = useState(listImages[0]);
     const selectImage = (e) => {
         let indexImgSelected = Number(e.target.dataset.imgid);
-        listImages = listImages.map((img, index) => {
+        let newListImage = listImages.map((img, index) => {
             img.isSelected = index == indexImgSelected
             return img;
         });
-        setCurrentImageSelected(listImages[indexImgSelected]);
-        // setCurrentImageSelected(newListImage[indexImgSelected]);
+        setCurrentImageSelected(newListImage[indexImgSelected]);
+        setlistImagesStatus(newListImage);
     }
-
-    useEffect(() => {
-        setCurrentImageSelected(listImages[0]);
-    },[listImages])
-
     return (
         <div className="images-thumb">
             <Row className="images-thumb__row">
-                <Col >
-                    <div className="img-box">
-                        <div className="img">
-                            <Zoom>
-                                <img
-                                    alt={currentImageSelected?.alt}
-                                    src={currentImageSelected?.src}
-                                    width="100%"
-                                />
-                            </Zoom>
-                        </div>
-
+                <Col xs={2} className="images-thumb__center">
+                    <div className="images-thumb__list">
+                        {listImagesStatus.map((image, index) => {
+                            return (
+                                <div key={image.id} className={`images-thumb__item ${image.isSelected && 'selected'}`}>
+                                    <img onClick={selectImage} data-imgid={image.id} className="images-thumb__item-img" src={image.src} alt={image.alt} />
+                                </div>
+                            )
+                        })}
                     </div>
                 </Col>
-            </Row>
-            <Row className="images-thumb__center">
-                <div className="images-thumb__list">
-                    {listImages.map((image) => {
-                        return (
-                            <div key={image.id} className={`images-thumb__item ${image.isSelected && 'selected'}`}>
-                                <img onClick={selectImage} data-imgid={image.id} className="images-thumb__item-img" src={image.src} alt={image.alt} />
-                            </div>
-                        )
-                    })}
-                </div>
+                <Col xs={10}>
+                    {/* <div className="img-box">
+                    <div className="img"> */}
+                    <Zoom wrapStyle={{ width: '100%' }}>
+                        <img
+                            alt={currentImageSelected?.alt}
+                            src={currentImageSelected?.src}
+                            width="100%"
+                        />
+                    </Zoom>
+                    {/* </div>
+
+                    </div> */}
+
+                </Col>
+
             </Row>
         </div >
     );

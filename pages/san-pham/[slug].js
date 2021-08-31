@@ -21,7 +21,7 @@ import { postService } from 'data-services/post';
 Modal.setAppElement('#__next');
 // detailProduct = {},
 const Product = (props) => {
-    const { relatedProducts = {}, detailProduct = {}, listPost = [] } = props;
+    const { relatedProducts = { }, detailProduct = { }, listPost = [] } = props;
     const [contactModal, setContactModal] = useState(false);
     const showContactModal = (e) => {
         e.stopPropagation();
@@ -36,6 +36,28 @@ const Product = (props) => {
         e.preventDefault();
         setContactModal(false);
     }
+    const image = [
+        {
+            "src": "http://product.hstatic.net/200000295586/product/111701_69b68d7ec40144f9846cdc3a4af5e0f8_master.jpg",
+            "alt": "Wholesale Hot Selling Seagrass Hanging Basket Basket Home Wall Decoration From Vietnam_347"
+        },
+        {
+            "src": "http://product.hstatic.net/200000295586/product/111727_cef99d87a03b4bfc942858347cc33d08_master.jpg",
+            "alt": "Wholesale Hot Selling Seagrass Hanging Basket Basket Home Wall Decoration From Vietnam_792"
+        },
+        {
+            "src": "http://product.hstatic.net/200000295586/product/111701_69b68d7ec40144f9846cdc3a4af5e0f8_master.jpg",
+            "alt": "Wholesale Hot Selling Seagrass Hanging Basket Basket Home Wall Decoration From Vietnam_473"
+        },
+        {
+            "src": "http://product.hstatic.net/200000295586/product/111727_cef99d87a03b4bfc942858347cc33d08_master.jpg",
+            "alt": "Wholesale Hot Selling Seagrass Hanging Basket Basket Home Wall Decoration From Vietnam_472"
+        },
+        {
+            "src": "http://product.hstatic.net/200000295586/product/111701_69b68d7ec40144f9846cdc3a4af5e0f8_master.jpg",
+            "alt": "Wholesale Hot Selling Seagrass Hanging Basket Basket Home Wall Decoration From Vietnam_185"
+        }
+    ]
     // if(detailProduct && Object.keys(detailProduct).length === 0 && detailProduct.constructor === Object) {
     //     return 
     // }
@@ -60,187 +82,84 @@ const Product = (props) => {
                     <Row>
                         <Col>
 
-                            <div className="product__detail-name">
-                                {detailProduct.name}
-                            </div>
+
                         </Col>
                     </Row>
                     <Row className="product__detail">
-                        <Col xs={12} md={4}>
-                            <ImagesThumb listImages={detailProduct.image} />
+                        <Col xs={12} md={8}>
+                            <ImagesThumb listImages={image} />
                         </Col>
-                        <Col xs={12} md={5}>
-                            {
-                                detailProduct.discount > 0 &&
-                                <div className="product__detail-old-price">
-                                    {detailProduct.price}đ
+                        <Col xs={12} md={4}>
+                            <div className="product__detail-name text_over_flow_1">
+                                {detailProduct.name}
+                            </div>
+                            <div className="product__detail-status">
+                                Còn hàng
+                            </div>
+                            <div className="product__detail-type">
+                                <div className="product__detail-type-item">
+                                    <p>Thương hiệu: </p>
+                                    <Link href="/" >
+                                        <a>Rèm The Sun</a>
+                                    </Link>
                                 </div>
-                            }
+                                <div className="product__detail-type-item">
+                                    <p>Loại: </p>
+                                    <Link href="/" >
+                                        <a>Rèm vài 1 màu</a>
+                                    </Link>
+                                </div>
+                            </div>
+
                             <div className="product__detail-new-price">
-                                {detailProduct.new_price}đ
+                                {detailProduct.new_price}<span style={{ textDecoration: "underline" }}>đ</span>
+                                <span style={{ position: 'relative' }}>
+                                    /m
+                                    <span style={{ position: 'absolute', fontSize: '14px', right: '-8px', top: '0px' }}>2</span>
+                                </span>
                             </div>
-                            <div className="product__detail-sale">
-                                <div className="product__detail-sale-gift">
-                                    <FontAwesomeIcon icon={faGift} />
-                                    <span>Khuyến mại</span>
+
+                            <Row className="product__compute">
+                                <Col xs={6} className="product__compute-item">
+                                    <div className="product__compute-item-title">
+                                        Chiều rộng (mm)
+                                    </div>
+                                    <input type="number" className="product__compute-item-input" placeholder="Chiều rộng" />
+                                </Col>
+                                <Col xs={6} className="product__compute-item">
+                                    <div className="product__compute-item-title">
+                                        Chiều dài (mm)
+                                    </div>
+                                    <input type="number" className="product__compute-item-input" placeholder="Chiều dài" />
+                                </Col>
+
+                                <Col xs={6} className="product__compute-item">
+                                    <div className="product__compute-item-title">
+                                        Chiều rộng (mm)
+                                    </div>
+                                    <input disabled type="text" className="product__compute-item-input" placeholder="0" />
+                                </Col>
+
+                                <Col xs={6} className="product__compute-item">
+                                    <div className="product__compute-item-title">
+                                        Số bộ
+                                    </div>
+                                    <input type="number" min={1} className="product__compute-item-input" placeholder="1" />
+                                </Col>
+                            </Row>
+                            <div className="product__compute-result">
+                                <div className="product__compute-result-text">
+                                    Báo giá sơ bộ
                                 </div>
-                                <ul className="product__detail-sale-list">
-                                    <li className="product__detail-sale-item">
-                                        <div className="product__detail-sale-icon">
-                                            <FontAwesomeIcon icon={faCheckCircle} />
-                                        </div>
-                                        Hàng chính hãng Full Box mới 100% - Giảm SỐC
-                                    </li>
-                                    <li className="product__detail-sale-item">
-                                        <div className="product__detail-sale-icon">
-                                            <FontAwesomeIcon icon={faCheckCircle} />
-                                        </div>
-                                        GIẢM LIỀN 100K khi mua 2 camera WIFI bất kỳ
-                                    </li>
-                                    <li className="product__detail-sale-item">
-                                        <div className="product__detail-sale-icon">
-                                            <FontAwesomeIcon icon={faCheckCircle} />
-                                        </div>
-                                        TIẾT KIỆM thêm 50K khi mua kèm THẺ NHỚ
-                                    </li>
-                                    <li className="product__detail-sale-item">
-                                        <div className="product__detail-sale-icon">
-                                            <FontAwesomeIcon icon={faCheckCircle} />
-                                        </div>
-                                        NHẬN NGAY Voucher giảm giá 50k - 300K
-                                    </li>
-                                    <li className="product__detail-sale-item">
-                                        <div className="product__detail-sale-icon">
-                                            <FontAwesomeIcon icon={faCheckCircle} />
-                                        </div>
-                                        MIỄN PHÍ cài đặt và hướng dẫn sử dụng tận nơi tại TPHCM
-                                    </li>
-                                    <li className="product__detail-sale-item">
-                                        <div className="product__detail-sale-icon">
-                                            <FontAwesomeIcon icon={faCheckCircle} />
-                                        </div>
-                                        MIỄN PHÍ giao hàng toàn quốc - HOẢ TỐC tại TPHCM
-                                    </li>
-                                    <li className="product__detail-sale-item">
-                                        <div className="product__detail-sale-icon">
-                                            <FontAwesomeIcon icon={faCheckCircle} />
-                                        </div>
-                                        Hỗ trợ lắp đặt camera tận nhà tại TPHCM
-                                    </li>
-                                    <li className="product__detail-sale-item">
-                                        <div className="product__detail-sale-icon">
-                                            <FontAwesomeIcon icon={faCheckCircle} />
-                                        </div>
-                                        Bảo hành 12 tháng - Đổi 1/1 trong vòng 30 ngày nếu lỗi NSX
-                                    </li>
-                                </ul>
+                                <div className="product__compute-result-price">
+                                    880,000đ
+                                </div>
+
                             </div>
-                            <div className="product__detail-special">
-                                <div className="product__detail-special-title">
-                                    Thông tin nổi bật
-                                </div>
-                                <div className="product__detail-short-desc" dangerouslySetInnerHTML={{ __html: detailProduct.description }}>
-                                </div>
-                            </div>
+
                             <div className="product__detail-contact">
                                 <div onClick={showContactModal} className="product__detail-contact-link">
                                     Liên hệ ngay
-                                </div>
-                            </div>
-                        </Col>
-                        <Col xs={12} md={3}>
-                            <div className="product__shop">
-                                <div className="product__shop-reason">
-                                    <div className="product__shop-reason-title">
-                                        Tại sao chọn CameraXXXXXXX?
-                                    </div>
-                                    <ul className="product__shop-reason-list">
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Hàng chính hãng, Mới 100%
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Giá tốt nhất, thương hiệu Uy Tín.
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Nhân viên tư vấn tận tình.
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Đội ngũ lắp đặt chuyên nghiệp
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Giao hàng Siêu Tốc 30 phút - 4H
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Đổi mới 30 ngày miễn phí.
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Hỗ trợ Lắp đặt tại nhà TPHCM
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Thanh toán an toàn COD Toàn Quốc
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Bảo hành chu đáo bằng số điện thoại
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Hỗ trợ kỹ thuật chuyên nghiệp.
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="product__shop-reason">
-                                    <div className="product__shop-reason-title">
-                                        Hotline hỗ trợ
-                                    </div>
-                                    <ul className="product__shop-reason-list">
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Hotline tư vấn: <strong>098.1234.5678</strong>
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Hotline tư vấn: <strong>098.1234.5678</strong>
-                                        </li>
-                                        <li className="product__shop-reason-item">
-                                            <div className="product__shop-reason-icon">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                            Hotline hỗ trợ: <strong>098.1234.5678</strong>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </Col>
@@ -337,8 +256,8 @@ const Product = (props) => {
 
 export async function getServerSideProps(context) {
     const { slug } = context.params;
-    let detailProduct = {};
-    let detailCategory = {};
+    let detailProduct = { };
+    let detailCategory = { };
     let relatedProducts = [];
     let listPost = [];
     try {
@@ -364,7 +283,7 @@ export async function getServerSideProps(context) {
         listPost = await postService.listPost({ postsPerPage: 4, pageNumber: 1 });
         return {
             props: {
-                detailProduct: detailProduct.data || {},
+                detailProduct: detailProduct.data || { },
                 relatedProducts: relatedProducts.data || [],
                 listPost: listPost.data || [],
             },
