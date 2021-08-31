@@ -1,7 +1,39 @@
-.card-review
-    background-color: $white
-    padding: 20px 20px 50px 20px
+.card_review
+    position: relative
+    width: 380px
+    height: 212px
+    cursor: pointer
+    &:hover
+        & > div
+            opacity: 1
+    & > img
+        width: 100%
+        height: 100%
+    & > div
+        opacity: 0
+        position: absolute
+        transition: 0.3s
+        top: 0
+        left: 0
+        height: 100%
+        width: 100%
+        background: rgba(255, 255, 255, 0.8)
+        padding: 10px
+        & > div
+            height: 100%
+            border: 2px solid #fff
+            display: flex
+            align-items: center
+            justify-content: center
+            padding: 0 25px
+            & > div > p
+                width: 100%
+                text-align: center
 
-    &__img
-        @include image-box(100%)
-        border-radius: 50%
+                &:first-child
+                    color: $text_hover_color
+                    font-weight: bold
+                &:nth-child(2)
+                    color: #333333
+                    font-size: 20px
+                    font-weight: 700

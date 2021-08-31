@@ -115,13 +115,13 @@ const Header = () => {
                             <span className='title'>Sản Phẩm</span>
                             <div className='submenu submenu_max_width'>
                                 {
-                                    sanpham.map(item => {
+                                    sanpham.map((item, index) => {
                                         return (
-                                            <div className="menu_list">
+                                            <div key={"spnode" + index} className="menu_list">
                                                 <Link href="#"><div className="title">{item.title}</div></Link>
-                                                {item.childs.map(sp => {
+                                                {item.childs.map((sp, i) => {
                                                     return (
-                                                        <Link href="#"><div className="subTitle">{sp}</div></Link>
+                                                        <Link key={"spchild" + i} href="#"><div className="subTitle">{sp}</div></Link>
                                                     )
                                                 })}
                                             </div>

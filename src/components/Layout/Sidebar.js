@@ -30,7 +30,7 @@ export default function Sidebar() {
                     {
                         sanpham.map((item, index) => {
                             return (
-                                <div className="treeNode2">
+                                <div key={"sidebarsp" + index} className="treeNode2">
                                     <div className="titleNode">
                                         <Link href="#">
                                             <span>{item.title}</span>
@@ -45,7 +45,7 @@ export default function Sidebar() {
                                         {
                                             item.childs.map((sp, i) => {
                                                 return (
-                                                    <div className="treeNode3">
+                                                    <div key={"sidebarspchild" + i} className="treeNode3">
                                                         <div className="titleNode">
                                                             <Link href="#">
                                                                 <span>{sp}</span>
