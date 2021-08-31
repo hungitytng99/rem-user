@@ -27,6 +27,7 @@
                     display: inline
                     line-height: 25.6px
                     margin-left: 10px
+                    font-weight: 300
 
                 &:hover .contact-item-title
                     color: #d61c1f
@@ -42,6 +43,8 @@
             cursor: pointer
         & .nav
             position: relative
+            width: -webkit-fill-available
+            justify-content: space-around
             & > .nav-item
                 cursor: pointer
                 display: flex
@@ -133,7 +136,7 @@
                 & label
                     cursor: pointer
 
-#toogleSidebar ~ .sidebar
+#toogleSidebar + .sidebar
     display: none
-#toogleSidebar:checked ~ .sidebar
+#toogleSidebar:checked + .sidebar
     display: block

@@ -1,8 +1,82 @@
+/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_symbol */
 .sidebar
     position: fixed
     top: 0
     right: 0
-    width: 240px
+    width: 300px
     height: 100vh
-    background: rgba(0, 0, 0, 0.7)
+    background: rgba(0, 0, 0, 0.8)
     z-index: 1001
+    overflow: auto
+    backdrop-filter: blur(3px)
+    & .childs
+        transform-origin: 0% 0%
+        height: 0
+        transition: .4s
+        transform: scaleY(0)
+    & .treeNode1
+        padding: 15px
+        font-size: 14px
+        font-weight: bold
+        border-bottom: 1px dashed #bfbfbf
+        color: #fff
+        transition: 0.5s
+        position: relative
+        &:hover
+            background: rgba(0, 0, 0, 0.85)
+            &::before
+                content: ''
+                position: absolute
+                top: 0
+                left: 0
+                width: 3px
+                height: 100%
+                background: #cecece
+
+        & .titleNode
+            text-transform: uppercase
+            display: flex
+            justify-content: space-between
+            cursor: pointer
+            & span
+                position: relative
+                &::before
+                    bottom: 0
+                    left: 0
+                    position: absolute
+                    content: ''
+                    transition: 0.4s
+                    transform-origin: left
+                    width: 0
+                    height: 1px
+                    background: #cecece
+            &:hover
+                & span::before
+                    width: 100%
+        & .treeNode2
+            padding: 12px 0px 0px 15px
+
+            & .treeNode3
+                padding: 10px 0px 0px 15px
+                cursor: pointer
+    input[type="checkbox"]
+        display: none
+    input[type="checkbox"] + div.childs
+        transform: scaleY(0)
+    input[type="checkbox"]:checked + div.childs
+        height: 100%
+        transform: scaleY(1)
+
+    label
+        cursor: pointer
+
+    &::-webkit-scrollbar
+        width: 5px
+
+    &::-webkit-scrollbar-track
+        box-shadow: inset 0 0 5px grey
+        border-radius: 10px
+
+    &::-webkit-scrollbar-thumb
+        background: gray
+        border-radius: 10px

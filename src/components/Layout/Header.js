@@ -176,9 +176,6 @@ const Header = () => {
                 </Link>
                 <div className="nav">
                     <div className='nav-item'>
-                        <span className='title'>Giới thiệu</span>
-                    </div>
-                    <div className='nav-item'>
                         <span className='title'>Sản Phẩm</span>
                         <div className='submenu submenu_max_width'>
                             {
@@ -201,33 +198,7 @@ const Header = () => {
                         <span className='title'>Tư vấn</span>
                     </div>
                     <div className='nav-item'>
-                        <span className='title'>Báo Giá</span>
-                        <div className='submenu submenu_max_width'>
-                            <div className="menu_list">
-                                <Link href="#"><div className="title">Báo giá rèm vải</div></Link>
-                            </div>
-                            <div className="menu_list">
-                                <Link href="#"><div className="title">Báo giá Rèm Cầu Vồng</div></Link>
-                            </div>
-                            <div className="menu_list">
-                                <Link href="#"><div className="title">Báo giá rèm cuốn</div></Link>
-                            </div>
-                            <div className="menu_list" style={{ width: "40%", color: "red", textAlign: 'center', fontSize: "18px" }}>
-                                <Link href="#"><div className="title">Mới nhất hôm nay</div></Link>
-                                <div>
-                                    Chưa có sản phẩm nào trong này.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='nav-item'>
                         <span className='title'>Công trình</span>
-                    </div>
-                    <div className='nav-item'>
-                        <span className='title'>Tuyển dụng</span>
-                        <div className='submenu '>
-                            <Link href="#"><div className="single_list">Tuyển dụng nhân viên kinh doanh</div></Link>
-                        </div>
                     </div>
                     <div className='nav-item'>
                         <span className='title'>Liên Hệ</span></div>
