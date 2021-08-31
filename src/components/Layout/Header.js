@@ -3,10 +3,11 @@ import { ImagesPath } from 'constants/ImagesPath';
 import Link from 'next/link'
 import Image from 'next/image'
 import Modal from 'react-modal'
-import { faCameraRetro, faPhoneVolume, faEnvelope, faAngleDown, faSearch, faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faCameraRetro, faPhoneVolume, faEnvelope, faAngleDown, faSearch, faBars, faTimes, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { categoryService } from 'data-services/category';
 import { useRouter } from 'next/router'
+import Sidebar from './Sidebar';
 
 
 const customStyles = {
@@ -30,13 +31,85 @@ const customStyles = {
 };
 Modal.setAppElement('#__next');
 
+const sanpham = [
+    {
+        title: "Rèm vải",
+        childs: [
+            "Rèm vải một màu",
+            "Rèm vải hoa văn",
+            "Rèm voan",
+            "Rèm vải cao cấp",
+            "Rèm yếm võng"
+        ]
+    },
+    {
+        title: "Rèm văn phòng",
+        childs: [
+            'Rèm cuốn',
+            'Rèm cuốn Hàn Quốc',
+            'Rèm cuốn in tranh',
+            'Rèm cuốn xuyên sáng',
+            'Rèm sáo nhôm',
+            'Rèm lá dọc'
+        ]
+    },
+    {
+        title: 'Rèm cầu vồng',
+        childs: [
+            'Rèm cầu vồng giá rẻ',
+            'Rèm cầu vồng cản sáng',
+        ]
+    },
+    {
+        title: 'Rèm Roman',
+        childs: [
+            'Rèm Roman Hàn Quốc',
+            'Rèm Roman thanh kẹp',
+        ]
+    },
+    {
+        title: 'Sản Phẩm khác',
+        childs: [
+            'Bạt che nắng',
+            'Giàn phơi thông minh',
+            'Cửa lưới chống muỗi',
+            'Lưới an toàn',
+            'Rèm ngăn lạnh PVC',
+            'Phụ kiện kèm cửa'
+        ]
+    },
+    {
+        title: 'Rèm Gỗ',
+        childs: []
+    },
+    {
+        title: 'Động cơ rèm',
+        childs: []
+    },
+    {
+        title: 'Rèm Hội Trường',
+        childs: []
+    },
+    {
+        title: 'Thảm',
+        childs: []
+    },
+    {
+        title: 'Rèm y tế kháng khuẩn',
+        childs: []
+    }
+]
+
 const Header = () => {
+    const [searchBarOpen, setSearchBarOpen] = useState(false)
     const [categoryIsOpen, setCategoryIsOpen] = useState(false);
     const [listCategory, setListCategory] = useState([]);
     const [searchParams, setSearchParams] = useState('');
     const [collapseCategory, setCollapseCategory] = useState(false);
     const router = useRouter()
-
+    function toggleSearhBar() {
+        setSearchBarOpen(!searchBarOpen)
+    }
     function openCategoryModal() {
         setCategoryIsOpen(true);
     }
@@ -69,149 +142,105 @@ const Header = () => {
     return (
         <header className="header">
             {/* {isShowLoading && <FullPageLoading opacity={0.5} />} */}
-            <div className="header-static flex-spacebetween">
-                <div className="header-static__left">
-                    <div className="flex-center hide-on-576">
-                        <FontAwesomeIcon className="header-static__left static-icon" icon={faCameraRetro} />
-                        <p className="header-static__left-text">
-                            Shop camera uy tín, giá rẻ, hàng đầu Bắc Ninh
-                        </p>
-                    </div>
-                </div>
-                <div className="header-static__right flex-center">
+            <div className="header-top">
+                <div className="contact">
                     <Link href={{ pathname: 'tel:84966854224' }}>
-                        <a className="header-static__right-setting flex-center">
-                            <FontAwesomeIcon className="header-static__left static-icon phone" icon={faPhoneVolume} />
-                            <div className="header-static__right-setting-text">
-                                09823456789
+                        <a className="contact-item">
+                            <div className="contact-item-icon">
+                                <FontAwesomeIcon icon={faMobileAlt} />
+                            </div>
+                            <div className="contact-item-title">
+                                0982.345.6789
                             </div>
                         </a>
                     </Link>
                     <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} >
-                        <a target="_blank" data-tip="Mail: sales@giangminhviet.com" className="header-static__right-login flex-center">
-                            <FontAwesomeIcon className="header-static__left static-icon" icon={faEnvelope} />
-                            <div className="right__login-text">
-                                camera@gmail.com
+                        <a target="_blank" data-tip="Mail: sales@giangminhviet.com" className="contact-item">
+                            <div className="contact-item-icon">
+                                <FontAwesomeIcon icon={faEnvelope} />
+                            </div>
+                            <div className="contact-item-title">
+                                rem@gmail.com
                             </div>
                         </a>
                     </Link>
-
                 </div>
             </div>
 
-            <div className="header-dynamic flex-spacebetween">
-                <div className="header-bars show-on-992" onClick={openCategoryModal}>
-                    <FontAwesomeIcon className="header-bars__icon" icon={faBars} />
-                </div>
+            <div className="header-body">
                 <Link href="/">
-                    <a className="header-dynamic__logo ">
-                        <Image src={ImagesPath.LOGO} className="header-dynamic__logo-img" alt="camera bac ninh logo" />
-                    </a>
-                </Link>
-                <div className="header-dynamic__category hide-on-992">
-                    <ul className="header-dynamic__category-list flex-center ">
-                        <li className="header-dynamic__category-item ">
-                            <Link href="/">
-                                <a className={`header-dynamic__category-link ${router.pathname === "/" ? "--active" : ""}`}>Trang chủ</a>
-                            </Link>
-                        </li>
-                        <li className="header-dynamic__category-item has-dropdown">
-                            <Link href="/danh-muc">
-                                <a className={`header-dynamic__category-link ${router.pathname.indexOf("/danh-muc") !== -1 ? "--active" : ""}`}>
-                                    Danh mục
-                                    <FontAwesomeIcon className="header-dynamic__down-icon" icon={faAngleDown} />
-
-                                </a>
-                            </Link>
-                            {/* Dropdown */}
-                            <ul className="header-category__children-list header__category-dropdown">
-                                {listCategory.map(category => {
-                                    return (
-                                        <li key={category.id} className="header-category__children-item">
-                                            <Link href={"/danh-muc/"+category.slug} >
-                                                <a className="header-category__children-link">{category.name}</a>
-                                            </Link>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-
-                        </li>
-                        <li className="header-dynamic__category-item ">
-                            <Link href="/tin-tuc">
-                                <a className={`header-dynamic__category-link ${router.pathname.indexOf("/tin-tuc") !== -1 ? "--active" : ""}`}>Tin tức</a>
-                            </Link>
-                        </li>
-                        <li className="header-dynamic__category-item ">
-                            <Link href="/lien-he">
-                                <a className={`header-dynamic__category-link ${router.pathname.indexOf("/lien-he") !== -1 ? "--active" : ""}`}>Liên hệ</a>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className="header-dynamic__right flex-center">
-                    <div className="search-bar hide-on-576">
-                        <input value={searchParams} onKeyDown={handlePressEnter} onChange={searchParamsChange} placeholder="Tìm kiếm sản phẩm..." type="text" className="search-bar__input" />
-                        <FontAwesomeIcon onClick={search} className="search-bar__search-icon" icon={faSearch} />
+                    <div className="logo">
+                        <Image src={ImagesPath.LOGO} alt="Trang Chủ" />
                     </div>
+
+                </Link>
+                <div className="nav">
+                    <div className='nav-item'>
+                        <span className='title'>Sản Phẩm</span>
+                        <div className='submenu submenu_max_width'>
+                            {
+                                sanpham.map(item => {
+                                    return (
+                                        <div className="menu_list">
+                                            <Link href="#"><div className="title">{item.title}</div></Link>
+                                            {item.childs.map(sp => {
+                                                return (
+                                                    <Link href="#"><div className="subTitle">{sp}</div></Link>
+                                                )
+                                            })}
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                    <div className='nav-item'>
+                        <span className='title'>Tư vấn</span>
+                    </div>
+                    <div className='nav-item'>
+                        <span className='title'>Công trình</span>
+                    </div>
+                    <div className='nav-item'>
+                        <span className='title'>Liên Hệ</span></div>
+                    <div className='nav-item'>
+                        <span className='title'>Thư Viện Ảnh</span>
+                        <div className='submenu'>
+                            <Link href="#"><div className="single_list">Rèm vải</div></Link>
+                            <Link href="#"><div className="single_list">Rèm cầu vồng</div></Link>
+                            <Link href="#"><div className="single_list">Rèm Gỗ</div></Link>
+                            <Link href="#"><div className="single_list">Rèm văn phòng</div></Link>
+                        </div>
+                    </div>
+                    <div className="search">
+                        <div className="search-icon" onClick={toggleSearhBar}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                        </div>
+                        <div style={{ fontWeight: 'bold' }}>Tìm Kiếm</div>
+                        <div className="search-bar" style={{ display: searchBarOpen ? 'block' : 'none' }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px", color: "#d61c1f", fontWeight: 'bold' }}>
+                                <span>TÌM KIẾM</span>
+                                <FontAwesomeIcon onClick={toggleSearhBar} icon={faTimes}></FontAwesomeIcon>
+                            </div>
+                            <div style={{ height: '40px' }}>
+                                <select style={{ height: 'inherit', border: "0.5px solid gray", width: "80px", outline: 'none' }}>
+                                    <option>Tất cả</option>
+                                </select>
+                                <input style={{ height: 'inherit', border: "0.5px solid gray", width: "240px", fontSize: 'initial' }} type="text" placeholder="Tìm kiếm sản phẩm..." />
+                                <span style={{ height: 'inherit', display: 'inline-block', width: '40px', borderRadius: '5px', background: '#22232b', textAlign: 'center', lineHeight: '40px', color: 'white' }}>
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="toggle_mobile">
+                    <label for="toogleSidebar"><FontAwesomeIcon icon={faBars} /></label>
                 </div>
             </div>
-            <Modal
-                isOpen={categoryIsOpen}
-                onRequestClose={closeCategoryModal}
-                style={customStyles}
-            >
-                <div className="category-menu__title ">
-                    <div className="category-menu__title-text">MENU</div>
-                    <div onClick={closeCategoryModal} className="category-menu__title-close">
-                        <FontAwesomeIcon icon={faTimes} />
-                    </div>
-                </div>
-                <ul className="category-menu__list ">
-                    <li className="category-menu__item ">
-                        <Link href="/">
-                            <a href=" " className="category-menu__link ">Trang chủ</a>
-                        </Link>
-                    </li>
-                    <li className="category-menu__item dropdown">
-                        <div className="category-menu__link dropdown" onClick={() => setCollapseCategory(!collapseCategory)}>
-                            Danh mục
-                            <FontAwesomeIcon icon={faAngleDown} />
-                        </div>
-                        {
-                            collapseCategory &&
-                            <ul className="category-menu__dropdown">
-                                {listCategory.map(category => {
-                                    return (
-                                        <li key={category.id} className="category-menu__dropdown-item" onClick={() => {setCategoryIsOpen(false)}}>
-                                            <Link href={category.slug} >
-                                                <a className="category-menu__dropdown-link">{category.name}</a>
-                                            </Link>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        }
-                    </li>
-                    <li className="category-menu__item ">
-                        <Link href="/tin-tuc">
-                            <a href=" " className="category-menu__link ">Tin tức</a>
-                        </Link>
-                    </li>
-                    <li className="category-menu__item ">
-                        <Link href="/lien-he">
-                            <a href=" " className="category-menu__link ">Liên hệ</a>
-                        </Link>
-                    </li>
-                    <li className="category-menu__item --search show-on-576-flex">
-                        <div className="category-menu__item-icon">
-                            <FontAwesomeIcon onClick={search} icon={faSearch} />
-                        </div>
-                        <input value={searchParams} onKeyDown={handlePressEnter} onChange={searchParamsChange} className="category-menu__item-search" type="text" placeholder="Tìm kiếm sản phẩm..." />
-
-                    </li>
-                </ul>
-            </Modal>
+            <input id='toogleSidebar' type='checkbox' style={{ display: 'none' }} />
+            <Sidebar />
         </header >
     )
 }
