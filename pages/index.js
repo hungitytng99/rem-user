@@ -16,6 +16,7 @@ import { productService } from 'data-services/product'
 import CardHotProduct from 'ui-source/Card/CardHotProduct'
 import CardPolicy from 'ui-source/Card/CardPolicy'
 import { useState } from 'react'
+import SmallBanner from 'ui-source/Carousel_custom/SmallBanner'
 
 const attr = {
     img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
@@ -210,8 +211,7 @@ export default function Home(props) {
                     </Row>
 
                 </div>
-
-                <div className="thin_branner" >
+                {/* <div className="thin_branner" >
                     <Carousel
                         autoPlay={true}
                         interval={6000}
@@ -219,33 +219,33 @@ export default function Home(props) {
                         infiniteLoop={true}
                         showThumbs={false}
                         emulateTouch={true}
-                        numberOfCards={2}
 
                     >
                         <div className="thin_branner_img">
-                            <Image layout="fill" objectFit="cover" src={ImagesPath.BRAND_IMG2} alt="giang minh viet banner" />
+                            <Image src={ImagesPath.BRAND_IMG2} alt="giang minh viet banner" />
+                            <Image src={ImagesPath.BRAND_IMG3} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG4} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG5} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG6} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG7} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG9} alt="giang minh viet banner handmade" />
                         </div>
+
                         <div className="thin_branner_img">
-                            <Image layout="fill" objectFit="cover" src={ImagesPath.BRAND_IMG3} alt="giang minh viet banner handmade" />
-                        </div>
-                        <div className="thin_branner_img">
-                            <Image layout="fill" objectFit="cover" src={ImagesPath.BRAND_IMG4} alt="giang minh viet banner handmade" />
-                        </div>
-                        <div className="thin_branner_img">
-                            <Image layout="fill" objectFit="cover" src={ImagesPath.BRAND_IMG5} alt="giang minh viet banner handmade" />
-                        </div>
-                        <div className="thin_branner_img">
-                            <Image layout="fill" objectFit="cover" src={ImagesPath.BRAND_IMG6} alt="giang minh viet banner handmade" />
-                        </div>
-                        <div className="thin_branner_img">
-                            <Image layout="fill" objectFit="cover" src={ImagesPath.BRAND_IMG7} alt="giang minh viet banner handmade" />
-                        </div>
-                        <div className="thin_branner_img">
-                            <Image layout="fill" objectFit="cover" src={ImagesPath.BRAND_IMG9} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG3} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG4} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG5} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG6} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG7} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG9} alt="giang minh viet banner handmade" />
+                            <Image src={ImagesPath.BRAND_IMG2} alt="giang minh viet banner" />
+
                         </div>
                     </Carousel>
+                </div> */}
+                <div className="thin_branner" >
+                    <SmallBanner></SmallBanner>
                 </div>
-
                 <div className="home">
 
                     <Row style={{ margin: "250px 0px 30px 0px" }}>
