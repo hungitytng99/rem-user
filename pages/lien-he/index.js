@@ -46,7 +46,7 @@ const Search = (props) => {
                         </div>
                         <div className="contact-page__collapse">
                             <div className="contact-page__collapse-title">
-                                Tại sao chọn Camera XXX?
+                                Tại sao chọn Rèm MH?
                             </div>
                             <div className="contact-page__collapse-content">
                                 CameraXXX chuyên Phân phối Sỉ, Lẻ các dòng <span>Camera an ninh wifi không dây & camera có dây cao cấp được ưa chuộng nhất hiện nay</span> & Dịch vụ Lắp đặt Camera giám sát UY TÍN nhất hiện nay. Với phương châm “Mang đến khách hàng giá trị tốt nhất, nâng cao cuộc sống tiện nghi”, Hải Nam không ngừng tìm kiếm và cung cấp <span>SẢN PHẨM CHÍNH HÃNG – CHẤT LƯỢNG CAO – GIÁ CẢ PHẢI CHĂNG</span> Cùng với những <span>CHÍNH SÁCH CHĂM SÓC khách hàng THẬT CHU ĐÁO</span>:
