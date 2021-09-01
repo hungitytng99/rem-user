@@ -1,7 +1,11 @@
-.header
-    position: fixed
-    top: 0
+.layout__content
+    margin-top: 10px
+.layout__header
+    position: sticky
+    top: -46px
     z-index: 1000
+.header
+
     width: 100%
     background: #fff
     color: #666666!important
@@ -122,6 +126,7 @@
                     z-index: 1000
         & .toggle_mobile
             display: none
+
 @keyframes toggle_submenu
     0%
         transform: perspective(600px) rotateX(-90deg)
@@ -129,7 +134,13 @@
         transform: perspective(600px) rotateX(0deg)
 
 @media only screen and (max-width: 770px)
+    .layout__content
+        margin-top: 87px
+    .layout__header
+        position: relative
     .header
+        position: fixed
+        top: 0
         &-top
             display: none
         &-body

@@ -71,3 +71,69 @@
             justify-content: center
             &:hover
                 background-color: rgb(130,98,181,0.9)
+    .section_title
+        text-align: center
+        font-size: 34px
+        font-weight: 400
+        text-transform: uppercase
+    .section_sub_title
+        text-align: center
+        font-size: 16px
+        position: relative
+        width: fit-content
+        margin: 0 auto 25px auto
+        &::before
+            content: ""
+            position: absolute
+            bottom: -5px
+            width: 40%
+            height: 2px
+            background: #000
+            left: 30%
+
+    .button_filter
+        width: fit-content
+        margin: 0 auto
+        & > span
+            display: inline-block
+            transition: 0.3s
+            padding: 10px
+            border: 1px solid #f0f0f0
+            border-radius: 5px
+            margin: 10px
+            text-transform: uppercase
+            font-size: 12px
+            font-weight: bold
+            color: #666666
+            cursor: pointer
+            &:hover
+                color: $text_hover_color
+                border-color: $text_hover_color
+
+        & > span.active
+            color: $text_hover_color
+            border-color: $text_hover_color
+
+.thin_branner
+    background: #9b9b9b
+    padding: 50px 0px
+    width: 100%
+    position: absolute
+    left: 0
+    &_img
+        position: relative
+        width: calc(100% / 3)
+        margin-right: 30px
+        padding-top: 100px
+        & img
+            width: 167px
+            height: 32px
+
+.home_search_bar
+    width: 100%
+    margin: 10px 0px
+    display: none
+
+@media only screen and (max-width: 770px)
+    .home_search_bar
+        display: block
