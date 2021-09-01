@@ -3,9 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev -p 7211",
+        "dev": "node server.js",
         "build": "next build",
-        "start": "next start -p 7500",
+        "start": "cross-env NODE_ENV=production node server.js",
         "lint": "next lint"
     },
     "dependencies": {
@@ -16,6 +16,7 @@
         "axios": "^0.21.1",
         "bootstrap": "^5.1.0",
         "eslint-import-resolver-typescript": "^2.4.0",
+        "express": "^4.17.1",
         "formik": "^2.2.9",
         "html-to-text": "^8.0.0",
         "i": "^0.3.6",

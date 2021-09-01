@@ -10,7 +10,7 @@ export default function CardWithTitle(props) {
                 <Col>
                     <div className="card-with-title__category-title">
                         <h2 className="card-with-title__category-text">
-                            <Link href={link}>
+                            <Link href={link} passHref>
                                 <a className="card-with-title__category-link">{title}</a>
                             </Link>
                         </h2>

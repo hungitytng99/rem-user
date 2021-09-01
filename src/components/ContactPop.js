@@ -12,7 +12,7 @@ import ReactTooltip from 'react-tooltip';
 const ContactPop = (props) => {
     return (
         <div className="contact-pop">
-            <Link href={{ pathname: 'tel:84966854224' }} >
+            <Link href={{ pathname: 'tel:84966854224' }} passHref>
                 <a target="_blank" data-offset="{'top': 10, 'left': 10}" data-tip="Gọi ngay: 84966854224" className="contact-pop__box">
                     <FontAwesomeIcon className="contact-pop__icon has-animation" icon={faPhone} />
                 </a>
@@ -22,7 +22,7 @@ const ContactPop = (props) => {
                     <FontAwesomeIcon className="contact-pop__icon" icon={faFacebookMessenger} />
                 </a>
             </Link>
-            <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} >
+            <Link href={{ pathname: 'mailto:sales@giangminhviet.com' }} passHref >
                 <a target="_blank" data-tip="Mail: sales@giangminhviet.com" className="contact-pop__box --last">
                     <FontAwesomeIcon className="contact-pop__icon" icon={faEnvelope} />
                 </a>
