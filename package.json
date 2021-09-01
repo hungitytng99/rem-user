@@ -3,9 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev -p 7211",
+        "dev": "node server.js",
         "build": "next build",
-        "start": "next start -p 7500",
+        "start": "cross-env NODE_ENV=production node server.js",
         "lint": "next lint"
     },
     "dependencies": {
@@ -15,13 +15,16 @@
         "@fortawesome/react-fontawesome": "^0.1.15",
         "axios": "^0.21.1",
         "bootstrap": "^5.1.0",
+        "cross-env": "^7.0.3",
         "eslint-import-resolver-typescript": "^2.4.0",
+        "express": "^4.17.1",
         "formik": "^2.2.9",
         "html-to-text": "^8.0.0",
         "i": "^0.3.6",
         "next": "11.1.0",
         "npm": "^7.20.6",
         "nprogress": "^0.2.0",
+        "pm2": "^5.1.1",
         "react": "17.0.2",
         "react-bootstrap": "^2.0.0-beta.5",
         "react-dom": "17.0.2",
@@ -29,6 +32,7 @@
         "react-medium-image-zoom": "^4.3.4",
         "react-modal": "^3.14.3",
         "react-responsive-carousel": "^3.2.21",
+        "react-tabs": "^3.2.2",
         "react-tooltip": "^4.2.21",
         "sass": "^1.38.0",
         "yup": "^0.32.9"

@@ -4,8 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-
-
 const attr = {
     img: "https://i.imgur.com/s8dwMxW.jpeg",
     title: "So sánh các loại đồ gỗ được sử dụng làm rèm cửa hiện nay",
@@ -14,20 +12,20 @@ const attr = {
     vertical: true
 }
 export default function CardProduct(props) {
-
+    const { vertical = true, img = "https://i.imgur.com/s8dwMxW.jpeg", title = "", desc = "", date = "" } = props;
     return (
-        <div className={props.data.vertical ? "card_pd_ver" : "card_pd_hor"}>
-            <img className="card_pd_img" src={props.data.img} />
+        <div className={vertical ? "card_pd_ver" : "card_pd_hor"}>
+            <img className="card_pd_img" src={img} />
             <p className="card_pd_title">
-                {props.data.title}
+                {title}
             </p>
             <div className="card_pd_cate">
                 <p className="card_pd_desc">
-                    {props.data.desc}
+                    {desc}
                 </p>
                 <div className="card_pd_date">
                     <FontAwesomeIcon icon={faCalendar}></FontAwesomeIcon>
-                    {props.data.date}
+                    {date}
                 </div>
             </div>
             <p className="card_pd_seemore">

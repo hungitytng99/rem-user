@@ -1,26 +1,27 @@
 .product
+    padding-top: 43px
     &__breadcrumb
         margin: 8px 0px
     &__detail
         padding: 15px 0px
         &-name
-            font-size: 14px
+            font-size: 20px
             font-weight: 700
             text-transform: uppercase
             margin-bottom: 5px
         &-status
             margin-bottom: 4px
-            color: #34c25c
-            border: 1px solid #34c25c
+            color: $green-light
+            border: 1px solid $green-light
             line-height: 20px
             width: 80px
             text-align: center
             border-radius: 6px
         &-new-price
-            font-size: 26px
+            font-size: 24px
             font-weight: 700
             color: $primary
-            padding: 20px 0px
+            padding: 6px 0px 4px 0px
             & span
                 margin-left: 4px
 
@@ -59,17 +60,66 @@
             display: flex
             flex-wrap: wrap
             &-item
+                position: relative
                 display: flex
                 padding-right: 6px
                 margin-right: 6px
-                line-height: 16px
-                border-right: 1px solid #bbbbbb
+                line-height: 24px
+                // border-right: 1px solid #bbbbbb
+                &::before
+                    position: absolute
+                    content: ''
+                    height: 80%
+                    width: 1px
+                    background-color: #bbbbbb
+                    right: 0px
+                    top: 50%
+                    transform: translateY(-50%)
+
                 & a
                     color: $primary
                     margin-left: 4px
                     &:hover
                         color: $primary_1
+                & span
+                    margin-left: 5px
+                    font-weight: 600
+        &-support
+            &-header
+                color: $green-light
+                text-transform: uppercase
+                margin-top: 15px
+            &-phone
+                margin-top: 4px
+                & a
+                    color: $primary
+                    font-weight: 700
+                    font-size: 25px
+                & span
+                    font-size: 14px
+                    margin-left: 4px
+            &-item
+                display: flex
+                margin-bottom: 6px
+            &-icon
+                display: flex
+                align-items: center
+                font-size: 20px
+                width: 36px
+                color: #696969
+            &-text
+                & p
+                    font-weight: bold
+                & span
+                    font-size: 14px
+        &-info
+            margin-top: 45px
+
     &__compute
+        &-header
+            font-size: 20px
+            font-weight: 700
+            margin: 10px 0px 4px 0px
         &-item
             margin-bottom: 10px
             &-title
@@ -85,6 +135,23 @@
                     border-color: $primary
                 &:focus
                     border-color: $primary
+        &-result
+            &-text
+                text-transform: uppercase
+                display: flex
+                justify-content: flex-end
+                align-items: center
+                font-weight: 700
+                font-size: 16
+            &-price
+                &-box
+                    background-color: $primary
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    font-weight: 700
+                    color: $white
+                    height: 44px
     &__contact-form
         background-color: $white
         margin: 30px 0px
@@ -168,3 +235,10 @@
         &-box
             display: flex
             justify-content: center
+    &__info
+        &-item
+            display: flex
+            line-height: 34px
+            & p
+                font-weight: 700
+                margin-right: 4px

@@ -16,14 +16,14 @@ const attr = {
 function CardReview(props) {
     return (
         <div className="card_review">
-            <img src={props.data.img}></img>
+            <img src={props.img}></img>
             <div>
                 <div>
                     <div>
 
                         <p>Bộ sưu tập</p>
-                        <p>{props.data.title}</p>
-                        <p>{props.data.desc}</p>
+                        <p>{props.title}</p>
+                        <p>{props.desc}</p>
                     </div>
                 </div>
             </div>
