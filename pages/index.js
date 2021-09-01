@@ -98,7 +98,7 @@ export default function Home(props) {
                     </Row>
                     <Row>
                         <Container>
-                            <h2>SẢN PHẨM BÁN CHẠY</h2>
+                            <h2>SẢN PHẨM BÁN CHẠYYYY</h2>
                             <h3>Các mẫu rèm cửa được khách hàng hay lựa chọn</h3>
                             <div>
                                 <span>Rèm vải một màu</span>
