@@ -8,14 +8,15 @@ const att = {
 }
 
 export default function CardPolicy(props) {
+    const { img, title, desc } = props;
     return (
         <div className="card_poli">
-            <img src={props.data.img} />
+            <img src={img} />
             <p>
-                {props.data.title}
+                {title}
             </p>
             <p>
-                {props.data.desc}
+                {desc}
             </p>
         </div>
     )

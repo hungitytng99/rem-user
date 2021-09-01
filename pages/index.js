@@ -71,27 +71,27 @@ export default function Home(props) {
                         <Container style={{ padding: "0px 30px" }}>
                             <Row style={{ padding: "15px", background: "white" }}>
                                 <Col xs={4}>
-                                    <CardReview data={attr}></CardReview>
+                                    <CardReview {...attr}></CardReview>
                                 </Col>
                                 <Col xs={4}>
-                                    <CardReview data={attr}></CardReview>
+                                    <CardReview {...attr}></CardReview>
                                 </Col>
                                 <Col xs={4}>
-                                    <CardReview data={attr}></CardReview>
+                                    <CardReview {...attr}></CardReview>
                                 </Col>
                             </Row>
                             <Row style={{ margin: "25px 0px" }}>
                                 <Col xs={3}>
-                                    <CardPolicy data={attr3}></CardPolicy>
+                                    <CardPolicy {...attr3}></CardPolicy>
                                 </Col>
                                 <Col xs={3}>
-                                    <CardPolicy data={attr3}></CardPolicy>
+                                    <CardPolicy {...attr3}></CardPolicy>
                                 </Col>
                                 <Col xs={3}>
-                                    <CardPolicy data={attr3}></CardPolicy>
+                                    <CardPolicy {...attr3}></CardPolicy>
                                 </Col>
                                 <Col xs={3}>
-                                    <CardPolicy data={attr3}></CardPolicy>
+                                    <CardPolicy {...attr3}></CardPolicy>
                                 </Col>
                             </Row>
                         </Container>
@@ -111,16 +111,16 @@ export default function Home(props) {
                     </Row>
                     <Row>
                         <Col xs={4} style={{ marginBottom: "30px" }}>
-                            <CardHotProduct data={attr}></CardHotProduct>
+                            <CardHotProduct {...attr}></CardHotProduct>
                         </Col>
                         <Col xs={4} style={{ marginBottom: "30px" }}>
-                            <CardHotProduct data={attr}></CardHotProduct>
+                            <CardHotProduct {...attr}></CardHotProduct>
                         </Col>
                         <Col xs={4} style={{ marginBottom: "30px" }}>
-                            <CardHotProduct data={attr}></CardHotProduct>
+                            <CardHotProduct {...attr}></CardHotProduct>
                         </Col>
                         <Col xs={4} style={{ marginBottom: "30px" }}>
-                            <CardHotProduct data={attr}></CardHotProduct>
+                            <CardHotProduct {...attr}></CardHotProduct>
                         </Col>
                     </Row>
                     <Row>
@@ -129,16 +129,16 @@ export default function Home(props) {
                     </Row>
                     <Row>
                         <Col xs={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct data={attr} />
+                            <CardProduct {...attr} />
                         </Col>
                         <Col xs={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct data={attr} />
+                            <CardProduct {...attr} />
                         </Col>
                         <Col xs={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct data={attr} />
+                            <CardProduct {...attr} />
                         </Col>
                     </Row>
-                    <CardProduct data={attr2} />
+                    <CardProduct {...attr2} />
 
                 </div>
             </Layout>
@@ -151,7 +151,7 @@ export async function getServerSideProps() {
     let listHotProduct = [];
     try {
         listCategoryWithProduct = await categoryService.listCategoryWithProduct(
-            {}, { productsPerPage: 8, pageNumber: 1 }
+            { }, { productsPerPage: 8, pageNumber: 1 }
         );
         listHotProduct = await productService.listHotProduct();
         return {

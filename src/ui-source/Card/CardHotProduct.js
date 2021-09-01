@@ -6,13 +6,14 @@ const attr = {
 }
 
 export default function CardHotProduct(props) {
+
     return (
         <div className="card_hpd">
             <div>
-                <img src={props.data.img} />
+                <img src={props.img} />
             </div>
             <p>
-                {props.data.title}
+                {props.title}
             </p>
             <p>Liên hệ ngay!</p>
         </div>
