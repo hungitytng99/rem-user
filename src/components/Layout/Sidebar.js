@@ -2,7 +2,11 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+
+
 import { sanpham } from 'constants/sanpham';
+import { thuVienAnh } from 'constants/thuvienanhLink';
+
 export default function Sidebar() {
     return (
         <div className='sidebar'>
@@ -94,36 +98,20 @@ export default function Sidebar() {
                 </div>
                 <input id="node5" type="checkbox" />
                 <div className="childs">
-                    <div className="treeNode2">
-                        <div className="titleNode">
-                            <Link href="#" passHref>
-                                <span>Rèm vải</span>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="treeNode2">
-                        <div className="titleNode">
-                            <Link href="#" passHref>
-                                <span>Rèm cầu vồng</span>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="treeNode2">
-                        <div className="titleNode">
-                            <Link href="#" passHref>
-                                <span>Rèm gỗ</span>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="treeNode2">
-                        <div className="titleNode">
-                            <Link href="#" passHref>
-                                <span>Rèm văn phòng</span>
-                            </Link>
-                        </div>
-                    </div>
+                    {
+                        thuVienAnh.map((item, index) => {
+                            return (
+                                <div className="treeNode2" key={"thuvienanh" + index}>
+                                    <div className="titleNode">
+                                        <Link href={item.url} passHref>
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
-
             </div>
         </div>
     )
