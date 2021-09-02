@@ -77,7 +77,7 @@ export default function Sidebar() {
             </div>
             <div className='treeNode1'>
                 <div className="titleNode">
-                    <Link href="#" passHref>
+                    <Link href="/cong-trinh" passHref>
                         <span>Công trình</span>
                     </Link>
                 </div>
