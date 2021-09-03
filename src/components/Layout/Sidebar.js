@@ -24,8 +24,8 @@ export default function Sidebar() {
             </div>
             <div className='treeNode1'>
                 <div className="titleNode">
-                    <Link href="#" passHref>
-                        <span>Sản phẩm</span>
+                    <Link href="/danh-muc" passHref>
+                        <span>Danh mục</span>
                     </Link>
                     <label htmlFor="node1"><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></label>
                 </div>
