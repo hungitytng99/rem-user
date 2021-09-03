@@ -132,10 +132,14 @@ const Header = () => {
                             </div>
                         </div>
                         <div className='nav-item'>
-                            <span className='title'>Tư vấn</span>
+                            <Link href="/cong-trinh" passHref>
+                                <span className='title'>Tư vấn</span>
+                            </Link>
                         </div>
                         <div className='nav-item'>
-                            <span className='title'>Công trình</span>
+                            <Link href="/cong-trinh" passHref>
+                                <span className='title'>Công trình</span>
+                            </Link>
                         </div>
                         <div className='nav-item'>
                             <span className='title'>Liên Hệ</span></div>
