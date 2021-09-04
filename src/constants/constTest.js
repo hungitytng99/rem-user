@@ -133,6 +133,7 @@ export const photos = [
 
 export const congTrinhList = [
     {
+        type: 1,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 1 ",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -140,6 +141,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 2,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 2 ",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -147,6 +149,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 3,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 3 ",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -154,6 +157,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 4,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 4 ",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -161,6 +165,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 5,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 5 ",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -168,6 +173,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 6,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 6 ",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -175,6 +181,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 7,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 7 ",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -182,6 +189,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 8,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 8 ",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -189,6 +197,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 9,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 9 ",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -196,6 +205,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 1,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 10",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -204,6 +214,7 @@ export const congTrinhList = [
     },
 
     {
+        type: 2,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 11",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -211,6 +222,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 3,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 12",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -218,6 +230,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 4,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 13",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -225,6 +238,7 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 5,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 14",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
@@ -232,22 +246,75 @@ export const congTrinhList = [
         vertical: false
     },
     {
+        type: 6,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 15",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
         date: "09/06/2025",
         vertical: false
     }, {
+        type: 7,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 16",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
         date: "09/06/2025",
         vertical: false
-    }, {
+    },
+    {
+        type: 8,
         img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
         title: "Cong trinh 17",
         desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
         date: "09/06/2025",
         vertical: false
     },
+]
+
+export const filterSanPham = [
+    {
+        type: 1,
+        title: "Rèm vải",
+        checked: false
+    },
+    {
+        type: 2,
+        title: "Rèm văn phòng",
+        checked: false
+    },
+    {
+        type: 3,
+        title: "Rèm cầu vồng",
+        checked: false
+    },
+    {
+        type: 4,
+        title: "Sản Phẩm khác",
+        checked: false
+    },
+    {
+        type: 5,
+        title: "Rèm Gỗ",
+        checked: false
+    },
+    {
+        type: 6,
+        title: "Động cơ rèm",
+        checked: false
+    },
+    {
+        type: 7,
+        title: "Rèm Hội Trường",
+        checked: false
+    },
+    {
+        type: 8,
+        title: "Thảm",
+        checked: false
+    },
+    {
+        type: 9,
+        title: "Rèm y tế kháng khuẩn",
+        checked: false
+    },
+
 ]

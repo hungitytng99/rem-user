@@ -1,0 +1,46 @@
+.dropdown_menu
+    & ul
+        // padding: 0 10px
+        position: relative
+        width: 100%
+        overflow: hidden
+        transition: 0.5s
+        transform-origin: top
+        animation: toggleMenu 0.5s
+        & li
+            padding: 5px 10px 5px 20px
+            position: relative
+            transition: 0.5s
+            &:hover > .title_item::before
+                width: 100%
+
+            & .title_item
+                text-transform: uppercase
+                position: relative
+                &::before
+                    bottom: -1px
+                    content: ''
+                    position: absolute
+                    height: 2px
+                    width: 0%
+                    background: #333333
+                    transition: 0.2s
+
+            & .drop_icon
+                position: absolute
+                right: 50px
+                cursor: pointer
+                & label
+                    cursor: pointer
+
+    & input[type="checkbox"] + ul
+        display: none
+    & input[type="checkbox"]:checked + ul
+        display: block
+
+@keyframes toggleMenu
+    0%
+        transform: scaleY(0)
+
+    100%
+        transform: scaleY(1)

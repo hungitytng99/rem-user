@@ -113,7 +113,9 @@ const Header = () => {
                     </Link>
                     <div className="nav">
                         <div className='nav-item'>
-                            <span className='title'>Sản Phẩm</span>
+                            <Link href="/danh-muc" passHref>
+                                <span className='title'>Danh mục</span>
+                            </Link>
                             <div className='submenu submenu_max_width'>
                                 {
                                     sanpham.map((item, index) => {
