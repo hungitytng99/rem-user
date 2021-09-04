@@ -132,7 +132,7 @@ const Header = () => {
                             </div>
                         </div>
                         <div className='nav-item'>
-                            <Link href="/cong-trinh" passHref>
+                            <Link href="/tu-van" passHref>
                                 <span className='title'>Tư vấn</span>
                             </Link>
                         </div>
@@ -142,7 +142,10 @@ const Header = () => {
                             </Link>
                         </div>
                         <div className='nav-item'>
-                            <span className='title'>Liên Hệ</span></div>
+                            <Link href="/lien-he" passHref>
+                                <span className='title'>Liên Hệ</span>
+                            </Link>
+                        </div>
                         <div className='nav-item'>
                             <span className='title'>Thư Viện Ảnh</span>
                             <div className='submenu'>

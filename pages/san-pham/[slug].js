@@ -22,7 +22,7 @@ import 'react-tabs/style/react-tabs.css';
 Modal.setAppElement('#__next');
 // detailProduct = {},
 const Product = (props) => {
-    const { relatedProducts = { }, detailProduct = { }, listPost = [] } = props;
+    const { relatedProducts = {}, detailProduct = {}, listPost = [] } = props;
     const [contactModal, setContactModal] = useState(false);
     const showContactModal = (e) => {
         e.stopPropagation();
@@ -141,10 +141,10 @@ const Product = (props) => {
                                             <span><strong>Rèm Vương Hồng</strong> mang đến cho quý khách các <strong>dịch vụ ưu đãi </strong> như:</span>
                                         </div>
                                         <ul style={{ listStyleType: 'circle', paddingLeft: '30px' }}>
-                                            <li style={{marginTop: '10px'}}>
+                                            <li style={{ marginTop: '10px' }}>
                                                 <strong>Vận chuyển:</strong> Miễn phí vận chuyển và lắp đặt trong thành phố Hà Nội với đơn hàng trên 05m2, đơn hàng dưới 05m2 phụ thu thêm 100.000đ/đơn hàng.
                                             </li>
-                                            <li style={{marginTop: '10px'}}>
+                                            <li style={{ marginTop: '10px' }}>
                                                 <strong>Khuyến mại:</strong> Phụ kiện cơ bản (Bao gồm khóa chiều cao và chống kéo ngược).
                                             </li>
                                         </ul>
@@ -159,7 +159,7 @@ const Product = (props) => {
                                     <TabPanel>
                                         <div className="product__info-video">
                                             <div className="product__info-video-header">
-                                               Chưa có video cho sản phẩm này
+                                                Chưa có video cho sản phẩm này
                                             </div>
                                         </div>
                                     </TabPanel>
@@ -336,38 +336,38 @@ const Product = (props) => {
 
 export async function getServerSideProps(context) {
     const { slug } = context.params;
-    let detailProduct = { };
-    let detailCategory = { };
+    let detailProduct = {};
+    let detailCategory = {};
     let relatedProducts = [];
     let listPost = [];
     // try {
-        detailProduct = await productService.detailProductBySlug(slug);
-        detailCategory = await categoryService.detailCategoryById(detailProduct.data.category_id);
-        detailProduct.data = {
-            ...detailProduct.data, category_name: detailCategory.data.name || '',
-            category_slug: detailCategory.data.slug
+    detailProduct = await productService.detailProductBySlug(slug);
+    detailCategory = await categoryService.detailCategoryById(detailProduct.data.category_id);
+    detailProduct.data = {
+        ...detailProduct.data, category_name: detailCategory.data.name || '',
+        category_slug: detailCategory.data.slug
+    }
+    relatedProducts = await productService.listProductByCategoryId(detailProduct.data.category_id);
+    relatedProducts.data = relatedProducts.data.filter((product) => {
+        if (product.id !== detailProduct.data.id) {
+            return product;
         }
-        relatedProducts = await productService.listProductByCategoryId(detailProduct.data.category_id);
-        relatedProducts.data = relatedProducts.data.filter((product) => {
-            if (product.id !== detailProduct.data.id) {
-                return product;
-            }
-        })
-        // Slit list product into 4 or 8 product
-        if (relatedProducts.data.length > 4 && relatedProducts.data.length < 8) {
-            relatedProducts.data = relatedProducts.data.splice(0, 4);
-        } else if (relatedProducts.data.length > 8) {
-            relatedProducts.data = relatedProducts.data.splice(0, 8);
-        }
+    })
+    // Slit list product into 4 or 8 product
+    if (relatedProducts.data.length > 4 && relatedProducts.data.length < 8) {
+        relatedProducts.data = relatedProducts.data.splice(0, 4);
+    } else if (relatedProducts.data.length > 8) {
+        relatedProducts.data = relatedProducts.data.splice(0, 8);
+    }
 
-        listPost = await postService.listPost({ postsPerPage: 4, pageNumber: 1 });
-        return {
-            props: {
-                detailProduct: detailProduct.data || { },
-                relatedProducts: relatedProducts.data || [],
-                listPost: listPost.data || [],
-            },
-        };
+    listPost = await postService.listPost({ postsPerPage: 4, pageNumber: 1 });
+    return {
+        props: {
+            detailProduct: detailProduct.data || {},
+            relatedProducts: relatedProducts.data || [],
+            listPost: listPost.data || [],
+        },
+    };
     // } catch (error) {
     //     return {
     //         notFound: true
