@@ -340,7 +340,7 @@ export async function getServerSideProps(context) {
     let detailCategory = { };
     let relatedProducts = [];
     let listPost = [];
-    try {
+    // try {
         detailProduct = await productService.detailProductBySlug(slug);
         detailCategory = await categoryService.detailCategoryById(detailProduct.data.category_id);
         detailProduct.data = {
@@ -368,11 +368,11 @@ export async function getServerSideProps(context) {
                 listPost: listPost.data || [],
             },
         };
-    } catch (error) {
-        return {
-            notFound: true
-        };
-    }
+    // } catch (error) {
+    //     return {
+    //         notFound: true
+    //     };
+    // }
 }
 
 export default Product
