@@ -10,67 +10,61 @@
     overflow: auto
     backdrop-filter: blur(3px)
     transition: 0.4s
-    & .childs
-        transform-origin: 0% 0%
-        height: 0
-        transition: .4s
-        transform: scaleY(0)
-    & .treeNode1
-        padding: 15px
-        font-size: 14px
-        font-weight: bold
-        border-bottom: 1px dashed #bfbfbf
+
+    &_body
         color: #fff
-        transition: 0.5s
-        position: relative
-        &:hover
-            background: rgba(0, 0, 0, 0.85)
-            &::before
-                content: ''
-                position: absolute
-                top: 0
-                left: 0
-                width: 3px
-                height: 100%
-                background: #cecece
-
-        & .titleNode
-            text-transform: uppercase
-            display: flex
-            justify-content: space-between
-            cursor: pointer
-            & span
-                position: relative
-                &::before
-                    bottom: 0
-                    left: 0
-                    position: absolute
-                    content: ''
-                    transition: 0.4s
-                    transform-origin: left
-                    width: 0
-                    height: 1px
-                    background: #cecece
+        & a
+            color: #fff
+        & > ul > li
+            border-bottom: 1px dashed #fff
             &:hover
-                & span::before
+                background: rgba(0, 0, 0, 0.75)
+                &::before
+                    content: ""
+                    position: absolute
+                    left: 0
+                    height: 100%
+                    width: 3px
+                    background: #fff
+                    top: 0
+        & > ul  ul  ul li a
+            text-transform: none
+        & ul
+            width: 100%
+            overflow: hidden
+            transition: 0.5s
+            transform-origin: top
+            animation: toggleMenu 0.5s
+            & li
+                padding: 10px 15px
+                position: relative
+                transition: 0.5s
+                &:hover>.title_item::before
                     width: 100%
-        & .treeNode2
-            padding: 12px 0px 0px 15px
 
-            & .treeNode3
-                padding: 10px 0px 0px 15px
-                cursor: pointer
-    input[type="checkbox"]
-        display: none
-    input[type="checkbox"] + div.childs
-        transform: scaleY(0)
-    input[type="checkbox"]:checked + div.childs
-        height: 100%
-        transform: scaleY(1)
+                & .title_item
+                    text-transform: uppercase
+                    position: relative
+                    &::before
+                        bottom: -1px
+                        content: ''
+                        position: absolute
+                        height: 2px
+                        width: 0%
+                        background: #ffffff
+                        transition: 0.2s
 
-    label
-        cursor: pointer
+                & .drop_icon
+                    position: absolute
+                    right: 50px
+                    cursor: pointer
+                    & label
+                        cursor: pointer
 
+        & input[type="checkbox"] + ul
+            display: none
+        & input[type="checkbox"]:checked + ul
+            display: block
     &::-webkit-scrollbar
         width: 5px
 
