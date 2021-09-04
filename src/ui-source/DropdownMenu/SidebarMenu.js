@@ -1,7 +1,6 @@
 import React from 'react'
-import { danhMuc } from 'constants/danhMuc'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { v4 as uuidv4 } from 'uuid';
 

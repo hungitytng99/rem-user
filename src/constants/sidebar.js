@@ -10,78 +10,78 @@ export const sideBarData = [
         childs: [
             {
                 title: 'RÈM VẢI',
-                url: "#",
+                url: "/danh-muc/rem-vai",
                 childs: [
                     {
                         title: 'RÈM VẢI MỘT MÀU',
-                        url: '#',
+                        url: '/danh-muc/rem-vai-mot-mau',
                         childs: []
                     },
                     {
                         title: 'RÈM VẢI HOA VĂN',
-                        url: '#',
+                        url: '/danh-muc/rem-vai-hoa-van',
                         childs: []
                     },
                     {
                         title: 'RÈM VOAN',
-                        url: '#',
+                        url: '/danh-muc/rem-voan',
                         childs: []
                     },
                     {
                         title: 'RÈM VẢI CAO CẤP',
-                        url: '#',
+                        url: '/danh-muc/rem-vai-cao-cap',
                         childs: []
                     },
                     {
                         title: 'RÈM YẾM VÕNG',
-                        url: '#',
+                        url: '/danh-muc/rem-yem-vong',
                         childs: []
                     },
                 ]
             },
             {
                 title: 'RÈM VĂN PHÒNG',
-                url: "#",
+                url: "/danh-muc/rem-van-phong",
                 childs: []
             },
             {
                 title: 'RÈM CẦU VỒNG',
-                url: "#",
+                url: "/danh-muc/rem-cau-vong",
                 childs: []
             },
             {
                 title: 'RÈM ROMAN',
-                url: "#",
+                url: "/danh-muc/rem-roman",
                 childs: []
             },
             {
                 title: 'SẢN PHẨM KHÁC',
-                url: "#",
+                url: "/danh-muc/san-pham-khac",
                 childs: []
             },
             {
                 title: 'RÈM GỖ',
-                url: "#",
+                url: "/danh-muc/rem-go",
                 childs: []
             },
             {
                 title: 'ĐỘNG CƠ RÈM',
-                url: "#",
+                url: "/danh-muc/dong-co-rem",
                 childs: []
             },
             {
                 title: 'RÈM HỘI TRƯỜNG',
-                url: "#",
+                url: "/danh-muc/rem-hoi-truong",
                 childs: []
             },
             {
                 title: 'THẢM',
-                url: "#",
+                url: "/danh-muc/tham",
                 childs: []
             },
             {
                 title: 'RÈM Y TẾ KHÁNG KHUẨN',
-                url: "#",
+                url: "/danh-muc/rem-y-te-khang-khuan",
                 childs: []
             },
         ]
