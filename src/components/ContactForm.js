@@ -12,11 +12,11 @@ import { inquiryService } from 'data-services/inquiry';
 const phoneReg = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g
 const contactSchema = Yup.object().shape({
     name: Yup.string()
-        .required('This field is required'),
+        .required('Vui lòng không để trống trường này'),
     phone: Yup.string()
-        .matches(phoneReg, "Please enter a valid phone number")
-        .required('This field is required'),
-    email: Yup.string().email('Please enter a valid email').required('This field is required'),
+        .matches(phoneReg, "Vui lòng nhập đúng số điện thoại")
+        .required('Vui lòng không để trống trường này'),
+    email: Yup.string().email('Vui lòng nhập đúng địa chỉ email').required('Vui lòng không để trống trường này'),
 });
 
 const ContactForm = (props) => {

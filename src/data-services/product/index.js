@@ -22,6 +22,7 @@ export const productService = {
             response.data = filterFieldProduct(response.data);
             return response;
         });
+
     },
 
     listProduct: function (params) {
@@ -62,17 +63,22 @@ export const productService = {
 }
 
 export const filterFieldProduct = (product) => {
+    console.log("DEATIL PRODUCT: ", product);
     return {
         id: product.id || 0,
         name: product.name || '',
         description: product.description || '',
-        detail: product.detail || '',
-        price: numberWithCommas(product.price) || 0,
-        discount: product.discount || 0,
-        new_price: numberWithCommas(product.new_price) || 0,
-        category_id: product.category_id || 0,
+        model: product.model_number,
+        price: product.price,
+        material: product.material,
+        brand: product.brand,
+        origin: product.origin,
+        thickness: product.thickness,
+        size: product.size,
+        category_id: product.category_id,
+        main_category_id: product.main_category_id || '',
         slug: "/san-pham/" + product.slug || '',
-        image: filterFieldImage(product.list_product_images, product.name),
+        // image: filterFieldImage(product.list_product_images, product.name),
     }
 }
 
@@ -80,6 +86,7 @@ export const filterFieldImage = (listImage, alt) => {
     // [ imgSrc1 , imgSrc2, ... ]
     // => 
     // [ { src: imgSrc1, alt: imgAlt1} , { src: imgSrc2, alt: imgAlt2}, ... ]
+    console.log("ASKDAD: ", listImage);
     return listImage.map((image, index) => {
         return {
             id: index,
@@ -93,5 +100,6 @@ export const filterFieldImage = (listImage, alt) => {
 }
 
 export function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return x;
+    // return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

@@ -1,6 +1,6 @@
 // config for dev;
 export const Configs = {
-    BASE_API: "http://103.163.118.206:1236/api",
+    BASE_API: "http://103.163.118.206:1237/api",
     DOMAIN: "https://giangminhviet.com/product",
 
     CURRENT_PAGE: 1,

@@ -20,7 +20,7 @@ import SmallBanner from 'ui-source/Carousel_custom/SmallBanner'
 
 const attr = {
     img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
-    title: "So sánh các loại đồ gỗ được ",
+    title: "So sánh các loại đồ gỗ được  ",
     desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
     date: "09/06/2025",
     vertical: true
@@ -271,17 +271,17 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-    let listCategoryWithProduct = [];
-    let listHotProduct = [];
+    // let listCategoryWithProduct = [];
+    // let listHotProduct = [];
     try {
-        listCategoryWithProduct = await categoryService.listCategoryWithProduct(
-            {}, { productsPerPage: 8, pageNumber: 1 }
-        );
-        listHotProduct = await productService.listHotProduct();
+        // listCategoryWithProduct = await categoryService.listCategoryWithProduct(
+        //     {}, { productsPerPage: 8, pageNumber: 1 }
+        // );
+        // listHotProduct = await productService.listHotProduct();
         return {
             props: {
-                listHotProduct: listHotProduct.data,
-                listCategoryWithProduct: listCategoryWithProduct.data,
+                // listHotProduct: listHotProduct.data,
+                // listCategoryWithProduct: listCategoryWithProduct.data,
             },
         };
     } catch (error) {

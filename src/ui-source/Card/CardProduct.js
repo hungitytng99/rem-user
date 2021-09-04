@@ -30,7 +30,7 @@ export default function CardProduct(props) {
             </div>
             <p className="card_pd_seemore">
                 <Link href='#' passHref>
-                    <>Tìm hiểu thêm <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></>
+                    <>Tìm hiểu thêm <FontAwesomeIcon style={{marginLeft: "2px", paddingTop: "2px"}} icon={faArrowRight}></FontAwesomeIcon></>
                 </Link>
             </p>
         </div>
