@@ -8,10 +8,10 @@ function Layout(props) {
     return (
         <div className="layout">
             <ContactPop />
-            <div className="layout__header">
+            <div className="layout__header" >
                 <Header />
             </div>
-            <div className="layout__content" style={{ marginTop: "165px" }}>
+            <div className="layout__content" >
                 <Container>
                     {children}
                 </Container>

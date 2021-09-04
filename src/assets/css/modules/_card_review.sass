@@ -1,7 +1,8 @@
 .card_review
     position: relative
-    width: 380px
-    height: 212px
+    width: 100%
+    // max-width: 380px
+    aspect-ratio: 5 / 3
     cursor: pointer
     &:hover
         & > div
@@ -37,3 +38,14 @@
                     color: #333333
                     font-size: 20px
                     font-weight: 700
+
+@media only screen and (max-width: 1000px)
+    .card_review > div
+        opacity: 1
+        & > div
+            padding: 0px
+            & > div > p
+                &:last-child
+                    display: none
+                &:nth-child(2)
+                    font-size: 14px

@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import Sidebar from './Sidebar';
 import { Container } from 'react-bootstrap';
 import { sanpham } from 'constants/sanpham';
+import { thuVienAnh } from 'constants/thuvienanhLink';
 
 const customStyles = {
     content: {
@@ -131,20 +132,30 @@ const Header = () => {
                             </div>
                         </div>
                         <div className='nav-item'>
-                            <span className='title'>Tư vấn</span>
+                            <Link href="/cong-trinh" passHref>
+                                <span className='title'>Tư vấn</span>
+                            </Link>
                         </div>
                         <div className='nav-item'>
-                            <span className='title'>Công trình</span>
+                            <Link href="/cong-trinh" passHref>
+                                <span className='title'>Công trình</span>
+                            </Link>
                         </div>
                         <div className='nav-item'>
                             <span className='title'>Liên Hệ</span></div>
                         <div className='nav-item'>
                             <span className='title'>Thư Viện Ảnh</span>
                             <div className='submenu'>
-                                <Link href="#" passHref><div className="single_list">Rèm vải</div></Link>
-                                <Link href="#" passHref><div className="single_list">Rèm cầu vồng</div></Link>
-                                <Link href="#" passHref><div className="single_list">Rèm Gỗ</div></Link>
-                                <Link href="#" passHref><div className="single_list">Rèm văn phòng</div></Link>
+                                {
+                                    thuVienAnh.map((item, index) => {
+                                        return (
+                                            <Link href={item.url} passHref key={"headthuvienanh" + index}>
+                                                <div className="single_list">{item.title}</div>
+                                            </Link>
+                                        )
+                                    })
+                                }
+
                             </div>
                         </div>
                         <div className="search">

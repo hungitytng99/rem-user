@@ -6,7 +6,6 @@ const attr = {
 }
 
 export default function CardHotProduct(props) {
-
     return (
         <div className="card_hpd">
             <div>

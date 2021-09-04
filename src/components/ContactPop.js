@@ -27,7 +27,7 @@ const ContactPop = (props) => {
                     <FontAwesomeIcon className="contact-pop__icon" icon={faEnvelope} />
                 </a>
             </Link>
-            <ReactTooltip place="right" type="info" />
+            {/* <ReactTooltip place="right" type="info" /> */}
         </div>
     );
 }
