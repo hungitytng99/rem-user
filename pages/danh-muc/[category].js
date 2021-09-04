@@ -1,186 +1,154 @@
-import { Breadcrumb, Col, Row } from 'react-bootstrap';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { useEffect, useState } from 'react';
-import Head from 'next/head'
-import Layout from 'components/Layout/Layout';
-import CardWithTitle from 'ui-source/Card/CardWithTitle';
-import CardProduct from 'ui-source/Card/CardProduct';
-import { categoryService } from 'data-services/category';
-import { productService } from 'data-services/product';
+import React from 'react'
+import DanhMucMenu from 'ui-source/DropdownMenu/DanhMucMenu'
+import CardHotProduct from 'ui-source/Card/CardHotProduct'
+import { filterSanPham } from 'constants/constTest'
+import { Col, Form, Row } from 'react-bootstrap'
+import { useRouter } from 'next/router';
 
-const Category = (props) => {
-    const { detailCategory = { }, listCategory = [], hasMoreProduct = false } = props;
-    const [detailCategoryState, setDetailCategoryState] = useState(detailCategory);
-    const [nextPage, setNextPage] = useState(4);
-    const [hasMoreProductState, setHasMoreProductState] = useState(hasMoreProduct);
-    const [currentFilter, setCurrentFilter] = useState({ });
 
-    if (detailCategory.id !== detailCategoryState.id) {
-        setDetailCategoryState(detailCategory);
-    }
+import { congTrinhList } from 'constants/constTest'
+import { sideBarData } from 'constants/sidebar'
+import DanhMucSanPham from '.'
 
-    const filterOption = {
-        option_1: {
-            minPrice: 0,
-            maxPrice: 1000000,
-        },
-        option_2: {
-            minPrice: 1000000,
-            maxPrice: 2000000,
-        },
-        option_3: {
-            minPrice: 2000000,
-            maxPrice: 3000000,
-        },
-        option_4: {
-            minPrice: 4000000,
-        },
-    }
-    const handleFilterPrice = async (e) => {
-        const filterValue = e.target.value;
-        setCurrentFilter(filterOption[filterValue]);
-        const filterProduct = await productService.listProductByCategorySlug(
-            detailCategoryState.slug, { productsPerPage: 18, pageNumber: 1, ...filterOption[filterValue] }
-        );
-        setDetailCategoryState({ ...detailCategoryState, listProduct: filterProduct.data })
-    }
+function strListNumberToArrNumber(str) {
+    if (/^[0-9,]*$/.test(str) == false) return []  // test string truyền vào chỉ có số và dấu phẩy
+    if (str == '') return []
+    return str.split(',').map(c => +c)
+}
+function removeNumberInArr(num, arr) {
+    return arr.filter(i => i != num)
+}
 
-    const getMoreProduct = async (e) => {
-        console.log("CURRENT FILTER: ", currentFilter);
-        const listProduct = await productService.listProductByCategorySlug(detailCategoryState.slug,
-            { productsPerPage: 6, pageNumber: e.target.dataset.nextpage, ...currentFilter }
-        );
-        setDetailCategoryState({ ...detailCategoryState, listProduct: [...detailCategoryState.listProduct, ...listProduct.data] });
-        setNextPage(nextPage + 1);
-    }
-
-    useEffect(() => {
-        // check has next page
-        const checkShowMore = async () => {
-            const moreProduct = await productService.listProductByCategorySlug(detailCategoryState.slug,
-                { productsPerPage: 6, pageNumber: Number(nextPage), ...currentFilter });
-            if (moreProduct.data.length === 0) {
-                setHasMoreProductState(false);
-            }
+function findTitleInArr(urlPath, arr) {
+    let length = arr.length
+    for (let i = 0; i < length; i++) {
+        if (arr[i].url.split('/').pop() === urlPath) {
+            return arr[i]
+        } else {
+            findTitleInArr(urlPath, arr[i].childs)
         }
-        checkShowMore();
-    })
+    }
+    return {
+        title: "Không có sản phẩm"
+    }
+}
 
+export default function Category(props) {
+
+    const router = useRouter();
+    let filterType = strListNumberToArrNumber(router.query?.type || '') // nếu truyền vào '' => [0] mảng có số 0
+    filterType = removeNumberInArr(0, filterType);  // không có type = 0 -> trường hợp query.type rỗng thì cho ra mảng []
+
+    function sortSelectionChange(event) {
+        console.log(event.target.value)
+        let url = "/danh-muc/all"
+        url = url + "?sort=" + event.target.value
+        router.replace(url)
+    }
+
+    function toggleCheckbox(type) {
+        console.log(router.query)
+        let url = "/danh-muc/all";
+        // console.log(filterType)
+        if (filterType.includes(type)) {
+            filterType = removeNumberInArr(type, filterType)
+            url = filterType.length != 0 ? url + "?type=" + filterType.join() : url
+            return router.replace(url)
+        } else {
+            filterType.push(type)
+            url = url + "?type=" + filterType.join();
+            return router.replace(url)
+        }
+    }
     return (
-        <>
-            <Head>
-                <title>{detailCategoryState.name}</title>
-            </Head>
-            <Layout>
-                <Row>
-                    <Col>
-                        <Breadcrumb className="product__breadcrumb">
-                            <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
-                            <Breadcrumb.Item active>
-                                {detailCategoryState.name}
-                            </Breadcrumb.Item>
-                        </Breadcrumb>
-                    </Col>
-                </Row>
-                <CardWithTitle title={detailCategoryState.name}>
-                    <Row>
-                        <Col xs={12} md={9}>
-                            <Row>
-                                {
-                                    detailCategoryState.listProduct.length === 0 && <div style={{ textAlign: 'center', marginTop: '5px' }}>Không có sản phẩm nào</div>
-                                }
-                                {detailCategoryState.listProduct.map(product => {
-                                    return (
-                                        <Col key={product.id} xs={12} sm={6} md={6} lg={4}>
-                                            <CardProduct product={product} />
-                                        </Col>
-                                    )
-                                })}
-                            </Row>
-                            <Row>
-                                <div className="category__has-more-box">
-                                    {
-                                        hasMoreProductState && <div data-nextpage={nextPage} onClick={getMoreProduct}
-                                            className="category__has-more"
-                                        >More
-                                        </div>
-                                    }
-                                </div>
-                            </Row>
+        <DanhMucSanPham>
+            <Row>
+                <Col lg={9}>
+                    <Row style={{ marginBottom: '30px' }}>
+                        <Col xs={12} lg={6} className="danh_muc-title">
+                            {props.titleData}
                         </Col>
-                        <Col md={3} className="hide-on-768">
-                            <div className="category__filter">
-                                <div className="category__filter-price">
-                                    <div className="category__filter-title">
-                                        Lọc theo giá
-                                    </div>
-                                    <ul className="category__filter-price-list" onChange={handleFilterPrice}>
-                                        <li className="category__filter-price-item">
-                                            <input type="radio" id="price-1" name="price" value="option_1" />
-                                            <label htmlFor="price-1">Dưới 1 triệu</label>
-                                        </li>
-                                        <li className="category__filter-price-item">
-                                            <input type="radio" id="price-2" name="price" value="option_2" />
-                                            <label htmlFor="price-2">Từ 1-2 triệu</label>
-                                        </li>
-                                        <li className="category__filter-price-item">
-                                            <input type="radio" id="price-3" name="price" value="option_3" />
-                                            <label htmlFor="price-3">Từ 2-4 triệu</label>
-                                        </li>
-                                        <li className="category__filter-price-item">
-                                            <input type="radio" id="price-4" name="price" value="option_4" />
-                                            <label htmlFor="price-4">Hơn 4 triệu</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="category__filter-category">
-                                    <div className="category__filter-title">
-                                        Danh mục sản phẩm
-                                    </div>
-                                    <ul className="category__filter-category-list">
-                                        {
-                                            listCategory.map(category => {
-                                                return (
-                                                    <li key={category.id} className="category__filter-category-item">
-                                                        <a href={`/danh-muc/${category.slug}`} data-href={category.slug}>
-                                                            {category.name}
-                                                        </a>
-                                                    </li>
-                                                )
-                                            })
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
+                        <Col xs={12} lg={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
+                            <span style={{ marginRight: '20px', display: 'inline-block', width: 'max-content', fontSize: 'larger' }}>Sắp xếp</span>
+                            <Form.Select style={{ width: 'max-content' }} onChange={(e) => sortSelectionChange(e)}>
+                                <option value="latest">Mới nhất</option>
+                                <option value="oldest">Cũ nhất</option>
+                            </Form.Select>
                         </Col>
                     </Row>
-                </CardWithTitle>
-
-            </Layout>
-        </>
+                    <Row className="danh_muc-list_san_pham">
+                        {
+                            props.dataShow.map((item, index) => {
+                                return (
+                                    <Col key={"listsp" + index} lg={3} md={4} xs={6}>
+                                        <CardHotProduct {...item}></CardHotProduct>
+                                    </Col>
+                                )
+                            })
+                        }
+                    </Row>
+                </Col>
+                <Col lg={3}>
+                    <div>Danh Mục</div>
+                    <DanhMucMenu data={sideBarData} className="dropdown_menu" />
+                    <div style={{ marginTop: '15px' }}>Lọc sản phẩm</div>
+                    {
+                        filterSanPham.map((item, index) => {
+                            return (
+                                <Form.Check
+                                    key={"checkboxsanpham" + index}
+                                    type="checkbox"
+                                    label={item.title}
+                                    checked={filterType.includes(item.type)}
+                                    onChange={() => toggleCheckbox(item.type)}
+                                />
+                            )
+                        })
+                    }
+                </Col>
+            </Row>
+        </DanhMucSanPham>
     )
 }
 
+
 export async function getServerSideProps(context) {
-    const { category } = context.query;
-    const listCategory = await categoryService.listCategory();
-    const detailCategory = await categoryService.detailCategoryBySlug(category);
-    const listProduct = await productService.listProductByCategoryId(detailCategory.data.id, { productsPerPage: 18, pageNumber: 1 });
-    detailCategory.data = { ...detailCategory.data, listProduct: listProduct.data };
-    // for pagination
-    let hasMoreProduct = false;
-    const moreProduct = await productService.listProductByCategoryId(detailCategory.data.id, { productsPerPage: 6, pageNumber: 4 });
-    if (moreProduct.data.length > 0) {
-        hasMoreProduct = true;
+    const { category } = context.params;
+
+    let titleData = "Không tìm thấy"
+    if (category === "all") {
+        titleData = "Tất cả sản phẩm"
+    } else {
+        let obj = findTitleInArr(category, sideBarData[1].childs)
+        titleData = obj.title
+    }
+    console.log(category, context.query);
+    // const totalItem = congTrinhList.length
+    // const totalPage = Math.ceil(totalItem / itemsPerPage)
+
+
+    let pageIndex = context?.query?.page || 1
+    let filterTypeSelected = strListNumberToArrNumber(context?.query?.type || '')
+    let dataShow = []
+    if (filterTypeSelected.length == 0) {
+        dataShow = congTrinhList
+    } else {
+        dataShow = congTrinhList.filter(item =>
+            filterTypeSelected.includes(item.type)
+        )
     }
 
+    // const beginItemIndex = itemsPerPage * (pageIndex - 1)
+    // const dataShow = congTrinhList.slice(beginItemIndex, beginItemIndex + itemsPerPage)
+    // console.log(dataShow)
     return {
         props: {
-            listCategory: listCategory.data,
-            detailCategory: detailCategory.data,
-            hasMoreProduct: hasMoreProduct
+            // pageIndex: pageIndex,
+            dataShow: dataShow,
+            titleData: titleData,
+            // totalItem: totalItem,
+            // totalPage: totalPage
         },
     };
 }
 
-export default Category
