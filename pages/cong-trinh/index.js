@@ -44,7 +44,7 @@ export default function CongTrinh(props) {
                                 })
                             }
 
-                            <PaginationCustom active={Number(props.pageIndex)} totalPage={props.totalPage} ></PaginationCustom>
+                            <PaginationCustom active={Number(props.pageIndex)} totalPage={props.totalPage} baseUrl="/cong-trinh" ></PaginationCustom>
                         </Col>
                         <Col lg={3} className="news_recently">
                             <h4 style={{ fontWeight: "400" }}>Bài viết gần đây</h4>

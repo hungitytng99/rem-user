@@ -3,12 +3,13 @@ import DanhMucMenu from 'ui-source/DropdownMenu/DanhMucMenu'
 import CardHotProduct from 'ui-source/Card/CardHotProduct'
 import { filterSanPham } from 'constants/constTest'
 import { Col, Form, Row } from 'react-bootstrap'
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 
 
 import { congTrinhList } from 'constants/constTest'
 import { sideBarData } from 'constants/sidebar'
 import DanhMucSanPham from '.'
+import PaginationCustom from 'ui-source/Pagination/PaginationCustom'
 
 function strListNumberToArrNumber(str) {
     if (/^[0-9,]*$/.test(str) == false) return []  // test string truyền vào chỉ có số và dấu phẩy
@@ -19,36 +20,69 @@ function removeNumberInArr(num, arr) {
     return arr.filter(i => i != num)
 }
 
-function findTitleInArr(urlPath, arr) {
-    let length = arr.length
-    for (let i = 0; i < length; i++) {
-        if (arr[i].url.split('/').pop() === urlPath) {
-            return arr[i]
-        } else {
-            findTitleInArr(urlPath, arr[i].childs)
+
+function recurseFindObj(urlPath, arr) {
+    var result = null
+
+    function findTitleInArr(urlPath, arr) {
+        let length = arr.length
+        for (let i = 0; i < length; i++) {
+            // console.log(arr[i].url.split('/').pop())
+            if (arr[i].url.split('/').pop() === urlPath) {
+                result = arr[i]
+                break;
+            } else {
+                findTitleInArr(urlPath, arr[i].childs)
+                if (result != null) break;
+            }
         }
     }
-    return {
-        title: "Không có sản phẩm"
+    findTitleInArr(urlPath, arr)
+    if (result == null) return { title: "khong co ket qua" }
+    else return result
+}
+
+function renderBaseUrlPagination(urlPath, router_query) {
+    let result = urlPath
+    if (router_query.type == undefined) {
+        result = router_query.sort == undefined ? urlPath : urlPath + "?sort=" + router_query.sort
+    } else {
+        result = result + "?type=" + router_query.type;
+        result = router_query.sort == undefined ? result : result + "&sort=" + router_query.sort;
     }
+    return result
+}
+function renderBaseUrlSort(urlPath, router_query) {
+    let result = urlPath
+    if (router_query.type == undefined) {
+        result = urlPath + "?sort=";
+    } else {
+        result = result + "?type=" + router_query.type + "&sort=";
+    }
+    return result
 }
 
 export default function Category(props) {
 
     const router = useRouter();
+    // console.log(router)
+    const baseUrlPagination = renderBaseUrlPagination(props.baseUrl, router.query)
+
+    console.log(baseUrlPagination)
+
     let filterType = strListNumberToArrNumber(router.query?.type || '') // nếu truyền vào '' => [0] mảng có số 0
     filterType = removeNumberInArr(0, filterType);  // không có type = 0 -> trường hợp query.type rỗng thì cho ra mảng []
 
     function sortSelectionChange(event) {
-        console.log(event.target.value)
-        let url = "/danh-muc/all"
-        url = url + "?sort=" + event.target.value
+        // console.log(event.target.value)
+        let url = renderBaseUrlSort(props.baseUrl, router.query)
+        url = url + event.target.value
         router.replace(url)
     }
 
     function toggleCheckbox(type) {
         console.log(router.query)
-        let url = "/danh-muc/all";
+        let url = props.baseUrl;
         // console.log(filterType)
         if (filterType.includes(type)) {
             filterType = removeNumberInArr(type, filterType)
@@ -87,6 +121,9 @@ export default function Category(props) {
                             })
                         }
                     </Row>
+                    <Row>
+                        <PaginationCustom active={Number(props.pageIndex)} totalPage={props.totalPage} baseUrl={baseUrlPagination}></PaginationCustom>
+                    </Row>
                 </Col>
                 <Col lg={3}>
                     <div>Danh Mục</div>
@@ -111,20 +148,19 @@ export default function Category(props) {
     )
 }
 
-
+const itemsPerPage = 12
 export async function getServerSideProps(context) {
     const { category } = context.params;
-
     let titleData = "Không tìm thấy"
     if (category === "all") {
         titleData = "Tất cả sản phẩm"
     } else {
-        let obj = findTitleInArr(category, sideBarData[1].childs)
+
+        let obj = recurseFindObj(category, sideBarData[1].childs)
         titleData = obj.title
     }
-    console.log(category, context.query);
-    // const totalItem = congTrinhList.length
-    // const totalPage = Math.ceil(totalItem / itemsPerPage)
+    console.log(context.query);
+
 
 
     let pageIndex = context?.query?.page || 1
@@ -138,16 +174,20 @@ export async function getServerSideProps(context) {
         )
     }
 
-    // const beginItemIndex = itemsPerPage * (pageIndex - 1)
-    // const dataShow = congTrinhList.slice(beginItemIndex, beginItemIndex + itemsPerPage)
+    const totalItem = dataShow.length
+    const totalPage = Math.ceil(totalItem / itemsPerPage)
+    const beginItemIndex = itemsPerPage * (pageIndex - 1)
+    const dataShowClient = dataShow.slice(beginItemIndex, beginItemIndex + itemsPerPage)
     // console.log(dataShow)
+    const baseUrl = "/danh-muc/" + category
     return {
         props: {
-            // pageIndex: pageIndex,
-            dataShow: dataShow,
+            pageIndex: pageIndex,
+            dataShow: dataShowClient,
             titleData: titleData,
             // totalItem: totalItem,
-            // totalPage: totalPage
+            totalPage: totalPage,
+            baseUrl: baseUrl
         },
     };
 }

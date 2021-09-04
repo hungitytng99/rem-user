@@ -3,14 +3,15 @@ import { ImagesPath } from 'constants/ImagesPath';
 import Link from 'next/link'
 import Image from 'next/image'
 import Modal from 'react-modal'
-import { faCameraRetro, faPhoneVolume, faEnvelope, faAngleDown, faSearch, faBars, faTimes, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faSearch, faBars, faTimes, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { categoryService } from 'data-services/category';
 import { useRouter } from 'next/router'
 import Sidebar from './Sidebar';
 import { Container } from 'react-bootstrap';
-import { sanpham } from 'constants/sanpham';
 import { thuVienAnh } from 'constants/thuvienanhLink';
+
+import { sideBarData } from 'constants/sidebar';
 
 const customStyles = {
     content: {
@@ -113,18 +114,22 @@ const Header = () => {
                     </Link>
                     <div className="nav">
                         <div className='nav-item'>
-                            <Link href="/danh-muc" passHref>
+                            <Link href="/danh-muc/all" passHref>
                                 <span className='title'>Danh mục</span>
                             </Link>
                             <div className='submenu submenu_max_width'>
                                 {
-                                    sanpham.map((item, index) => {
+                                    sideBarData[1].childs.map((item, index) => {
                                         return (
                                             <div key={"spnode" + index} className="menu_list">
-                                                <Link href="#" passHref><div className="title">{item.title}</div></Link>
+                                                <Link href={item.url} passHref>
+                                                    <div className="title">{item.title}</div>
+                                                </Link>
                                                 {item.childs.map((sp, i) => {
                                                     return (
-                                                        <Link key={"spchild" + i} href="#" passHref><div className="subTitle">{sp}</div></Link>
+                                                        <Link key={"spchild" + i} href={sp.url} passHref>
+                                                            <div className="subTitle">{sp.title}</div>
+                                                        </Link>
                                                     )
                                                 })}
                                             </div>
