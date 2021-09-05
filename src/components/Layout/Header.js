@@ -9,9 +9,8 @@ import { categoryService } from 'data-services/category';
 import { useRouter } from 'next/router'
 import Sidebar from './Sidebar';
 import { Container } from 'react-bootstrap';
-import { thuVienAnh } from 'constants/thuvienanhLink';
 
-import { sideBarData } from 'constants/sidebar';
+import { productPath } from 'constants/productPath';
 
 const customStyles = {
     content: {
@@ -119,7 +118,7 @@ const Header = () => {
                             </Link>
                             <div className='submenu submenu_max_width'>
                                 {
-                                    sideBarData[1].childs.map((item, index) => {
+                                    productPath[1].childs.map((item, index) => {
                                         return (
                                             <div key={"spnode" + index} className="menu_list">
                                                 <Link href={item.url} passHref>
@@ -157,7 +156,7 @@ const Header = () => {
                             <span className='title'>Thư Viện Ảnh</span>
                             <div className='submenu'>
                                 {
-                                    thuVienAnh.map((item, index) => {
+                                    productPath[5].childs.map((item, index) => {
                                         return (
                                             <Link href={item.url} passHref key={"headthuvienanh" + index}>
                                                 <div className="single_list">{item.title}</div>

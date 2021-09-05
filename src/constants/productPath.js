@@ -1,4 +1,4 @@
-export const sideBarData = [
+export const productPath = [
     {
         title: 'GIỚI THIỆU',
         url: '#',
@@ -171,41 +171,41 @@ export const sideBarData = [
         ]
     },
     {
-        title: 'TƯ VẤN',
+        title: 'Tư vấn',
         url: '#',
         childs: []
     },
     {
-        title: 'CÔNG TRÌNH',
+        title: 'Công trình',
         url: '/cong-trinh',
         childs: []
     },
     {
-        title: 'LIÊN HỆ',
+        title: 'Liên hệ',
         url: '#',
         childs: []
     },
     {
-        title: 'THƯ VIỆN ẢNH',
+        title: 'Thư viện ảnh',
         url: '/thu-vien-anh/rem-vai',
         childs: [
             {
-                title: 'RÈM VẢI',
+                title: 'Rèm vải',
                 url: '/thu-vien-anh/rem-vai',
                 childs: []
             },
             {
-                title: 'RÈM CẦU VỒNG',
+                title: 'Rèm cầu vồng',
                 url: '/thu-vien-anh/rem-cau-vong',
                 childs: []
             },
             {
-                title: 'RÈM GỖ',
+                title: 'Rèm gỗ',
                 url: '/thu-vien-anh/rem-go',
                 childs: []
             },
             {
-                title: 'RÈM VĂN PHÒNG',
+                title: 'Rèm văn phòng',
                 url: '/thu-vien-anh/rem-van-phong',
                 childs: []
             },

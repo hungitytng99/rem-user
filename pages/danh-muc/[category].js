@@ -7,7 +7,7 @@ import router, { useRouter } from 'next/router';
 
 
 import { congTrinhList } from 'constants/constTest'
-import { sideBarData } from 'constants/sidebar'
+import { productPath } from 'constants/productPath'
 import DanhMucSanPham from '.'
 import PaginationCustom from 'ui-source/Pagination/PaginationCustom'
 
@@ -95,7 +95,7 @@ export default function Category(props) {
         }
     }
     return (
-        <DanhMucSanPham>
+        <DanhMucSanPham title={props.titleData}>
             <Row>
                 <Col lg={9}>
                     <Row style={{ marginBottom: '30px' }}>
@@ -104,7 +104,7 @@ export default function Category(props) {
                         </Col>
                         <Col xs={12} lg={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
                             <span style={{ marginRight: '20px', display: 'inline-block', width: 'max-content', fontSize: 'larger' }}>Sắp xếp</span>
-                            <Form.Select style={{ width: 'max-content' }} onChange={(e) => sortSelectionChange(e)}>
+                            <Form.Select style={{ width: 'max-content' }} onChange={(e) => sortSelectionChange(e)} >
                                 <option value="latest">Mới nhất</option>
                                 <option value="oldest">Cũ nhất</option>
                             </Form.Select>
@@ -127,7 +127,7 @@ export default function Category(props) {
                 </Col>
                 <Col lg={3}>
                     <div>Danh Mục</div>
-                    <DanhMucMenu data={sideBarData} className="dropdown_menu" />
+                    <DanhMucMenu data={productPath} className="dropdown_menu" />
                     <div style={{ marginTop: '15px' }}>Lọc sản phẩm</div>
                     {
                         filterSanPham.map((item, index) => {
@@ -156,7 +156,7 @@ export async function getServerSideProps(context) {
         titleData = "Tất cả sản phẩm"
     } else {
 
-        let obj = recurseFindObj(category, sideBarData[1].childs)
+        let obj = recurseFindObj(category, productPath[1].childs)
         titleData = obj.title
     }
     console.log(context.query);
