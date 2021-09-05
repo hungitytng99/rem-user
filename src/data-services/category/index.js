@@ -16,6 +16,15 @@ export const categoryService = {
         });
     },
 
+    // listFullCategory: function (params) {
+    //     return apiListMainCategory(params).then(response => {
+    //         response.data = response.data.map(category => {
+    //             return filterFieldCategory(category);
+    //         })
+    //         return response;
+    //     });
+    // },
+
     detailCategoryById: function (id) {
         return apiDetailCategoryById(id).then(response => {
             response.data = filterFieldCategory(response.data);

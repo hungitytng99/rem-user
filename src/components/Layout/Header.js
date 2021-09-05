@@ -107,7 +107,7 @@ const Header = () => {
                 <div className="header-body">
                     <Link href="/" passHref>
                         <div className="logo">
-                            <Image src={ImagesPath.LOGO} alt="Trang Chủ" />
+                            <Image src={ImagesPath.LOGO} alt="Trang Chủ Rèm Vương Hồng" title="Trang chủ" />
                         </div>
 
                     </Link>
