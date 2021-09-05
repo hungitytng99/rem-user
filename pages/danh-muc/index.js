@@ -18,7 +18,7 @@ export default function DanhMucSanPham(props) {
                         <Breadcrumb>
                             <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
                             <Breadcrumb.Item href="/danh-muc/all">Danh mục sản phẩm</Breadcrumb.Item>
-                            <Breadcrumb.Item active>Tất cả</Breadcrumb.Item>
+                            <Breadcrumb.Item active>{props.title}</Breadcrumb.Item>
                         </Breadcrumb>
                     </div>
                     {children}

@@ -85,7 +85,7 @@ export default function Home(props) {
     return (
         <>
             <Head>
-                <title>Trang chủ</title>
+                <title>Trang chủ Rèm Vương Hồng</title>
             </Head>
             <Layout>
                 <div className="home">
@@ -211,38 +211,7 @@ export default function Home(props) {
                     </Row>
 
                 </div>
-                {/* <div className="thin_branner" >
-                    <Carousel
-                        autoPlay={true}
-                        interval={6000}
-                        showArrows={false}
-                        infiniteLoop={true}
-                        showThumbs={false}
-                        emulateTouch={true}
 
-                    >
-                        <div className="thin_branner_img">
-                            <Image src={ImagesPath.BRAND_IMG2} alt="giang minh viet banner" />
-                            <Image src={ImagesPath.BRAND_IMG3} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG4} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG5} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG6} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG7} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG9} alt="giang minh viet banner handmade" />
-                        </div>
-
-                        <div className="thin_branner_img">
-                            <Image src={ImagesPath.BRAND_IMG3} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG4} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG5} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG6} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG7} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG9} alt="giang minh viet banner handmade" />
-                            <Image src={ImagesPath.BRAND_IMG2} alt="giang minh viet banner" />
-
-                        </div>
-                    </Carousel>
-                </div> */}
                 <div className="thin_branner" >
                     <SmallBanner></SmallBanner>
                 </div>
@@ -263,7 +232,7 @@ export default function Home(props) {
                             <CardProduct {...attr} />
                         </Col>
                     </Row>
-                    <CardProduct {...attr2} />
+
                 </div>
             </Layout>
         </>
@@ -278,6 +247,8 @@ export async function getServerSideProps() {
         //     {}, { productsPerPage: 8, pageNumber: 1 }
         // );
         // listHotProduct = await productService.listHotProduct();
+
+
         return {
             props: {
                 // listHotProduct: listHotProduct.data,
