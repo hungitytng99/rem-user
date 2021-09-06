@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from 'components/Layout/Layout'
 import Head from 'next/head'
 import { Col, Row } from 'react-bootstrap'
-import CardProduct from 'ui-source/Card/CardProduct'
+import CardPost from 'ui-source/Card/CardPost'
 import CardRecentlyNews from 'ui-source/Card/CardRecentlyNews'
 import PaginationCustom from 'ui-source/Pagination/PaginationCustom'
 const attr = {
@@ -38,7 +38,7 @@ export default function CongTrinh(props) {
                                 props.dataShow.map((item, index) => {
                                     return (
                                         <div key={"congtrinhitem" + index} className="news_item">
-                                            <CardProduct {...item}></CardProduct>
+                                            <CardPost {...item}></CardPost>
                                         </div>
                                     )
                                 })

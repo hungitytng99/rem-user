@@ -1,38 +1,66 @@
-import { faArrowRight, faCalendar } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import React from 'react'
-
+import Modal from 'react-modal';
+import ContactForm from 'components/ContactForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 const attr = {
-    img: "https://i.imgur.com/s8dwMxW.jpeg",
-    title: "So sánh các loại đồ gỗ được sử dụng làm rèm cửa hiện nay",
-    desc: "Rèm gỗ tự nhiên với vẻ đẹp mang đến sự gần gũi thiên nhiên cho không. rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
-    date: "09/06/2025",
-    vertical: true
+    img: "",
+    title: "Rem vai mot lop SV1113"
 }
+Modal.setAppElement('#__next');
 export default function CardProduct(props) {
-    const { vertical = true, img = "https://i.imgur.com/s8dwMxW.jpeg", title = "", desc = "", date = "" } = props;
+    const [contactModal, setContactModal] = useState(false);
+    const showContactModal = (e) => {
+        e.stopPropagation();
+        setContactModal(true);
+    }
+    const hideContactModal = () => {
+        setContactModal(false);
+    }
+    const closeContactForm = (e) => {
+        e.preventDefault();
+        setContactModal(false);
+    }
     return (
-        <div className={vertical ? "card_pd_ver" : "card_pd_hor"}>
-            <img className="card_pd_img" src={img} />
-            <p className="card_pd_title">
-                {title}
-            </p>
-            <div className="card_pd_cate">
-                <p className="card_pd_desc">
-                    {desc}
-                </p>
-                <div className="card_pd_date">
-                    <FontAwesomeIcon icon={faCalendar}></FontAwesomeIcon>
-                    {date}
+        <>
+            <div className="card_hpd">
+                <Link href="/">
+                    <a>
+                        <div>
+                            <img src={props.img} alt="slug product" />
+                        </div>
+                        <p className="card_hpd-text text_over_flow_1">
+                            {props.title}
+                        </p>
+                    </a>
+                </Link>
+                <div className="card_hpd-contact">
+                    <p onClick={showContactModal}>Liên hệ ngay</p>
                 </div>
             </div>
-            <p className="card_pd_seemore">
-                <Link href='#' passHref>
-                    <>Tìm hiểu thêm <FontAwesomeIcon style={{marginLeft: "2px", paddingTop: "2px"}} icon={faArrowRight}></FontAwesomeIcon></>
-                </Link>
-            </p>
-        </div>
+            <Modal
+                isOpen={contactModal}
+                onRequestClose={hideContactModal}
+                className="Modal"
+                overlayClassName="Overlay"
+            >
+                <div className="contact-form__header">
+                    <div className="contact-form__header-text">
+                        Để lại thông tin của bạn
+                        <span>Chúng tôi sẽ liên lạc với bạn sớm nhất có thể</span>
+                    </div>
+                    <div onClick={hideContactModal} className="contact-form__header-close">
+                        <FontAwesomeIcon icon={faTimes} />
+                    </div>
+                </div>
+                <div className="contact-form__form">
+                    {/* <ContactForm closeContact={closeContactForm} productName={detailProduct.name}
+                        productId={detailProduct.id} productSlug={detailProduct.slug} /> */}
+                    <ContactForm closeContact={closeContactForm} productName={"PRODUCT NAME"}
+                        productId={"PRODUCT-ID"} productSlug={"PRODUCT-SLUG"} />
+                </div>
+            </Modal>
+        </>
     )
 }

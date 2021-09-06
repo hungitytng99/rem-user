@@ -17,7 +17,7 @@ function renderItemHTML(obj) {
                                 <a className="title_item">{item.title}</a>
                             </Link>
                             {
-                                item.childs.length == 0 ? "" : <>
+                                item.childs.length === 0 ? "" : <>
                                     <span className="drop_icon">
                                         <label htmlFor={id}>
                                             <FontAwesomeIcon icon={faCaretDown} />

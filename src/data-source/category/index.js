@@ -36,6 +36,23 @@ export const apiDetailCategoryById = async (categoryId) => {
     }
 };
 
+export const apiDetailMainCategoryById = async (categoryId) => {
+    try {
+        const response = await GET("/main-category/" + categoryId);
+        return {
+            state: REQUEST_STATE.SUCCESS,
+            data: response.data
+        };
+
+    } catch (error) {
+        console.log("error", error);
+        return {
+            state: REQUEST_STATE.ERROR,
+            data: []
+        };
+    }
+};
+
 export const apiDetailCategoryBySlug = async (slug) => {
     try {
         const response = await GET("/category/get-by-slug/" + slug);

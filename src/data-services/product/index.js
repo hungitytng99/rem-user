@@ -68,17 +68,20 @@ export const filterFieldProduct = (product) => {
         id: product.id || 0,
         name: product.name || '',
         description: product.description || '',
-        model: product.model_number,
-        price: product.price,
-        material: product.material,
-        brand: product.brand,
-        origin: product.origin,
-        thickness: product.thickness,
-        size: product.size,
+        model: product.model_number || '',
+        price: product.price || '',
+        material: product.material || '',
+        brand: product.brand || '',
+        origin: product.origin || '',
+        weight: product.weight || '',
+        repeat_deg: product.repeat_deg || '',
+        feature: product.feature || '',
+        thickness: product.thickness || '',
+        size: product.size || '',
         category_id: product.category_id,
         main_category_id: product.main_category_id || '',
         slug: "/san-pham/" + product.slug || '',
-        // image: filterFieldImage(product.list_product_images, product.name),
+        image: filterFieldImage(product.list_product_images, product.name),
     }
 }
 
@@ -86,13 +89,12 @@ export const filterFieldImage = (listImage, alt) => {
     // [ imgSrc1 , imgSrc2, ... ]
     // => 
     // [ { src: imgSrc1, alt: imgAlt1} , { src: imgSrc2, alt: imgAlt2}, ... ]
-    console.log("ASKDAD: ", listImage);
     return listImage.map((image, index) => {
         return {
             id: index,
             isSelected: index == 0,
             src: image,
-            alt: alt + "_" + String(Math.floor(Math.random() * 1000)),
+            alt: alt + "_" + String(Math.floor(Math.random() * 10000)),
         }
     })
 

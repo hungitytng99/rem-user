@@ -4,16 +4,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Carousel } from 'react-responsive-carousel'
-import CardProduct from 'ui-source/Card/CardProduct'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Link from 'next/link'
-import CardWithTitle from 'ui-source/Card/CardWithTitle'
 import CardReview from 'ui-source/Card/CardReview'
 import { faChevronLeft, faChevronRight, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { categoryService } from 'data-services/category'
-import { productService } from 'data-services/product'
-import CardHotProduct from 'ui-source/Card/CardHotProduct'
+import CardProduct from 'ui-source/Card/CardProduct'
 import CardPolicy from 'ui-source/Card/CardPolicy'
 import { useState } from 'react'
 import SmallBanner from 'ui-source/Carousel_custom/SmallBanner'
@@ -168,16 +164,16 @@ export default function Home(props) {
                     </Row>
                     <Row>
                         <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardHotProduct {...attr}></CardHotProduct>
+                            <CardProduct {...attr}></CardProduct>
                         </Col>
                         <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardHotProduct {...attr}></CardHotProduct>
+                            <CardProduct {...attr}></CardProduct>
                         </Col>
                         <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardHotProduct {...attr}></CardHotProduct>
+                            <CardProduct {...attr}></CardProduct>
                         </Col>
                         <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardHotProduct {...attr}></CardHotProduct>
+                            <CardProduct {...attr}></CardProduct>
                         </Col>
                     </Row>
                     <Row style={{ marginBottom: "50px" }}>
