@@ -11,6 +11,8 @@ import Sidebar from './Sidebar';
 import { Container } from 'react-bootstrap';
 
 import { productPath } from 'constants/productPath';
+import { dataRouterLink } from 'constants/productPath';
+import { getListCategory } from 'constants/productPath';
 
 const customStyles = {
     content: {
@@ -36,21 +38,25 @@ Modal.setAppElement('#__next');
 
 
 const Header = () => {
+
+    const [menu, setMenu] = useState([])
+
+    useEffect(() => {
+        (async function () {
+            let result = await getListCategory();
+            // console.log(result);
+            setMenu([...result[1].childs])
+        })();
+    }, [])
+
+
     const [searchBarOpen, setSearchBarOpen] = useState(false)
-    const [categoryIsOpen, setCategoryIsOpen] = useState(false);
-    const [listCategory, setListCategory] = useState([]);
     const [searchParams, setSearchParams] = useState('');
-    const [collapseCategory, setCollapseCategory] = useState(false);
-    const router = useRouter()
+
     function toggleSearhBar() {
         setSearchBarOpen(!searchBarOpen)
     }
-    function openCategoryModal() {
-        setCategoryIsOpen(true);
-    }
-    function closeCategoryModal() {
-        setCategoryIsOpen(false);
-    }
+
     const search = () => {
         if (searchParams) {
             location.href = "/tim-kiem/" + searchParams;
@@ -65,15 +71,6 @@ const Header = () => {
             search();
         }
     }
-    // const listCategory = useSelector(state => state.category.current)
-    useEffect(() => {
-
-        const getListCategory = async () => {
-            const listCategoryTmp = await categoryService.listCategory();
-            setListCategory(listCategoryTmp.data);
-        }
-        getListCategory();
-    }, [])
     return (
         <header className="header">
             {/* {isShowLoading && <FullPageLoading opacity={0.5} />} */}
@@ -118,7 +115,7 @@ const Header = () => {
                             </Link>
                             <div className='submenu submenu_max_width'>
                                 {
-                                    productPath[1].childs.map((item, index) => {
+                                    menu.map((item, index) => {
                                         return (
                                             <div key={"spnode" + index} className="menu_list">
                                                 <Link href={item.url} passHref>

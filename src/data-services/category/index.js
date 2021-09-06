@@ -1,6 +1,7 @@
 // Data Flow: Step 2
 
 import { productService } from "data-services/product";
+import { apiMainCategory } from "data-source/category";
 import { apiDetailCategoryBySlug } from "data-source/category";
 import { apiListCategory } from "data-source/category";
 import { apiDetailCategoryById } from "data-source/category";
@@ -16,14 +17,14 @@ export const categoryService = {
         });
     },
 
-    // listFullCategory: function (params) {
-    //     return apiListMainCategory(params).then(response => {
-    //         response.data = response.data.map(category => {
-    //             return filterFieldCategory(category);
-    //         })
-    //         return response;
-    //     });
-    // },
+    listFullCategory: function (params) {
+        return apiMainCategory(params).then(response => {
+            response.data = response.data.map(category => {
+                return category;
+            })
+            return response;
+        });
+    },
 
     detailCategoryById: function (id) {
         return apiDetailCategoryById(id).then(response => {

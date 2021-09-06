@@ -81,7 +81,7 @@ export const apiCreateCategory = async (categoryId, params) => {
 //     "main_category_id": 0
 //   }
 
-export const apiUpdateCategory = async (categoryId , params) => {
+export const apiUpdateCategory = async (categoryId, params) => {
     try {
         const response = await PUT("/category/" + categoryId, params);
         return {
@@ -101,6 +101,23 @@ export const apiUpdateCategory = async (categoryId , params) => {
 export const apiDeleteCategory = async (categoryId) => {
     try {
         const response = await DELETE("/category/" + categoryId);
+        return {
+            state: REQUEST_STATE.SUCCESS,
+            data: response.data
+        };
+
+    } catch (error) {
+        console.log("error", error);
+        return {
+            state: REQUEST_STATE.ERROR,
+            data: []
+        };
+    }
+};
+
+export const apiMainCategory = async (params) => {
+    try {
+        const response = await GET("/main-category/", params, { isFullPath: false });
         return {
             state: REQUEST_STATE.SUCCESS,
             data: response.data

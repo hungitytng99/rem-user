@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { productPath } from 'constants/productPath';
 import SidebarMenu from 'ui-source/DropdownMenu/SidebarMenu';
+import { getListCategory } from 'constants/productPath';
 
 export default function Sidebar() {
+
+    const [menu, setMenu] = useState(productPath)
+    useEffect(() => {
+        (async function () {
+            let result = await getListCategory();
+            // console.log(result);
+            setMenu([...result])
+        })();
+    }, [])
+
     return (
         <div className='sidebar'>
             <div style={{
@@ -20,7 +31,7 @@ export default function Sidebar() {
                 <span>MENU</span>
                 <label htmlFor="toogleSidebar"><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></label>
             </div>
-            <SidebarMenu data={productPath} className="sidebar_body" />
+            <SidebarMenu data={menu} className="sidebar_body" />
 
         </div>
     )

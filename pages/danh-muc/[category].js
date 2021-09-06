@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DanhMucMenu from 'ui-source/DropdownMenu/DanhMucMenu'
 import CardHotProduct from 'ui-source/Card/CardHotProduct'
 import { filterSanPham } from 'constants/constTest'
@@ -10,6 +10,7 @@ import { congTrinhList } from 'constants/constTest'
 import { productPath } from 'constants/productPath'
 import DanhMucSanPham from '.'
 import PaginationCustom from 'ui-source/Pagination/PaginationCustom'
+import { getListCategory } from 'constants/productPath'
 
 function strListNumberToArrNumber(str) {
     if (/^[0-9,]*$/.test(str) == false) return []  // test string truyền vào chỉ có số và dấu phẩy
@@ -63,7 +64,14 @@ function renderBaseUrlSort(urlPath, router_query) {
 }
 
 export default function Category(props) {
-
+    const [menu, setMenu] = useState(productPath)
+    useEffect(() => {
+        (async function () {
+            let result = await getListCategory();
+            // console.log(result);
+            setMenu([...result])
+        })();
+    }, [])
     const router = useRouter();
     // console.log(router)
     const baseUrlPagination = renderBaseUrlPagination(props.baseUrl, router.query)
@@ -127,7 +135,7 @@ export default function Category(props) {
                 </Col>
                 <Col lg={3}>
                     <div>Danh Mục</div>
-                    <DanhMucMenu data={productPath} className="dropdown_menu" />
+                    <DanhMucMenu data={menu} className="dropdown_menu" />
                     <div style={{ marginTop: '15px' }}>Lọc sản phẩm</div>
                     {
                         filterSanPham.map((item, index) => {
