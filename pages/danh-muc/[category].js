@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import DanhMucMenu from 'ui-source/DropdownMenu/DanhMucMenu'
-import CardHotProduct from 'ui-source/Card/CardHotProduct'
+import CardProduct from 'ui-source/Card/CardProduct'
 import { filterSanPham } from 'constants/constTest'
 import { Col, Form, Row } from 'react-bootstrap'
 import router, { useRouter } from 'next/router';
@@ -123,7 +123,7 @@ export default function Category(props) {
                             props.dataShow.map((item, index) => {
                                 return (
                                     <Col key={"listsp" + index} lg={3} md={4} xs={6}>
-                                        <CardHotProduct {...item}></CardHotProduct>
+                                        <CardProduct {...item}></CardProduct>
                                     </Col>
                                 )
                             })

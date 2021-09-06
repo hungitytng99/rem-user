@@ -2,6 +2,7 @@
 
 import { productService } from "data-services/product";
 import { apiMainCategory } from "data-source/category";
+import { apiDetailMainCategoryById } from "data-source/category";
 import { apiDetailCategoryBySlug } from "data-source/category";
 import { apiListCategory } from "data-source/category";
 import { apiDetailCategoryById } from "data-source/category";
@@ -33,6 +34,13 @@ export const categoryService = {
         });
     },
 
+    detailMainCategoryById: function (id) {
+        return apiDetailMainCategoryById(id).then(response => {
+            response.data = filterFieldCategory(response.data);
+            return response;
+        });
+    },
+
     detailCategoryBySlug: function (slug) {
         return apiDetailCategoryBySlug(slug).then(response => {
             response.data = filterFieldCategory(response.data);
@@ -59,7 +67,6 @@ export const filterFieldCategory = (category) => {
     return {
         id: category.id,
         name: category.name,
-        description: category.description,
         slug: category.slug
     }
 }
