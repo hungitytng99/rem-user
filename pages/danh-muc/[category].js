@@ -90,18 +90,12 @@ export default function Category(props) {
     const [loading, setLoading] = useState(true)
     const [titleData, setTitleData] = useState("Không có dữ liệu")
     const [filterListBySlug, setFilterListBySlug] = useState([])     // hiển thị ra checkbox filter
-    const [dataShowOnScreen, setDataShowOnScreen] = useState([])
     const slug = router.query.category
     const baseUrlPagination = renderBaseUrlPagination(props.baseUrl, router.query)
 
-
     useEffect(() => {
-        (async function () {
-            let result = await getListCategory();
-            setMenu([...result]) // lấy xong menu
-
-        })();
-    }, [])
+        setMenu(productPath)
+    }, [productPath])
 
     useEffect(() => {
         if (slug === "all") {
@@ -114,34 +108,11 @@ export default function Category(props) {
         }// lấy xong checkbox filter và tiêu đề sản phẩm
     }, [slug])
 
-    let filterType = strFilterToArrStr(router.query?.type || '') // nếu truyền vào '' => [0] (mảng có số 0)
     useEffect(() => {
-        setLoading(true)
-        setDataShowOnScreen([])
-        if (slug === "all") {
-            let lengthFilterArr = filterType.length;
-            if (lengthFilterArr == 0) {
-                (async function () {
-                    let result = await productService.listProduct({ productsPerPage: 1 });
-                    // console.log(result)
-                    setLoading(false)
-                    setDataShowOnScreen(result.data)
-                })();
-            } else {
-                (async function () {
-                    for (let i = 0; i < lengthFilterArr; i++) {
-                        console.log(filterType[i])
-                    }
-                })();
-            }
-        } else {
+        setLoading(!props.dataShowOnScreen)
+    }, [props.dataShowOnScreen])
 
-        }
-    }, [router.asPath])
-
-
-
-    // filterType = removeItemInArr(0, filterType);  // không có type = 0 -> trường hợp query.type rỗng thì cho ra mảng []
+    let filterType = strFilterToArrStr(router.query?.type || '') // nếu truyền vào '' => [0] (mảng có số 0)
     function toggleCheckbox(type) {
         console.log(router.query)
         let url = props.baseUrl;
@@ -185,10 +156,11 @@ export default function Category(props) {
                     </Row>
                     <Row className="danh_muc-list_san_pham">
                         {
-                            dataShowOnScreen.map((item, index) => {
+                            props.dataShowOnScreen.map((item, index) => {
                                 return (
                                     <Col key={"listsp" + index} lg={3} md={4} xs={6}>
                                         <CardProduct product={item}></CardProduct>
+
                                     </Col>
                                 )
                             })
@@ -230,18 +202,35 @@ export default function Category(props) {
 
 export async function getServerSideProps(context) {
     const { category } = context.params;
-    console.log(context.query);
-
-    let pageIndex = context?.query?.page || 1
-    let dataShow = []
-
-    const totalItem = dataShow.length
-
+    const { page = 1, sort = "lastest", type = '' } = context.query
     const baseUrl = "/danh-muc/" + category
+    let filterType = strFilterToArrStr(type)
+
+    let dataShowOnScreen = []
+    if (category === "all") {
+        let lengthFilterArr = filterType.length;
+        if (lengthFilterArr == 0) {
+            let result = await productService.listProduct();
+            dataShowOnScreen = [...result.data]
+        } else {
+            for (let i = 0; i < lengthFilterArr; i++) {
+                let result = await productService.listProductByMainCategorySlug();
+                dataShowOnScreen = [...dataShowOnScreen, ...result.data]
+            }
+        }
+    } else {
+
+    }
+
+    console.log({ category, page, sort, filterType, dataShowOnScreen });
+
+    const totalItem = dataShowOnScreen.length
+
     return {
         props: {
-            pageIndex: pageIndex,
+            pageIndex: page,
             baseUrl: baseUrl,
+            dataShowOnScreen: dataShowOnScreen,
         },
     };
 }

@@ -1,6 +1,6 @@
 import { categoryService } from "data-services/category"
 
-export const productPath = [
+export var productPath = [
     {
         title: 'GIỚI THIỆU',
         url: '#',
@@ -217,22 +217,7 @@ export const productPath = [
 
 export const getListCategory = async () => {
     const listCategory = await categoryService.listFullCategory();
-    // let dataRoute = productPath;
-    productPath[1].childs = await listCategory.data.map(mainCategory => {
-        return {
-            title: mainCategory.name,
-            url: "/danh-muc/" + mainCategory.slug,
-            type: mainCategory.slug,
-            childs: mainCategory.list_sub_categories.map(subCategory => {
-                return {
-                    title: subCategory.name,
-                    url: "/danh-muc/" + subCategory.slug,
-                    type: subCategory.slug,
-                    childs: []
-                }
-            })
-        }
-    })
+    productPath[1].childs = listCategory.data
     return productPath;
 
 }

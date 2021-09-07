@@ -20,8 +20,20 @@ export const categoryService = {
 
     listFullCategory: function (params) {
         return apiMainCategory(params).then(response => {
-            response.data = response.data.map(category => {
-                return category;
+            response.data = response.data.map(mainCategory => {
+                return {
+                    title: mainCategory.name,
+                    url: "/danh-muc/" + mainCategory.slug,
+                    type: mainCategory.slug,
+                    childs: mainCategory.list_sub_categories.map(subCategory => {
+                        return {
+                            title: subCategory.name,
+                            url: "/danh-muc/" + subCategory.slug,
+                            type: subCategory.slug,
+                            childs: []
+                        }
+                    })
+                }
             })
             return response;
         });

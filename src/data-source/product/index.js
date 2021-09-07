@@ -83,6 +83,23 @@ export const apiListProductByCategorySlug = async (slug, params) => {
     }
 };
 
+export const apiListProductByMainCategorySlug = async (slug, params) => {
+    try {
+        const response = await GET("/product/get-by-main-category-slug/" + slug, params);
+        return {
+            state: REQUEST_STATE.SUCCESS,
+            data: response.data
+        };
+
+    } catch (error) {
+        console.log("error", error);
+        return {
+            state: REQUEST_STATE.ERROR,
+            data: []
+        };
+    }
+};
+
 export const apiDetailProductBySlug = async (slug, params) => {
     try {
         const response = await GET("/product/get-by-slug/" + slug, params);

@@ -3,6 +3,7 @@
 
 import { apiListProductByCategorySlug } from "data-source/product";
 import { apiDetailProductBySlug } from "data-source/product";
+import { apiListProductByMainCategorySlug } from "data-source/product";
 import { apiListHotProduct } from "data-source/product";
 import { apiDetailProductById } from "data-source/product";
 import { apiListProductByCategoryId } from "data-source/product";
@@ -45,6 +46,15 @@ export const productService = {
 
     listProductByCategorySlug: function (slug, params) {
         return apiListProductByCategorySlug(slug, params).then(response => {
+            response.data = response.data.map(product => {
+                return filterFieldProduct(product);
+            })
+            return response;
+        });
+    },
+
+    listProductByMainCategorySlug: function (slug, params) {
+        return apiListProductByMainCategorySlug(slug, params).then(response => {
             response.data = response.data.map(product => {
                 return filterFieldProduct(product);
             })

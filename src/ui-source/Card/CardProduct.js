@@ -4,10 +4,7 @@ import Modal from 'react-modal';
 import ContactForm from 'components/ContactForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-const attr = {
-    img: "",
-    title: "Rem vai mot lop SV1113"
-}
+
 Modal.setAppElement('#__next');
 export default function CardProduct(props) {
     const { product } = props;

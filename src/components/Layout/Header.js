@@ -44,7 +44,6 @@ const Header = () => {
     useEffect(() => {
         (async function () {
             let result = await getListCategory();
-            // console.log(result);
             setMenu([...result[1].childs])
         })();
     }, [])
