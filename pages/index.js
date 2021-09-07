@@ -15,11 +15,13 @@ import { useState } from 'react'
 import SmallBanner from 'ui-source/Carousel_custom/SmallBanner'
 
 const attr = {
-    img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
-    title: "So sánh các loại đồ gỗ được  ",
+    type: 8,
+    slug: "#",
+    image: [{ src: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg" }],
+    name: "Cong trinh 17",
     desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
     date: "09/06/2025",
-    vertical: true
+    vertical: false
 }
 const attr2 = {
     img: "https://i.imgur.com/s8dwMxW.jpeg",
@@ -164,16 +166,16 @@ export default function Home(props) {
                     </Row>
                     <Row>
                         <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct {...attr}></CardProduct>
+                            <CardProduct product={attr}></CardProduct>
                         </Col>
                         <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct {...attr}></CardProduct>
+                            <CardProduct product={attr}></CardProduct>
                         </Col>
                         <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct {...attr}></CardProduct>
+                            <CardProduct product={attr}></CardProduct>
                         </Col>
                         <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct {...attr}></CardProduct>
+                            <CardProduct product={attr}></CardProduct>
                         </Col>
                     </Row>
                     <Row style={{ marginBottom: "50px" }}>
@@ -219,13 +221,13 @@ export default function Home(props) {
                     </Row>
                     <Row>
                         <Col md={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct {...attr} />
+                            <CardProduct product={attr} />
                         </Col>
                         <Col md={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct {...attr} />
+                            <CardProduct product={attr} />
                         </Col>
                         <Col md={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct {...attr} />
+                            <CardProduct product={attr} />
                         </Col>
                     </Row>
 

@@ -12,17 +12,18 @@ import DanhMucSanPham from '.'
 import PaginationCustom from 'ui-source/Pagination/PaginationCustom'
 import { getListCategory } from 'constants/productPath'
 
-function strListNumberToArrNumber(str) {
-    if (/^[0-9,]*$/.test(str) == false) return []  // test string truyền vào chỉ có số và dấu phẩy
+function strFilterToArrStr(str) {
+    if (/^[a-z0-9,-]*$/.test(str) == false) return []  // test string truyền vào chỉ có số và dấu phẩy
     if (str == '') return []
-    return str.split(',').map(c => +c)
+    return str.split(',').map(c => c)  // lưu ý map(c => +c) chuyển thảnh mảng số
 }
-function removeNumberInArr(num, arr) {
-    return arr.filter(i => i != num)
+
+function removeItemInArr(str, arr) {
+    return arr.filter(i => i != str)
 }
 
 
-function recurseFindObj(urlPath, arr) {
+function findNameProductByRouter(urlPath, arr) {
     var result = null
 
     function findTitleInArr(urlPath, arr) {
@@ -41,6 +42,22 @@ function recurseFindObj(urlPath, arr) {
     findTitleInArr(urlPath, arr)
     if (result == null) return { title: "khong co ket qua" }
     else return result
+}
+
+function getFilterListBySlug(arrData) {
+    var arrResult = []
+    function recusiveGetdata(arrData) {
+        let length = arrData.length
+        for (let i = 0; i < length; i++) {
+            arrResult.push({
+                title: arrData[i].title,
+                type: arrData[i].type
+            })
+            recusiveGetdata(arrData[i].childs)
+        }
+    }
+    recusiveGetdata(arrData)
+    return arrResult
 }
 
 function renderBaseUrlPagination(urlPath, router_query) {
@@ -64,36 +81,50 @@ function renderBaseUrlSort(urlPath, router_query) {
 }
 
 export default function Category(props) {
+    const router = useRouter();
     const [menu, setMenu] = useState(productPath)
+    const [titleData, setTitleData] = useState("Không có dữ liệu")
+    const [filterListBySlug, setFilterListBySlug] = useState([])
+    const slug = router.query.category
+    // console.log(slug)
     useEffect(() => {
         (async function () {
             let result = await getListCategory();
-            // console.log(result);
-            setMenu([...result])
+            setMenu([...result]) // lấy xong menu
+
+            if (slug === "all") {
+                setTitleData("Tất cả sản phẩm")
+                setFilterListBySlug(getFilterListBySlug(productPath[1].childs))
+            } else {
+                let obj = findNameProductByRouter(slug, productPath[1].childs)
+                setTitleData(obj.title)
+                setFilterListBySlug(getFilterListBySlug(obj.childs))
+            }  // lấy xong checkbox filter và tiêu đề sản phẩm
         })();
     }, [])
-    const router = useRouter();
-    // console.log(router)
+
+    useEffect(() => {
+        if (slug === "all") {
+            setTitleData("Tất cả sản phẩm")
+            setFilterListBySlug(getFilterListBySlug(productPath[1].childs))
+        } else {
+            let obj = findNameProductByRouter(slug, productPath[1].childs)
+            setTitleData(obj.title)
+            setFilterListBySlug(getFilterListBySlug(obj.childs))
+        }
+    }, [slug])
+
+
     const baseUrlPagination = renderBaseUrlPagination(props.baseUrl, router.query)
 
-    console.log(baseUrlPagination)
-
-    let filterType = strListNumberToArrNumber(router.query?.type || '') // nếu truyền vào '' => [0] mảng có số 0
-    filterType = removeNumberInArr(0, filterType);  // không có type = 0 -> trường hợp query.type rỗng thì cho ra mảng []
-
-    function sortSelectionChange(event) {
-        // console.log(event.target.value)
-        let url = renderBaseUrlSort(props.baseUrl, router.query)
-        url = url + event.target.value
-        router.replace(url)
-    }
-
+    let filterType = strFilterToArrStr(router.query?.type || '') // nếu truyền vào '' => [0] mảng có số 0
+    // filterType = removeItemInArr(0, filterType);  // không có type = 0 -> trường hợp query.type rỗng thì cho ra mảng []
     function toggleCheckbox(type) {
         console.log(router.query)
         let url = props.baseUrl;
         // console.log(filterType)
         if (filterType.includes(type)) {
-            filterType = removeNumberInArr(type, filterType)
+            filterType = removeItemInArr(type, filterType)
             url = filterType.length != 0 ? url + "?type=" + filterType.join() : url
             return router.replace(url)
         } else {
@@ -102,13 +133,20 @@ export default function Category(props) {
             return router.replace(url)
         }
     }
+
+    function sortSelectionChange(event) {
+        // console.log(event.target.value)
+        let url = renderBaseUrlSort(props.baseUrl, router.query)
+        url = url + event.target.value
+        router.replace(url)
+    }
     return (
-        <DanhMucSanPham title={props.titleData}>
+        <DanhMucSanPham title={titleData}>
             <Row>
                 <Col lg={9}>
                     <Row style={{ marginBottom: '30px' }}>
                         <Col xs={12} lg={6} className="danh_muc-title">
-                            {props.titleData}
+                            {titleData}
                         </Col>
                         <Col xs={12} lg={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
                             <span style={{ marginRight: '20px', display: 'inline-block', width: 'max-content', fontSize: 'larger' }}>Sắp xếp</span>
@@ -123,7 +161,7 @@ export default function Category(props) {
                             props.dataShow.map((item, index) => {
                                 return (
                                     <Col key={"listsp" + index} lg={3} md={4} xs={6}>
-                                        <CardProduct {...item}></CardProduct>
+                                        <CardProduct product={item}></CardProduct>
                                     </Col>
                                 )
                             })
@@ -138,7 +176,7 @@ export default function Category(props) {
                     <DanhMucMenu data={menu} className="dropdown_menu" />
                     <div style={{ marginTop: '15px' }}>Lọc sản phẩm</div>
                     {
-                        filterSanPham.map((item, index) => {
+                        filterListBySlug.map((item, index) => {
                             return (
                                 <Form.Check
                                     key={"checkboxsanpham" + index}
@@ -157,22 +195,16 @@ export default function Category(props) {
 }
 
 const itemsPerPage = 12
+
 export async function getServerSideProps(context) {
     const { category } = context.params;
-    let titleData = "Không tìm thấy"
-    if (category === "all") {
-        titleData = "Tất cả sản phẩm"
-    } else {
 
-        let obj = recurseFindObj(category, productPath[1].childs)
-        titleData = obj.title
-    }
     console.log(context.query);
 
 
 
     let pageIndex = context?.query?.page || 1
-    let filterTypeSelected = strListNumberToArrNumber(context?.query?.type || '')
+    let filterTypeSelected = strFilterToArrStr(context?.query?.type || '')
     let dataShow = []
     if (filterTypeSelected.length == 0) {
         dataShow = congTrinhList
@@ -192,10 +224,11 @@ export async function getServerSideProps(context) {
         props: {
             pageIndex: pageIndex,
             dataShow: dataShowClient,
-            titleData: titleData,
+            // titleData: titleData,
             // totalItem: totalItem,
             totalPage: totalPage,
-            baseUrl: baseUrl
+            baseUrl: baseUrl,
+            // filterListBySlug: filterListBySlug
         },
     };
 }
