@@ -26,7 +26,7 @@ export default function CardProduct(props) {
     return (
         <>
             <div className="card_hpd">
-                <Link href={product.slug}>
+                <Link href={product.slug} passHref>
                     <a>
                         <div>
                             <img src={product.image[0].src} alt="slug product" />

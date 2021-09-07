@@ -222,12 +222,12 @@ export const getListCategory = async () => {
         return {
             title: mainCategory.name,
             url: "/danh-muc/" + mainCategory.slug,
-            type: mainCategory.id,
+            type: mainCategory.slug,
             childs: mainCategory.list_sub_categories.map(subCategory => {
                 return {
                     title: subCategory.name,
                     url: "/danh-muc/" + subCategory.slug,
-                    type: subCategory.id,
+                    type: subCategory.slug,
                     childs: []
                 }
             })

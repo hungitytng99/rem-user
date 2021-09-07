@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const attr = {
-    img: "",
+    image: "",
     title: "",
     desc: '',
 }
@@ -16,7 +16,7 @@ const attr = {
 function CardReview(props) {
     return (
         <div className="card_review">
-            <img src={props.img}></img>
+            <img src={props.image[0].src}></img>
             <div>
                 <div>
                     <div>
