@@ -11,11 +11,14 @@ import { productPath } from 'constants/productPath'
 import DanhMucSanPham from '.'
 import PaginationCustom from 'ui-source/Pagination/PaginationCustom'
 import { getListCategory } from 'constants/productPath'
+import { productService } from 'data-services/product'
+import FullPageLoading from 'ui-source/Loading/FullPageLoading'
+import LoadingApart from 'ui-source/Loading/LoadingApart'
 
 function strFilterToArrStr(str) {
     if (/^[a-z0-9,-]*$/.test(str) == false) return []  // test string truyền vào chỉ có số và dấu phẩy
     if (str == '') return []
-    return str.split(',').map(c => c)  // lưu ý map(c => +c) chuyển thảnh mảng số
+    return str.split(',').filter(c => c != "")  // lưu ý map(c => +c) chuyển thảnh mảng số
 }
 
 function removeItemInArr(str, arr) {
@@ -53,7 +56,7 @@ function getFilterListBySlug(arrData) {
                 title: arrData[i].title,
                 type: arrData[i].type
             })
-            recusiveGetdata(arrData[i].childs)
+            // recusiveGetdata(arrData[i].childs)
         }
     }
     recusiveGetdata(arrData)
@@ -80,26 +83,23 @@ function renderBaseUrlSort(urlPath, router_query) {
     return result
 }
 
+const itemsPerPage = 12
 export default function Category(props) {
     const router = useRouter();
     const [menu, setMenu] = useState(productPath)
+    const [loading, setLoading] = useState(true)
     const [titleData, setTitleData] = useState("Không có dữ liệu")
-    const [filterListBySlug, setFilterListBySlug] = useState([])
+    const [filterListBySlug, setFilterListBySlug] = useState([])     // hiển thị ra checkbox filter
+    const [dataShowOnScreen, setDataShowOnScreen] = useState([])
     const slug = router.query.category
-    // console.log(slug)
+    const baseUrlPagination = renderBaseUrlPagination(props.baseUrl, router.query)
+
+
     useEffect(() => {
         (async function () {
             let result = await getListCategory();
             setMenu([...result]) // lấy xong menu
 
-            if (slug === "all") {
-                setTitleData("Tất cả sản phẩm")
-                setFilterListBySlug(getFilterListBySlug(productPath[1].childs))
-            } else {
-                let obj = findNameProductByRouter(slug, productPath[1].childs)
-                setTitleData(obj.title)
-                setFilterListBySlug(getFilterListBySlug(obj.childs))
-            }  // lấy xong checkbox filter và tiêu đề sản phẩm
         })();
     }, [])
 
@@ -111,13 +111,36 @@ export default function Category(props) {
             let obj = findNameProductByRouter(slug, productPath[1].childs)
             setTitleData(obj.title)
             setFilterListBySlug(getFilterListBySlug(obj.childs))
-        }
+        }// lấy xong checkbox filter và tiêu đề sản phẩm
     }, [slug])
 
+    let filterType = strFilterToArrStr(router.query?.type || '') // nếu truyền vào '' => [0] (mảng có số 0)
+    useEffect(() => {
+        setLoading(true)
+        setDataShowOnScreen([])
+        if (slug === "all") {
+            let lengthFilterArr = filterType.length;
+            if (lengthFilterArr == 0) {
+                (async function () {
+                    let result = await productService.listProduct({ productsPerPage: 1 });
+                    // console.log(result)
+                    setLoading(false)
+                    setDataShowOnScreen(result.data)
+                })();
+            } else {
+                (async function () {
+                    for (let i = 0; i < lengthFilterArr; i++) {
+                        console.log(filterType[i])
+                    }
+                })();
+            }
+        } else {
 
-    const baseUrlPagination = renderBaseUrlPagination(props.baseUrl, router.query)
+        }
+    }, [router.asPath])
 
-    let filterType = strFilterToArrStr(router.query?.type || '') // nếu truyền vào '' => [0] mảng có số 0
+
+
     // filterType = removeItemInArr(0, filterType);  // không có type = 0 -> trường hợp query.type rỗng thì cho ra mảng []
     function toggleCheckbox(type) {
         console.log(router.query)
@@ -142,6 +165,7 @@ export default function Category(props) {
     }
     return (
         <DanhMucSanPham title={titleData}>
+
             <Row>
                 <Col lg={9}>
                     <Row style={{ marginBottom: '30px' }}>
@@ -156,9 +180,12 @@ export default function Category(props) {
                             </Form.Select>
                         </Col>
                     </Row>
+                    <Row className="danh_muc-list_san_pham" style={{ display: loading ? "block" : "none", padding: '30px 0px' }}>
+                        <LoadingApart />
+                    </Row>
                     <Row className="danh_muc-list_san_pham">
                         {
-                            props.dataShow.map((item, index) => {
+                            dataShowOnScreen.map((item, index) => {
                                 return (
                                     <Col key={"listsp" + index} lg={3} md={4} xs={6}>
                                         <CardProduct product={item}></CardProduct>
@@ -167,8 +194,13 @@ export default function Category(props) {
                             })
                         }
                     </Row>
-                    <Row>
-                        <PaginationCustom active={Number(props.pageIndex)} totalPage={props.totalPage} baseUrl={baseUrlPagination}></PaginationCustom>
+                    <Row style={{ marginTop: '15px' }}>
+                        <PaginationCustom
+                            activePage={Number(props.pageIndex)}
+                            totalItem={10}
+                            baseUrl={baseUrlPagination}
+                            itemsPerPage={itemsPerPage}
+                        ></PaginationCustom>
                     </Row>
                 </Col>
                 <Col lg={3}>
@@ -194,41 +226,22 @@ export default function Category(props) {
     )
 }
 
-const itemsPerPage = 12
+
 
 export async function getServerSideProps(context) {
     const { category } = context.params;
-
     console.log(context.query);
 
-
-
     let pageIndex = context?.query?.page || 1
-    let filterTypeSelected = strFilterToArrStr(context?.query?.type || '')
     let dataShow = []
-    if (filterTypeSelected.length == 0) {
-        dataShow = congTrinhList
-    } else {
-        dataShow = congTrinhList.filter(item =>
-            filterTypeSelected.includes(item.type)
-        )
-    }
 
     const totalItem = dataShow.length
-    const totalPage = Math.ceil(totalItem / itemsPerPage)
-    const beginItemIndex = itemsPerPage * (pageIndex - 1)
-    const dataShowClient = dataShow.slice(beginItemIndex, beginItemIndex + itemsPerPage)
-    // console.log(dataShow)
+
     const baseUrl = "/danh-muc/" + category
     return {
         props: {
             pageIndex: pageIndex,
-            dataShow: dataShowClient,
-            // titleData: titleData,
-            // totalItem: totalItem,
-            totalPage: totalPage,
             baseUrl: baseUrl,
-            // filterListBySlug: filterListBySlug
         },
     };
 }
