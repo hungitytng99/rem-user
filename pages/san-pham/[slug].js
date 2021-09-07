@@ -281,7 +281,6 @@ const Product = (props) => {
                                         )
                                     })
                                 }
-
                             </Row>
                         </CardWithTitle>
                     </Row>
@@ -333,12 +332,16 @@ export async function getServerSideProps(context) {
         { productsPerPage: 8, pageNumber: 1 }
     );
 
+    // filter
+    // relatedProducts
+
+    relatedProducts.data = relatedProducts.data.filter(product => product.id !== detailProduct.data.id);
     return {
         props: {
-            detailProduct: detailProduct.data || {},
-            detailMainCategory: detailMainCategory.data || {},
-            detailCategory: detailCategory.data || {},
-            relatedProducts: relatedProducts.data || [],
+            detailProduct: detailProduct?.data || {},
+            detailMainCategory: detailMainCategory?.data || {},
+            detailCategory: detailCategory?.data || {},
+            relatedProducts: relatedProducts?.data || [],
         },
     };
     // } catch (error) {
