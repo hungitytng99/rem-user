@@ -63,7 +63,6 @@ export const productService = {
 }
 
 export const filterFieldProduct = (product) => {
-    console.log("DEATIL PRODUCT: ", product);
     return {
         id: product.id || 0,
         name: product.name || '',

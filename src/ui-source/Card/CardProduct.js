@@ -10,6 +10,7 @@ const attr = {
 }
 Modal.setAppElement('#__next');
 export default function CardProduct(props) {
+    const { product } = props;
     const [contactModal, setContactModal] = useState(false);
     const showContactModal = (e) => {
         e.stopPropagation();
@@ -25,13 +26,13 @@ export default function CardProduct(props) {
     return (
         <>
             <div className="card_hpd">
-                <Link href="/">
+                <Link href={product.slug}>
                     <a>
                         <div>
-                            <img src={props.img} alt="slug product" />
+                            <img src={product.image[0].src} alt="slug product" />
                         </div>
                         <p className="card_hpd-text text_over_flow_1">
-                            {props.title}
+                            {product.name}
                         </p>
                     </a>
                 </Link>
@@ -55,10 +56,8 @@ export default function CardProduct(props) {
                     </div>
                 </div>
                 <div className="contact-form__form">
-                    {/* <ContactForm closeContact={closeContactForm} productName={detailProduct.name}
-                        productId={detailProduct.id} productSlug={detailProduct.slug} /> */}
-                    <ContactForm closeContact={closeContactForm} productName={"PRODUCT NAME"}
-                        productId={"PRODUCT-ID"} productSlug={"PRODUCT-SLUG"} />
+                    <ContactForm closeContact={closeContactForm} productName={product.name}
+                        productId={product.id} productSlug={product.slug} />
                 </div>
             </Modal>
         </>

@@ -22,8 +22,6 @@ export const postService = {
         });
     },
 
-    
-
     listPost: function (params) {
         return apiListPost(params).then(response => {
             response.data = response.data.map(post => {
@@ -58,7 +56,7 @@ export const filterFieldPost = (post) => {
         image: post.url_image,
         content: post.content,
         tag_id: post.tag_id,
-        slug: "/tin-tuc/"+ post.slug,
+        slug: post.slug,
         update_at: convertDayMonthYear(post.update_at) || '',
     }
 }

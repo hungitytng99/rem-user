@@ -5,6 +5,7 @@ import { REQUEST_STATE } from "app-configs/index.js";
 export const apiListPost = async (params) => {
     try {
         const response = await GET("/post/", params, { isFullPath: false });
+        console.log("PARAMS: ", params, response);
         return {
             state: REQUEST_STATE.SUCCESS,
             data: response.data
