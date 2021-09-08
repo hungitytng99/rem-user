@@ -17,12 +17,17 @@ export default function CardPost(props) {
                 </p>
                 <div className="card_pd_cate">
                     <p className="card_pd_desc text_over_flow_4">
-                        {convert(post.content, {
-                            wordwrap: 130,
-                            selectors: [{ selector: 'img', format: 'skip' },
-                            { selector: 'a', options: { ignoreHref: true } }
-                            ]
-                        })}
+                        {
+                            convert(post.content,
+                                {
+                                    wordwrap: 130,
+                                    selectors: [
+                                        { selector: 'img', format: 'skip' },
+                                        { selector: 'a', options: { ignoreHref: true } }
+                                    ]
+                                }
+                            )
+                        }
                     </p>
                     <div className="card_pd_date">
                         <FontAwesomeIcon icon={faCalendar}></FontAwesomeIcon>

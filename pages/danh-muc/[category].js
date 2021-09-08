@@ -213,39 +213,46 @@ export async function getServerSideProps(context) {
         orderType: sort === "oldest" ? 1 : 2,
     }
 
-    if (category === "all") {
-        if (lengthFilterArr == 0) {
-            let result = await productService.listProduct(paramsPost);
-            dataShowOnScreen = [...result.data.listProductReturn]
+
+    try {
+        if (category === "all") {
+            if (lengthFilterArr == 0) {
+                let result = await productService.listProduct(paramsPost);
+                dataShowOnScreen = [...result.data.listProductReturn]
+            } else {
+                for (let i = 0; i < lengthFilterArr; i++) {
+                    let result = await productService.listProductByMixCategorySlug(filterType[i], paramsPost);
+                    dataShowOnScreen = [...dataShowOnScreen, ...result.data.listProductReturn]
+                }
+            }
         } else {
-            for (let i = 0; i < lengthFilterArr; i++) {
-                let result = await productService.listProductByMixCategorySlug(filterType[i], paramsPost);
-                dataShowOnScreen = [...dataShowOnScreen, ...result.data.listProductReturn]
+            if (lengthFilterArr == 0) {
+                let result = await productService.listProductByMixCategorySlug(category, paramsPost);
+                dataShowOnScreen = [...result.data.listProductReturn]
+            } else {
+                for (let i = 0; i < lengthFilterArr; i++) {
+                    let result = await productService.listProductByMixCategorySlug(filterType[i], paramsPost);
+                    dataShowOnScreen = [...dataShowOnScreen, ...result.data.listProductReturn]
+                }
             }
         }
-    } else {
-        if (lengthFilterArr == 0) {
-            let result = await productService.listProductByMixCategorySlug(category, paramsPost);
-            dataShowOnScreen = [...result.data.listProductReturn]
-        } else {
-            for (let i = 0; i < lengthFilterArr; i++) {
-                let result = await productService.listProductByMixCategorySlug(filterType[i], paramsPost);
-                dataShowOnScreen = [...dataShowOnScreen, ...result.data.listProductReturn]
-            }
-        }
+
+        console.log({ category, page, sort, filterType, dataShowOnScreen });
+
+        const totalItem = dataShowOnScreen.length
+
+        return {
+            props: {
+                pageIndex: page,
+                baseUrl: baseUrl,
+                dataShowOnScreen: dataShowOnScreen,
+                totalItem: totalItem,
+            },
+        };
+    } catch (error) {
+        return {
+            notFound: true
+        };
     }
-
-    console.log({ category, page, sort, filterType, dataShowOnScreen });
-
-    const totalItem = dataShowOnScreen.length
-
-    return {
-        props: {
-            pageIndex: page,
-            baseUrl: baseUrl,
-            dataShowOnScreen: dataShowOnScreen,
-            totalItem: totalItem,
-        },
-    };
 }
 

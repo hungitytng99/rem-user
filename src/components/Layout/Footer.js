@@ -95,7 +95,7 @@ function Footer() {
                                 <span><FontAwesomeIcon icon={faTelegramPlane}></FontAwesomeIcon></span>
                             </div>
                             <p>
-                                Mỗi tháng chúng tôi đều có những đợt giảm giá dịch vụ và sản phẩm nhằm tri ân khách hàng. Vui lòng nhập địa chỉ email để cập nhật những chương trình khuyến mãi mới nhất từ Rèm The Sun.
+                                Mỗi tháng chúng tôi đều có những đợt giảm giá dịch vụ và sản phẩm nhằm tri ân khách hàng. Vui lòng nhập địa chỉ email để cập nhật những chương trình khuyến mãi mới nhất từ Rèm Vương Hồng.
                             </p>
                         </Col>
                     </Row>
@@ -104,7 +104,7 @@ function Footer() {
                 <Container >
                     <footer className="footer">
                         <div className="footer-cpright">
-                            Copyrights © 2018 by <Link href='/'> Rèm The Sun</Link>.
+                            Copyrights © 2018 by <Link href='/'> Rèm Vương Hồng</Link>.
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'blue' }} icon={faFacebook}></FontAwesomeIcon>
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'red' }} icon={faYoutube}></FontAwesomeIcon>
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'purple' }} icon={faPinterest}></FontAwesomeIcon>
