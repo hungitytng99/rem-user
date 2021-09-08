@@ -16,6 +16,8 @@ import { useEffect, useState } from 'react'
 import SmallBanner from 'ui-source/Carousel_custom/SmallBanner'
 import { productPath } from 'constants/productPath'
 import { getListCategory } from 'constants/productPath'
+import { productService } from 'data-services/product'
+import { postService } from 'data-services/post'
 
 const attr = {
     type: 8,
@@ -42,57 +44,43 @@ const attr3 = {
 }
 
 function SwitchOptionFilter(props) {
-    const { data } = props;
-    switch (data) {
-        case 1:
-            return (
-                <Link href="#" passHref>
-                    <a>Rèm vải một màu {'>>'}</a>
-                </Link>
-            )
-        case 2:
-            return (
-                <Link href="#" passHref>
-                    <a>Rèm cầu vồng {'>>'}</a>
-                </Link>
-            )
-        case 3:
-            return (
-                <Link href="#" passHref>
-                    <a>Rèm gỗ {'>>'}</a>
-                </Link>
-            )
-        case 4:
-            return (
-                <Link href="#" passHref>
-                    <a>Rèm cuốn {'>>'}</a>
-                </Link>
-            )
-        case 5:
-            return (
-                <Link href="#" passHref>
-                    <a>Giàn phơi thông minh {'>>'}</a>
-                </Link>
-            )
-        default:
-            return ""
-    }
+    const { title } = props;
+    return (
+        <Link href="#" passHref>
+            <a>{title} {'>>'}</a>
+        </Link>
+    )
+
 }
 export default function Home(props) {
-    const { listHotProduct, listCategoryWithProduct } = props;
     const [filterProduct, setfilterProduct] = useState(0)
+    const [titleFilterActive, setTitleFilterActive] = useState('')
     const [mainCategory, setMainCategory] = useState([])
+    const [listHotProduct, setListHotProduct] = useState(props.listHotProduct)
 
     useEffect(() => {
         (async function () {
             let result = await getListCategory();
             setMainCategory([...result[1].childs])
+            setTitleFilterActive(result[1].childs[0]?.title)
         })();
     }, [])
 
-    function changeFilterProduct(num) {
+    function changeFilterProduct(num, title, idMainCategory) {
         setfilterProduct(num)
+        setTitleFilterActive(title)
+        let filterData = props.listHotProduct.filter(item => item.main_category_id == idMainCategory)
+        setListHotProduct(filterData)
     }
+    function isHotMainCategory(category, arr) {
+        let lengthArr = arr.length
+        for (let i = 0; i < lengthArr; i++) {
+            if (category == arr[i].main_category_id)
+                return true
+        }
+        return false
+    }
+
     return (
         <>
             <Head>
@@ -171,38 +159,37 @@ export default function Home(props) {
                             <div className="button_filter">
                                 {
                                     mainCategory.map((subitem, i) => {
-                                        return (
-                                            <span
-                                                key={"btnHotProduc" + i}
-                                                className={filterProduct == i ? 'active' : ''}
-                                                onClick={() => changeFilterProduct(i)}
-                                            >
-                                                {subitem.title}
-                                            </span>
-                                        )
+                                        if (isHotMainCategory(subitem.id, props.listHotProduct))
+                                            return (
+                                                <span
+                                                    key={"btnHotProduc" + i}
+                                                    className={filterProduct == i ? 'active' : ''}
+                                                    onClick={() => changeFilterProduct(i, subitem.title, subitem.id)}
+                                                >
+                                                    {subitem.title}
+                                                </span>
+                                            )
                                     })
                                 }
                             </div>
                         </Container>
                     </Row>
                     <Row>
-                        <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct product={attr}></CardProduct>
-                        </Col>
-                        <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct product={attr}></CardProduct>
-                        </Col>
-                        <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct product={attr}></CardProduct>
-                        </Col>
-                        <Col lg={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct product={attr}></CardProduct>
-                        </Col>
+                        {
+                            listHotProduct.map((item, index) => {
+                                return (
+                                    <Col key={"hotPro" + index} lg={4} style={{ marginBottom: "30px" }}>
+                                        <CardProduct product={item}></CardProduct>
+                                    </Col>
+                                )
+                            })
+                        }
+
                     </Row>
                     <Row style={{ marginBottom: "50px" }}>
                         <Container>
                             <p style={{ textAlign: 'center' }}>
-                                Xem tất cả <SwitchOptionFilter data={filterProduct}></SwitchOptionFilter>
+                                Xem tất cả <SwitchOptionFilter title={titleFilterActive}></SwitchOptionFilter>
                             </p>
                         </Container>
                     </Row>
@@ -221,7 +208,7 @@ export default function Home(props) {
                     <Row style={{ margin: "0px 0px 25px 0px" }}>
                         <Col lg={6}>
                             <p style={{ lineHeight: '25.6px' }}>
-                                Rèm cửa đẹp là một trong những yếu tố góp phần tô điểm cho không gian lung linh và để lại ấn tượng với những vị khách mỗi khi đến nhà bạn. Khi một không gian nhà ở đáp ứng đầy đủ nhu cầu về tiện nghi thì vẻ đẹp trên từng ô cửa là vô cùng quan trọng để trở thành một ngôi nhà lý tưởng đáp ứng được cả về mặt thẩm mỹ và công năng. Cùng Rèm The Sun nhìn lại bộ rèm cản sáng được lắp đặt tại nhà khách hàng khu đô thị Geleximco Lê Trọng Tấn.
+                                Rèm cửa đẹp là một trong những yếu tố góp phần tô điểm cho không gian lung linh và để lại ấn tượng với những vị khách mỗi khi đến nhà bạn. Khi một không gian nhà ở đáp ứng đầy đủ nhu cầu về tiện nghi thì vẻ đẹp trên từng ô cửa là vô cùng quan trọng để trở thành một ngôi nhà lý tưởng đáp ứng được cả về mặt thẩm mỹ và công năng. Cùng Rèm Vương Hồng nhìn lại bộ rèm cản sáng được lắp đặt tại nhà khách hàng khu đô thị Geleximco Lê Trọng Tấn.
                             </p>
                         </Col>
                         <Col lg={6}>
@@ -238,18 +225,18 @@ export default function Home(props) {
 
                     <Row style={{ margin: "250px 0px 30px 0px" }}>
                         <h2 className="section_title">Góc tư vấn</h2>
-                        <div className="section_sub_title">Lựa chọn và chăm sóc nhà cửa cùng Rèm The Sun</div>
+                        <div className="section_sub_title">Lựa chọn và chăm sóc nhà cửa cùng Rèm Vương Hồng</div>
                     </Row>
                     <Row>
-                        <Col md={4} style={{ marginBottom: "30px" }}>
-                            <CardPost post={attr2} />
-                        </Col>
-                        <Col md={4} style={{ marginBottom: "30px" }}>
-                            <CardPost post={attr2} />
-                        </Col>
-                        <Col md={4} style={{ marginBottom: "30px" }}>
-                            <CardPost post={attr2} />
-                        </Col>
+                        {
+                            props.gocTuVan.map((item, index) => {
+                                return (
+                                    <Col key={"PostItem" + index} md={4} style={{ marginBottom: "30px" }}>
+                                        <CardPost post={item} />
+                                    </Col>
+                                )
+                            })
+                        }
                     </Row>
 
                 </div>
@@ -259,19 +246,20 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-    // let listCategoryWithProduct = [];
-    // let listHotProduct = [];
+
+    let listHotProduct = [];
+    let gocTuVan = []
     try {
-        // listCategoryWithProduct = await categoryService.listCategoryWithProduct(
-        //     {}, { productsPerPage: 8, pageNumber: 1 }
-        // );
-        // listHotProduct = await productService.listHotProduct();
-
-
+        let result = await productService.listHotProduct();
+        listHotProduct = [...result.data]
+        // console.log(listHotProduct)
+        let result2 = await postService.listPostByTagId(9, { postsPerPage: 3, pageNumber: 1 });
+        gocTuVan = [...result2.data.postsResult]
+        // console.log(gocTuVan)
         return {
             props: {
-                // listHotProduct: listHotProduct.data,
-                // listCategoryWithProduct: listCategoryWithProduct.data,
+                listHotProduct: listHotProduct,
+                gocTuVan: gocTuVan,
             },
         };
     } catch (error) {

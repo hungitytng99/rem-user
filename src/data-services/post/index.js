@@ -11,13 +11,13 @@ import { apiDetailPostById } from "data-source/post";
 export const postService = {
     detailPostById: function (id) {
         return apiDetailPostById(id).then(response => {
-            response.data = filterFieldPost( response.data);
+            response.data = filterFieldPost(response.data);
             return response;
         });
     },
     detailPostBySlug: function (id) {
         return apiDetailPostBySlug(id).then(response => {
-            response.data = filterFieldPost( response.data);
+            response.data = filterFieldPost(response.data);
             return response;
         });
     },
@@ -33,7 +33,7 @@ export const postService = {
 
     listPostByTagId: function (id, params) {
         return apiListPostByTagId(id, params).then(response => {
-            response.data = response.data.map(post => {
+            response.data.postsResult = response.data.postsResult.map(post => {
                 return filterFieldPost(post);
             })
             return response;
