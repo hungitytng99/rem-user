@@ -169,7 +169,7 @@ export default function Category(props) {
                     <Row style={{ marginTop: '15px' }}>
                         <PaginationCustom
                             activePage={Number(props.pageIndex)}
-                            totalItem={10}
+                            totalItem={props.totalItem}
                             baseUrl={baseUrlPagination}
                             itemsPerPage={itemsPerPage}
                         ></PaginationCustom>
@@ -205,21 +205,34 @@ export async function getServerSideProps(context) {
     const { page = 1, sort = "lastest", type = '' } = context.query
     const baseUrl = "/danh-muc/" + category
     let filterType = strFilterToArrStr(type)
-
+    let lengthFilterArr = filterType.length;
     let dataShowOnScreen = []
+    let paramsPost = {
+        productsPerPage: itemsPerPage,
+        pageNumber: page,
+        orderType: sort === "oldest" ? 1 : 2,
+    }
+
     if (category === "all") {
-        let lengthFilterArr = filterType.length;
         if (lengthFilterArr == 0) {
-            let result = await productService.listProduct();
-            dataShowOnScreen = [...result.data]
+            let result = await productService.listProduct(paramsPost);
+            dataShowOnScreen = [...result.data.listProductReturn]
         } else {
             for (let i = 0; i < lengthFilterArr; i++) {
-                let result = await productService.listProductByMainCategorySlug();
-                dataShowOnScreen = [...dataShowOnScreen, ...result.data]
+                let result = await productService.listProductByMixCategorySlug(filterType[i], paramsPost);
+                dataShowOnScreen = [...dataShowOnScreen, ...result.data.listProductReturn]
             }
         }
     } else {
-
+        if (lengthFilterArr == 0) {
+            let result = await productService.listProductByMixCategorySlug(category, paramsPost);
+            dataShowOnScreen = [...result.data.listProductReturn]
+        } else {
+            for (let i = 0; i < lengthFilterArr; i++) {
+                let result = await productService.listProductByMixCategorySlug(filterType[i], paramsPost);
+                dataShowOnScreen = [...dataShowOnScreen, ...result.data.listProductReturn]
+            }
+        }
     }
 
     console.log({ category, page, sort, filterType, dataShowOnScreen });
@@ -231,6 +244,7 @@ export async function getServerSideProps(context) {
             pageIndex: page,
             baseUrl: baseUrl,
             dataShowOnScreen: dataShowOnScreen,
+            totalItem: totalItem,
         },
     };
 }
