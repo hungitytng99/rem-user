@@ -77,7 +77,7 @@ export async function getServerSideProps(context) {
     );
 
     // change slug
-    listPostByPage.data = listPostByPage.data.map(post => {
+    listPostByPage.data.postsResult = listPostByPage.data.postsResult.map(post => {
         return {
             ...post,
             slug: "/cong-trinh/" + post.slug
@@ -87,7 +87,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             pageIndex: page,
-            listPost: listPostByPage.data,
+            listPost: listPostByPage.data.postsResult,
             totalPage: totalPage
         },
     };

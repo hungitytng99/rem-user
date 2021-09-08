@@ -26,7 +26,7 @@ function removeItemInArr(str, arr) {
 }
 
 
-function findNameProductByRouter(urlPath, arr) {
+export function findNameProductByRouter(urlPath, arr) {
     var result = null
 
     function findTitleInArr(urlPath, arr) {
