@@ -3,6 +3,8 @@
 
 import { apiListProductByCategorySlug } from "data-source/product";
 import { apiDetailProductBySlug } from "data-source/product";
+import { apiListProductByMainCategorySlug } from "data-source/product";
+import { apiListProductByMixCategorySlug } from "data-source/product";
 import { apiListHotProduct } from "data-source/product";
 import { apiDetailProductById } from "data-source/product";
 import { apiListProductByCategoryId } from "data-source/product";
@@ -27,7 +29,8 @@ export const productService = {
 
     listProduct: function (params) {
         return apiListProduct(params).then(response => {
-            response.data = response.data.map(product => {
+            console.log(response)
+            response.data.listProductReturn = response.data.listProductReturn.map(product => {
                 return filterFieldProduct(product);
             })
             return response;
@@ -46,6 +49,24 @@ export const productService = {
     listProductByCategorySlug: function (slug, params) {
         return apiListProductByCategorySlug(slug, params).then(response => {
             response.data = response.data.map(product => {
+                return filterFieldProduct(product);
+            })
+            return response;
+        });
+    },
+
+    listProductByMainCategorySlug: function (slug, params) {
+        return apiListProductByMainCategorySlug(slug, params).then(response => {
+            response.data = response.data.map(product => {
+                return filterFieldProduct(product);
+            })
+            return response;
+        });
+    },
+
+    listProductByMixCategorySlug: function (slug, params) {
+        return apiListProductByMixCategorySlug(slug, params).then(response => {
+            response.data.listProductReturn = response.data.listProductReturn.map(product => {
                 return filterFieldProduct(product);
             })
             return response;
