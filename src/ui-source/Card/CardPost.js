@@ -6,7 +6,7 @@ import React from 'react'
 const { convert } = require('html-to-text');
 
 
-export default function CardProduct(props) {
+export default function CardPost(props) {
     const { vertical = true, post = {} } = props;
     return (
         <Link href={post.slug} passHref>
