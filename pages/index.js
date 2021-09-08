@@ -7,12 +7,15 @@ import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Link from 'next/link'
 import CardReview from 'ui-source/Card/CardReview'
-import { faChevronLeft, faChevronRight, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CardProduct from 'ui-source/Card/CardProduct'
 import CardPolicy from 'ui-source/Card/CardPolicy'
-import { useState } from 'react'
+import CardPost from 'ui-source/Card/CardPost'
+import { useEffect, useState } from 'react'
 import SmallBanner from 'ui-source/Carousel_custom/SmallBanner'
+import { productPath } from 'constants/productPath'
+import { getListCategory } from 'constants/productPath'
 
 const attr = {
     type: 8,
@@ -24,11 +27,12 @@ const attr = {
     vertical: false
 }
 const attr2 = {
-    img: "https://i.imgur.com/s8dwMxW.jpeg",
-    title: "So sánh các loại đồ gỗ được sử dụng làm rèm cửa hiện nay",
-    desc: "Rèm gỗ tự nhiên với vẻ đẹp mang đến sự gần gũi thiên nhiên cho không gian nội thất đang ngày càng chiếm được cảm tình của người tiêu dùng. Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
-    date: "09/06/2025",
-    vertical: false
+    image: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
+    name: "So sánh các loại đồ gỗ được sử dụng làm rèm cửa hiện nay",
+    content: "Rèm gỗ tự nhiên với vẻ đẹp mang đến sự gần gũi thiên nhiên cho không gian nội thất đang ngày càng chiếm được cảm tình của người tiêu dùng. Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
+    update_at: "09/06/2025",
+    vertical: false,
+    slug: "#"
 }
 const attr3 = {
     img: "https://theme.hstatic.net/200000295586/1000722296/14/policy_icon1.png?v=292",
@@ -76,7 +80,16 @@ function SwitchOptionFilter(props) {
 }
 export default function Home(props) {
     const { listHotProduct, listCategoryWithProduct } = props;
-    const [filterProduct, setfilterProduct] = useState(1)
+    const [filterProduct, setfilterProduct] = useState(0)
+    const [mainCategory, setMainCategory] = useState([])
+
+    useEffect(() => {
+        (async function () {
+            let result = await getListCategory();
+            setMainCategory([...result[1].childs])
+        })();
+    }, [])
+
     function changeFilterProduct(num) {
         setfilterProduct(num)
     }
@@ -156,11 +169,19 @@ export default function Home(props) {
                             <h2 className="section_title">SẢN PHẨM BÁN CHẠY</h2>
                             <div className="section_sub_title">Các mẫu rèm cửa được khách hàng hay lựa chọn</div>
                             <div className="button_filter">
-                                <span className={filterProduct == 1 ? 'active' : ''} onClick={() => changeFilterProduct(1)}>Rèm vải một màu</span>
-                                <span className={filterProduct == 2 ? 'active' : ''} onClick={() => changeFilterProduct(2)}>Rèm cầu vồng</span>
-                                <span className={filterProduct == 3 ? 'active' : ''} onClick={() => changeFilterProduct(3)}>Rèm Gỗ</span>
-                                <span className={filterProduct == 4 ? 'active' : ''} onClick={() => changeFilterProduct(4)}>Rèm Cuốn</span>
-                                <span className={filterProduct == 5 ? 'active' : ''} onClick={() => changeFilterProduct(5)}>Giàn Phơi Thông Minh</span>
+                                {
+                                    mainCategory.map((subitem, i) => {
+                                        return (
+                                            <span
+                                                key={"btnHotProduc" + i}
+                                                className={filterProduct == i ? 'active' : ''}
+                                                onClick={() => changeFilterProduct(i)}
+                                            >
+                                                {subitem.title}
+                                            </span>
+                                        )
+                                    })
+                                }
                             </div>
                         </Container>
                     </Row>
@@ -221,13 +242,13 @@ export default function Home(props) {
                     </Row>
                     <Row>
                         <Col md={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct product={attr} />
+                            <CardPost post={attr2} />
                         </Col>
                         <Col md={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct product={attr} />
+                            <CardPost post={attr2} />
                         </Col>
                         <Col md={4} style={{ marginBottom: "30px" }}>
-                            <CardProduct product={attr} />
+                            <CardPost post={attr2} />
                         </Col>
                     </Row>
 
