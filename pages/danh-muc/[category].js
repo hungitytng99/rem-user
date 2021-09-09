@@ -26,7 +26,7 @@ function removeItemInArr(str, arr) {
 }
 
 
-function findNameProductByRouter(urlPath, arr) {
+export function findNameProductByRouter(urlPath, arr) {
     var result = null
 
     function findTitleInArr(urlPath, arr) {
@@ -95,7 +95,7 @@ export default function Category(props) {
 
     useEffect(() => {
         setMenu(productPath)
-    }, [productPath])
+    }, [])
 
     useEffect(() => {
         if (slug === "all") {

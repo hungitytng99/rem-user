@@ -191,26 +191,26 @@ export var productPath = [
         title: 'Thư viện ảnh',
         url: '/thu-vien-anh/rem-vai',
         childs: [
-            {
-                title: 'Rèm vải',
-                url: '/thu-vien-anh/rem-vai',
-                childs: []
-            },
-            {
-                title: 'Rèm cầu vồng',
-                url: '/thu-vien-anh/rem-cau-vong',
-                childs: []
-            },
-            {
-                title: 'Rèm gỗ',
-                url: '/thu-vien-anh/rem-go',
-                childs: []
-            },
-            {
-                title: 'Rèm văn phòng',
-                url: '/thu-vien-anh/rem-van-phong',
-                childs: []
-            },
+            // {
+            //     title: 'Rèm vải',
+            //     url: '/thu-vien-anh/rem-vai',
+            //     childs: []
+            // },
+            // {
+            //     title: 'Rèm cầu vồng',
+            //     url: '/thu-vien-anh/rem-cau-vong',
+            //     childs: []
+            // },
+            // {
+            //     title: 'Rèm gỗ',
+            //     url: '/thu-vien-anh/rem-go',
+            //     childs: []
+            // },
+            // {
+            //     title: 'Rèm văn phòng',
+            //     url: '/thu-vien-anh/rem-van-phong',
+            //     childs: []
+            // },
         ]
     }
 ]
@@ -218,6 +218,14 @@ export var productPath = [
 export const getListCategory = async () => {
     const listCategory = await categoryService.listFullCategory();
     productPath[1].childs = listCategory.data
+    productPath[5].childs = listCategory.data.map(category => {
+        return {
+            title: category.title,
+            url: '/thu-vien-anh/' + category.type,
+            type: category.type,
+            childs: []
+        }
+    })
     return productPath;
 
 }

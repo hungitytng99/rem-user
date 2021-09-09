@@ -24,7 +24,7 @@ export const postService = {
 
     listPost: function (params) {
         return apiListPost(params).then(response => {
-            response.data = response.data.map(post => {
+            response.data.postsResult = response.data.postsResult.map(post => {
                 return filterFieldPost(post);
             })
             return response;
