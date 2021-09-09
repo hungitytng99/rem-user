@@ -3,8 +3,9 @@ import SimGalleryLightBox from 'ui-source/lightGallery/SimGalleryLightBox'
 import ImgGallery from '.'
 import { findNameProductByRouter } from '../danh-muc/[category]'
 import { productPath } from 'constants/productPath'
-import { photos } from 'constants/constTest'
+
 import { useRouter } from 'next/router'
+import { galleryService } from 'data-services/thu-vien-anh'
 
 export default function RemVai(props) {
     const router = useRouter();
@@ -16,12 +17,11 @@ export default function RemVai(props) {
         setTitleData(obj.title)
     }, [slug])
 
-    const { listImg } = props;
     return (
         <>
             <ImgGallery title={titleData}>
                 <div>
-                    <SimGalleryLightBox photos={listImg} />
+                    <SimGalleryLightBox photos={props.dataShowOnScreen} />
                 </div>
             </ImgGallery>
         </>
@@ -31,12 +31,22 @@ export default function RemVai(props) {
 export async function getServerSideProps(context) {
     const { slug } = context.params;
     console.log(slug)
-
-    return {
-        props: {
-            listImg: photos
-        },
-    };
+    let dataShowOnScreen = []
+    try {
+        let result = await galleryService.listImgByMainCategorySlug(slug);
+        dataShowOnScreen = [...result.data]
+        // console.log(dataShowOnScreen)
+        return {
+            props: {
+                dataShowOnScreen: dataShowOnScreen,
+            },
+        };
+    } catch (error) {
+        console.log(error)
+        return {
+            notFound: true
+        };
+    }
 
 
 }

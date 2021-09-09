@@ -17,6 +17,8 @@ import brand_img7 from 'assets/images/homepage/brand/brand_img7.png'
 import brand_img9 from 'assets/images/homepage/brand/brand_img9.webp'
 import brand_img6 from 'assets/images/homepage/brand/brand_img6.webp'
 
+import no_data_found from 'assets/images/homepage/no-data-found/nodataFound.png'
+
 export const ImagesPath = {
     LOGO: logo,
     PRODUCT_6: product_6,
@@ -36,4 +38,6 @@ export const ImagesPath = {
     BRAND_IMG6: brand_img6,
     BRAND_IMG9: brand_img9,
     BRAND_IMG7: brand_img7,
+
+    NO_DATA_FOUND: no_data_found,
 }

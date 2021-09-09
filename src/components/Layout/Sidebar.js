@@ -16,7 +16,7 @@ export default function Sidebar() {
         //     setMenu([...result])
         // })();
         setMenu(productPath)
-    }, [productPath])
+    }, [])
 
     return (
         <div className='sidebar'>

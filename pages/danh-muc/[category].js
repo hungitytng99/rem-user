@@ -95,7 +95,7 @@ export default function Category(props) {
 
     useEffect(() => {
         setMenu(productPath)
-    }, [productPath])
+    }, [])
 
     useEffect(() => {
         if (slug === "all") {
