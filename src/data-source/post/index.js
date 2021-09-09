@@ -22,7 +22,7 @@ export const apiListPost = async (params) => {
 
 export const apiCreatePost = async (params) => {
     try {
-        const response = await POST("/post/",  params);
+        const response = await POST("/post/", params);
         return {
             state: REQUEST_STATE.SUCCESS,
             data: response.data
@@ -54,7 +54,7 @@ export const apiDetailPostById = async (id) => {
     }
 };
 
-export const apiDetailPostBySlug= async (slug) => {
+export const apiDetailPostBySlug = async (slug) => {
     try {
         const response = await GET("/post/get-by-slug/" + slug);
         return {
@@ -88,9 +88,9 @@ export const apiListPostByTagSlug = async (slug) => {
     }
 };
 
-export const apiListPostByTagId = async (id) => {
+export const apiListPostByTagId = async (id, params) => {
     try {
-        const response = await GET("/post/get-by-tag-id/" + id);
+        const response = await GET("/post/get-by-tag-id/" + id, params);
         return {
             state: REQUEST_STATE.SUCCESS,
             data: response.data
@@ -105,7 +105,7 @@ export const apiListPostByTagId = async (id) => {
     }
 };
 
-export const apiUpdatePost= async (id, params) => {
+export const apiUpdatePost = async (id, params) => {
     try {
         const response = await PUT("/post/" + id, params);
         return {
@@ -122,7 +122,7 @@ export const apiUpdatePost= async (id, params) => {
     }
 };
 
-export const apiDeletePost= async (id) => {
+export const apiDeletePost = async (id) => {
     try {
         const response = await DELETE("/post/" + id);
         return {

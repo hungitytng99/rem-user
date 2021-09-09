@@ -178,7 +178,7 @@ export default function Home(props) {
                         {
                             listHotProduct.map((item, index) => {
                                 return (
-                                    <Col key={"hotPro" + index} lg={4} style={{ marginBottom: "30px" }}>
+                                    <Col key={"hotPro" + index} lg={4} md={6} xs={6} style={{ marginBottom: "30px" }}>
                                         <CardProduct product={item}></CardProduct>
                                     </Col>
                                 )
@@ -253,7 +253,7 @@ export async function getServerSideProps() {
         let result = await productService.listHotProduct();
         listHotProduct = [...result.data]
         // console.log(listHotProduct)
-        let result2 = await postService.listPostByTagId(9, { postsPerPage: 3, pageNumber: 1 });
+        let result2 = await postService.listPostByTagId(10, { postsPerPage: 3, pageNumber: 1 });
         gocTuVan = [...result2.data.postsResult]
         // console.log(gocTuVan)
         return {
