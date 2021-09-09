@@ -8,19 +8,12 @@ import PaginationCustom from 'ui-source/Pagination/PaginationCustom'
 import { postService } from 'data-services/post'
 
 
-const attr = {
-    img: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
-    title: "So sánh các loại đồ gỗ được ",
-    desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
-    date: "09/06/2025",
-    vertical: false
-}
-
-
 export default function CongTrinh({
-    pageIndex = 1,
+    pageIndex,
     listPost = [],
-    totalPage = 1
+    totalData = 1,
+    itemsPerPage = 10,
+    gocTuVan,
 }) {
 
     return (
@@ -42,15 +35,18 @@ export default function CongTrinh({
                                     )
                                 })
                             }
-                            <PaginationCustom active={Number(pageIndex)} totalPage={totalPage} baseUrl="/cong-trinh" ></PaginationCustom>
+                            <PaginationCustom activePage={Number(pageIndex)} totalItem={totalData} baseUrl="/cong-trinh" itemsPerPage={itemsPerPage}></PaginationCustom>
                         </Col>
                         <Col lg={3} className="news_recently">
-                            <h4 style={{ fontWeight: "400" }}>Bài viết gần đây</h4>
-
-                            <CardRecentlyNews {...attr}></CardRecentlyNews>
-                            <CardRecentlyNews {...attr}></CardRecentlyNews>
-                            <CardRecentlyNews {...attr}></CardRecentlyNews>
-                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1167378840265020" width="340" height="500" style={{ border: "none", overflow: "hidden" }} scrolling="no" frameBorder="0" allowFullScreen={true} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                            <h4 style={{ fontWeight: "400" }}>Góc tư vấn</h4>
+                            {
+                                gocTuVan.map((item, index) => {
+                                    return (
+                                        <CardRecentlyNews key={"goctuvancongrinh" + index} data={item}></CardRecentlyNews>
+                                    )
+                                })
+                            }
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1167378840265020" width="-webkit-fill-available" height="500" style={{ border: "none", overflow: "hidden" }} scrolling="no" frameBorder="0" allowFullScreen={true} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                         </Col>
                     </Row>
 
@@ -65,30 +61,36 @@ export async function getServerSideProps(context) {
     const { page = 1 } = context.query;
     const itemsPerPage = 8;
     console.log("PAGE: ", page);
+    let totalData = 0
 
-    //get total page
-    const listPost = await postService.listPost();
-    const totalPage = listPost.data.length / itemsPerPage;
-    console.log("TOTALPAGE: ", totalPage);
+    try {
 
-    //get item per page
-    const listPostByPage = await postService.listPost(
-        { postsPerPage: itemsPerPage, pageNumber: page }
-    );
-
-    // change slug
-    listPostByPage.data.postsResult = listPostByPage.data.postsResult.map(post => {
+        //get item per page
+        const listPostByPage = await postService.listPostByTagId(8, { postsPerPage: itemsPerPage, pageNumber: page });
+        totalData = listPostByPage.data.total
+        // change slug
+        listPostByPage.data.postsResult = listPostByPage.data.postsResult.map(post => {
+            return {
+                ...post,
+                slug: "/cong-trinh/" + post.slug
+            }
+        })
+        const gocTuVan = await postService.listPostByTagId(10, { postsPerPage: 5, pageNumber: 1 });
+        console.log({ gocTuVan })
+        // console.log("LIST BY PAGE: ", listPostByPage);
         return {
-            ...post,
-            slug: "/cong-trinh/" + post.slug
-        }
-    })
-    console.log("LIST BY PAGE: ", listPostByPage);
-    return {
-        props: {
-            pageIndex: page,
-            listPost: listPostByPage.data.postsResult,
-            totalPage: totalPage
-        },
-    };
+            props: {
+                pageIndex: page,
+                listPost: listPostByPage.data.postsResult,
+                totalData: totalData,
+                itemsPerPage: itemsPerPage,
+                gocTuVan: gocTuVan.data.postsResult,
+            },
+        };
+    } catch (error) {
+        console.log(error)
+        return {
+            notFound: true
+        };
+    }
 }
