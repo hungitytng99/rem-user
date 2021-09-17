@@ -36,10 +36,28 @@ const attr2 = {
     vertical: false,
     slug: "#"
 }
-const attr3 = {
-    img: "https://theme.hstatic.net/200000295586/1000722296/14/policy_icon1.png?v=292",
+const policy1 = {
+    img: ImagesPath.POLICY1,
     title: "Thương hiệu uy tín",
     desc: "Hơn 10 năm kinh nghiệm, tỉ mỉ trong từng đường may mũi chỉ",
+
+}
+const policy2 = {
+    img: ImagesPath.POLICY2,
+    title: "PHÂN PHỐI CHÍNH HÃNG",
+    desc: "Rèm vải nhập khẩu từ Anh Quốc, Bỉ, Nhật Bản, Hàn Quốc. Có đầy đủ giấy tờ CO, CQ.",
+
+}
+const policy3 = {
+    img: ImagesPath.POLICY3,
+    title: "Thương hiệu uy tín",
+    desc: "Mẫu mã đa dạng, luôn update công nghệ mới nhất.",
+
+}
+const policy4 = {
+    img: ImagesPath.POLICY4,
+    title: "Thương hiệu uy tín",
+    desc: "Bảo hành sản phẩm 1 năm - bảo trì trọn đời.",
 
 }
 
@@ -126,28 +144,31 @@ export default function Home(props) {
                     <Row>
                         <Container style={{ padding: "0px 30px" }}>
                             <Row style={{ padding: "15px", background: "white" }}>
-                                <Col lg={4}>
-                                    <CardReview {...attr}></CardReview>
-                                </Col>
-                                <Col lg={4}>
-                                    <CardReview {...attr}></CardReview>
-                                </Col>
-                                <Col lg={4}>
-                                    <CardReview {...attr}></CardReview>
-                                </Col>
+                                {
+                                    mainCategory.map((item, index) => {
+                                        if (index < 3)
+                                            return (
+
+                                                <Col md={4} key={"review" + index} >
+                                                    <CardReview {...item}></CardReview>
+                                                </Col>
+                                            )
+                                    })
+                                }
+
                             </Row>
                             <Row style={{ margin: "25px 0px" }}>
-                                <Col lg={3} md={6}>
-                                    <CardPolicy {...attr3}></CardPolicy>
+                                <Col lg={3} md={6} xs={6}>
+                                    <CardPolicy {...policy1}></CardPolicy>
                                 </Col>
-                                <Col lg={3} md={6}>
-                                    <CardPolicy {...attr3}></CardPolicy>
+                                <Col lg={3} md={6} xs={6}>
+                                    <CardPolicy {...policy2}></CardPolicy>
                                 </Col>
-                                <Col lg={3} md={6}>
-                                    <CardPolicy {...attr3}></CardPolicy>
+                                <Col lg={3} md={6} xs={6}>
+                                    <CardPolicy {...policy3}></CardPolicy>
                                 </Col>
-                                <Col lg={3} md={6}>
-                                    <CardPolicy {...attr3}></CardPolicy>
+                                <Col lg={3} md={6} xs={6}>
+                                    <CardPolicy {...policy4}></CardPolicy>
                                 </Col>
                             </Row>
                         </Container>

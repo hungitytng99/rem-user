@@ -25,12 +25,15 @@ export const categoryService = {
                     id: mainCategory.id,
                     title: mainCategory.name,
                     url: "/danh-muc/" + mainCategory.slug,
+                    url_image: mainCategory.url_image,
                     type: mainCategory.slug,
+                    desc: mainCategory.description,
                     childs: mainCategory.list_sub_categories.map(subCategory => {
                         return {
                             id: subCategory.id,
                             title: subCategory.name,
                             url: "/danh-muc/" + subCategory.slug,
+                            desc: mainCategory.description,
                             type: subCategory.slug,
                             childs: []
                         }

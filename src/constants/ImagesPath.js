@@ -19,6 +19,11 @@ import brand_img6 from 'assets/images/homepage/brand/brand_img6.webp'
 
 import no_data_found from 'assets/images/homepage/no-data-found/nodataFound.png'
 
+import policy1 from 'assets/images/homepage/policy/policy_icon1.png'
+import policy2 from 'assets/images/homepage/policy/policy_icon2.png'
+import policy3 from 'assets/images/homepage/policy/policy_icon3.png'
+import policy4 from 'assets/images/homepage/policy/policy_icon4.png'
+
 export const ImagesPath = {
     LOGO: logo,
     PRODUCT_6: product_6,
@@ -40,4 +45,8 @@ export const ImagesPath = {
     BRAND_IMG7: brand_img7,
 
     NO_DATA_FOUND: no_data_found,
+    POLICY1: policy1,
+    POLICY2: policy2,
+    POLICY3: policy3,
+    POLICY4: policy4,
 }
