@@ -335,13 +335,13 @@ export async function getServerSideProps(context) {
     // filter
     // relatedProducts
 
-    relatedProducts.data = relatedProducts.data.filter(product => product.id !== detailProduct.data.id);
+    relatedProducts.data.listProductReturn = relatedProducts.data.listProductReturn.filter(product => product.id !== detailProduct.data.id);
     return {
         props: {
             detailProduct: detailProduct?.data || {},
             detailMainCategory: detailMainCategory?.data || {},
             detailCategory: detailCategory?.data || {},
-            relatedProducts: relatedProducts?.data || [],
+            relatedProducts: relatedProducts?.data?.listProductReturn || [],
         },
     };
     // } catch (error) {

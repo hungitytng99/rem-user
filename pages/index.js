@@ -214,14 +214,14 @@ export default function Home(props) {
                             </p>
                         </Container>
                     </Row>
-                    <Row>
+                    {/* <Row>
                         <Col lg={6}>
                             <CardReview {...attr}></CardReview>
                         </Col>
                         <Col lg={6}>
                             <CardReview {...attr}></CardReview>
                         </Col>
-                    </Row>
+                    </Row> */}
                     <Row style={{ margin: "50px 0px 25px 0px" }}>
                         <h2 className="section_title">VIDEO LẮP ĐẶT CÔNG TRÌNH THỰC TẾ</h2>
                         <div className="section_sub_title">Lắp đặt rèm vải tại nhà khách hàng.</div>

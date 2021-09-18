@@ -1,27 +1,27 @@
 .contact-pop
     position: fixed
-    left: 0px
+    right: 0px
     bottom: 110px
     z-index: 999
     &__box
         display: block
-        width: 48px
-        height: 48px
+        width: 42px
+        height: 42px
         background: linear-gradient( 90deg, $primary 0%, $primary 50%, $primary 100%)
         display: flex
         align-items: center
         justify-content: center
         &:first-child
-            border-top-right-radius: 6px
+            border-top-left-radius: 6px
             border-bottom: 1px solid $white
         &.--last
-            border-bottom-right-radius: 6px
+            border-bottom-left-radius: 6px
             border-top: 1px solid $white
     &__icon
         font-size: 20px
         color: white
         &.has-animation
-           animation: call-animation 1.7s infinite
+            animation: call-animation 1.7s infinite
     &__img
         position: relative
         width: 35px
@@ -29,7 +29,7 @@
 @keyframes call-animation
     0%
         transform: rotateZ(0deg)
-    5% 
+    5%
         transform: rotateZ(-30deg)
     10%
         transform: rotateZ(0deg)
@@ -43,8 +43,3 @@
         transform: rotateZ(0deg)
     100%
         transform: rotateZ(0deg)
-
-    
-
-
-  

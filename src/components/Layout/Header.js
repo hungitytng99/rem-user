@@ -37,16 +37,9 @@ Modal.setAppElement('#__next');
 
 
 
-const Header = () => {
+const Header = (props) => {
 
-    const [menu, setMenu] = useState([])
-
-    useEffect(() => {
-        (async function () {
-            let result = await getListCategory();
-            setMenu([...result[1].childs])
-        })();
-    }, [])
+    const { menu } = props
 
 
     const [searchBarOpen, setSearchBarOpen] = useState(false)

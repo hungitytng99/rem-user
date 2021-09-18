@@ -7,15 +7,8 @@ import { faEnvelope, faMap, faPhoneAlt } from '@fortawesome/free-solid-svg-icons
 import { ImagesPath } from 'constants/ImagesPath';
 import Image from 'next/image'
 import { faFacebook, faPinterest, faTelegramPlane, faYoutube } from '@fortawesome/free-brands-svg-icons';
-function Footer() {
-    const [listCategory, setListCategory] = useState([]);
-    useEffect(() => {
-        const getListCategory = async () => {
-            const listCategoryTmp = await categoryService.listCategory();
-            setListCategory(listCategoryTmp.data);
-        }
-        getListCategory();
-    }, [])
+function Footer(props) {
+    const { listCategory } = props
     return (
         <>
             <footer className="footer__background ">
@@ -73,11 +66,11 @@ function Footer() {
                             </div>
                             <div className="footer-contact__wrapper row ">
                                 <ul className="footer-contact__wrapper-list col xl-6 l-6 m-6 sm-6 c-6 ">
-                                    {listCategory.map((category) => {
+                                    {listCategory.map((category, index) => {
                                         return (
-                                            <li key={category.id} className="footer-contact__wrapper-item ">
-                                                <Link href={category.slug} passHref>
-                                                    <a className="footer-contact__wrapper-link">{category.name}</a>
+                                            <li key={"cateFooter" + index} className="footer-contact__wrapper-item ">
+                                                <Link href={category.url} passHref>
+                                                    <a className="footer-contact__wrapper-link">{category.title}</a>
                                                 </Link>
                                             </li>
                                         )

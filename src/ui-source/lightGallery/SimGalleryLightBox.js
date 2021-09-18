@@ -31,16 +31,11 @@ export default function SimGalleryLightBox(props) {
     const { photos = [] } = props
 
     if (photos.length == 0) {
-
         return (
-            <div className="gallery_wrapper">
-                <Gallery photos={[{
-                    src: 'https://i.pinimg.com/originals/c9/22/68/c92268d92cf2dbf96e3195683d9e14fb.png',
-                    alt: 'Rèm Vương Hồng',
-                    width: 1,
-                    height: 1
-                }]} />
-            </div>
+            <img
+                src='https://i.pinimg.com/originals/c9/22/68/c92268d92cf2dbf96e3195683d9e14fb.png'
+                alt='Rèm Vương Hồng'
+            />
         )
     }
 
