@@ -6,44 +6,42 @@ import CardPost from 'ui-source/Card/CardPost'
 import CardRecentlyNews from 'ui-source/Card/CardRecentlyNews'
 import PaginationCustom from 'ui-source/Pagination/PaginationCustom'
 import { postService } from 'data-services/post'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 
-export default function TuVan({
-    pageIndex,
-    listPost = [],
-    totalData = 1,
-    itemsPerPage = 10,
-    gocTuVan,
-}) {
-    // const router = useRouter()
-    // if (props.pageIndex > props.totalPage) {
-    //     router.replace("/cong-trinh")
-    // }
 
+export default function slugGocTuVan({ gocTuVan, detailPost, baiLienQuan }) {
     return (
         <>
             <Head>
-                <title>Tư vấn</title>
+                <title>Công trình</title>
             </Head>
             <Layout>
                 <div className="cong_trinh">
-                    <h3 style={{ fontWeight: '400', padding: '15px' }}>Tư vấn</h3>
+                    <h3 style={{ fontWeight: '300', padding: '15px' }}>Công trình</h3>
                     <Row>
                         <Col lg={9} className="news">
+                            <h4 className="text_over_flow_2" style={{ fontWeight: '500' }}>{detailPost.name}</h4>
+                            <div style={{ marginBottom: '30px' }}>
+                                <FontAwesomeIcon style={{ color: '#d61c1f' }} icon={faCalendar}></FontAwesomeIcon> {"    " + detailPost.update_at}
+                            </div>
+                            <div>
+                                <div className="detail-news__content" dangerouslySetInnerHTML={{ __html: detailPost.content }}></div>
+                            </div>
+                        </Col>
+                        <Col lg={3} className="news_recently">
+                            <h4 style={{ fontWeight: "400" }}>Góc tư vấn</h4>
                             {
-                                listPost.map((post, index) => {
+                                gocTuVan.map((item, index) => {
                                     return (
-                                        <div key={"congtrinhitem" + index} className="news_item">
-                                            <CardPost vertical={false} post={post}></CardPost>
-                                        </div>
+                                        <CardRecentlyNews key={"goctuvancongrinh" + index} data={item}></CardRecentlyNews>
                                     )
                                 })
                             }
-                            <PaginationCustom activePage={Number(pageIndex)} totalItem={totalData} baseUrl="/cong-trinh" itemsPerPage={itemsPerPage}></PaginationCustom>
-                        </Col>
-                        <Col lg={3} className="news_recently">
-                            <h4 style={{ fontWeight: "400" }}>Công trình</h4>
+                            <br />
+                            <h4 style={{ fontWeight: "400" }}>Bài viết liên quan</h4>
                             {
-                                gocTuVan.map((item, index) => {
+                                baiLienQuan.map((item, index) => {
                                     return (
                                         <CardRecentlyNews key={"goctuvancongrinh" + index} data={item}></CardRecentlyNews>
                                     )
@@ -61,39 +59,35 @@ export default function TuVan({
 
 
 export async function getServerSideProps(context) {
-    const { page = 1 } = context.query;
-    const itemsPerPage = 8;
-    console.log("PAGE: ", page);
-    let totalData = 0
+
+    const { slug } = context.query
 
     try {
+        const detailPost = await postService.detailPostBySlug(slug)
 
-        //get item per page
-        const listPostByPage = await postService.listPostByTagId(10, { postsPerPage: itemsPerPage, pageNumber: page });
-        totalData = listPostByPage.data.total
-        // change slug
-        listPostByPage.data.postsResult = listPostByPage.data.postsResult.map(post => {
-            return {
-                ...post,
-                url_post: '/tu-van/' + post.slug,
-            }
-        })
-        const gocTuVan = await postService.listPostByTagId(8, { postsPerPage: 5, pageNumber: 1 });
-        gocTuVan.data.postsResult = gocTuVan.data.postsResult.map(post => {
+
+        const baiLienQuan = await postService.listPostByTagId(8, { postsPerPage: 6, pageNumber: 1 });
+        baiLienQuan.data.postsResult = baiLienQuan.data.postsResult.filter(post => post.id != detailPost.data.id)
+        baiLienQuan.data.postsResult = baiLienQuan.data.postsResult.map(post => {
             return {
                 ...post,
                 url_post: "/cong-trinh/" + post.slug
             }
         })
-        console.log({ gocTuVan })
-        // console.log("LIST BY PAGE: ", listPostByPage);
+
+        const gocTuVan = await postService.listPostByTagId(10, { postsPerPage: 5, pageNumber: 1 });
+        gocTuVan.data.postsResult = gocTuVan.data.postsResult.map(post => {
+            return {
+                ...post,
+                url_post: "/tu-van/" + post.slug
+            }
+        })
+
         return {
             props: {
-                pageIndex: page,
-                listPost: listPostByPage.data.postsResult,
-                totalData: totalData,
-                itemsPerPage: itemsPerPage,
                 gocTuVan: gocTuVan.data.postsResult,
+                detailPost: detailPost.data,
+                baiLienQuan: baiLienQuan.data.postsResult
             },
         };
     } catch (error) {
