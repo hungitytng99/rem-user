@@ -37,16 +37,9 @@ Modal.setAppElement('#__next');
 
 
 
-const Header = () => {
+const Header = (props) => {
 
-    const [menu, setMenu] = useState([])
-
-    useEffect(() => {
-        (async function () {
-            let result = await getListCategory();
-            setMenu([...result[1].childs])
-        })();
-    }, [])
+    const { menu } = props
 
 
     const [searchBarOpen, setSearchBarOpen] = useState(false)
@@ -108,6 +101,11 @@ const Header = () => {
 
                     </Link>
                     <div className="nav">
+                        <div className='nav-item'>
+                            <Link href="/" passHref>
+                                <span className='title'>Trang chủ</span>
+                            </Link>
+                        </div>
                         <div className='nav-item'>
                             <Link href="/danh-muc/all" passHref>
                                 <span className='title'>Danh mục</span>

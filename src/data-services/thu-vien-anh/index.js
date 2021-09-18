@@ -7,7 +7,7 @@ export const galleryService = {
                 return {
                     src: product.list_product_images[0],
                     width: 1,
-                    height: 1,
+                    height: 2,
                     alt: product.name,
                     key: product.slug
                 }

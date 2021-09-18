@@ -39,7 +39,7 @@ export const productService = {
 
     listProductByCategoryId: function (id, params) {
         return apiListProductByCategoryId(id, params).then(response => {
-            response.data = response.data.map(product => {
+            response.data.listProductReturn = response.data.listProductReturn.map(product => {
                 return filterFieldProduct(product);
             })
             return response;

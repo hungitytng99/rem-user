@@ -9,8 +9,8 @@ const { convert } = require('html-to-text');
 export default function CardPost(props) {
     const { vertical = true, post = {} } = props;
     return (
-        <Link href={post.slug} passHref>
-            <a style={{ display: "block" }} className={vertical ? "card_pd_ver" : "card_pd_hor"}>
+        <Link href={post.url_post} passHref>
+            <div style={{ display: "block" }} className={vertical ? "card_pd_ver" : "card_pd_hor"}>
                 <img className="card_pd_img" src={post.image} alt={post.name} />
                 <p className="card_pd_title text_over_flow_1">
                     {post.name}
@@ -37,7 +37,7 @@ export default function CardPost(props) {
                 <p className="card_pd_seemore">
                     <>Tìm hiểu thêm <FontAwesomeIcon style={{ marginLeft: "2px", paddingTop: "2px" }} icon={faArrowRight}></FontAwesomeIcon></>
                 </p>
-            </a>
+            </div>
         </Link>
     )
 }

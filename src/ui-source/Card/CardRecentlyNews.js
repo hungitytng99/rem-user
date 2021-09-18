@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function CardRecentlyNews(props) {
     const { data } = props
     return (
-        <Link href="/" passHref>
+        <Link href={data.url_post} passHref>
             <Row className="card_recently_new">
                 <Col xs={5} className="recent_new_img">
                     <img src={data.image} />

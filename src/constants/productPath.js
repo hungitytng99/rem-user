@@ -212,6 +212,11 @@ export var productPath = [
             //     childs: []
             // },
         ]
+    },
+    {
+        title: 'Trang chủ',
+        url: '/',
+        childs: []
     }
 ]
 
