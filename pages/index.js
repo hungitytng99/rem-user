@@ -109,10 +109,7 @@ export default function Home(props) {
                     <Container>
                         <div className="home_search_bar">
                             <div style={{ height: '40px', display: 'flex' }}>
-                                <select style={{ height: 'inherit', border: "0.5px solid gray", width: "90px", outline: 'none' }}>
-                                    <option>Tất cả</option>
-                                </select>
-                                <input style={{ height: 'inherit', border: "0.5px solid gray", width: "calc(100% - 131px)", fontSize: 'initial', padding: "0px 10px" }} type="text" placeholder="Tìm kiếm sản phẩm..." />
+                                <input style={{ height: 'inherit', border: "0.5px solid gray", width: "calc(100% - 50px)", fontSize: 'initial', padding: "0px 10px" }} type="text" placeholder="Tìm kiếm sản phẩm..." />
                                 <span style={{ height: 'inherit', display: 'inline-block', width: '40px', borderRadius: '5px', background: '#22232b', textAlign: 'center', lineHeight: '40px', color: 'white' }}>
                                     <FontAwesomeIcon icon={faSearch} />
                                 </span>
@@ -276,6 +273,12 @@ export async function getServerSideProps() {
         // console.log(listHotProduct)
         let result2 = await postService.listPostByTagId(10, { postsPerPage: 3, pageNumber: 1 });
         gocTuVan = [...result2.data.postsResult]
+        gocTuVan = gocTuVan.map(post => {
+            return {
+                ...post,
+                url_post: "/tu-van/" + post.slug
+            }
+        })
         // console.log(gocTuVan)
         return {
             props: {

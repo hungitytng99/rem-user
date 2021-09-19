@@ -57,7 +57,6 @@ export const filterFieldPost = (post) => {
         content: post.content,
         tag_id: post.tag_id,
         slug: post.slug,
-        url_post: '/tu-van/' + post.slug,
         update_at: convertDayMonthYear(post.update_at) || '',
     }
 }

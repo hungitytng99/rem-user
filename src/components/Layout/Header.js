@@ -174,10 +174,7 @@ const Header = (props) => {
                                     <FontAwesomeIcon onClick={toggleSearhBar} icon={faTimes}></FontAwesomeIcon>
                                 </div>
                                 <div style={{ height: '40px' }}>
-                                    <select style={{ height: 'inherit', border: "0.5px solid gray", width: "80px", outline: 'none' }}>
-                                        <option>Tất cả</option>
-                                    </select>
-                                    <input style={{ height: 'inherit', border: "0.5px solid gray", width: "240px", fontSize: 'initial' }} type="text" placeholder="Tìm kiếm sản phẩm..." />
+                                    <input style={{ height: 'inherit', border: "0.5px solid gray", width: "240px", fontSize: 'initial', padding: '0 10px' }} type="text" placeholder="Tìm kiếm sản phẩm..." />
                                     <span style={{ height: 'inherit', display: 'inline-block', width: '40px', borderRadius: '5px', background: '#22232b', textAlign: 'center', lineHeight: '40px', color: 'white' }}>
                                         <FontAwesomeIcon icon={faSearch} />
                                     </span>

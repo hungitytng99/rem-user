@@ -72,10 +72,16 @@ export async function getServerSideProps(context) {
         listPostByPage.data.postsResult = listPostByPage.data.postsResult.map(post => {
             return {
                 ...post,
-                slug: "/cong-trinh/" + post.slug
+                url_post: "/cong-trinh/" + post.slug
             }
         })
         const gocTuVan = await postService.listPostByTagId(10, { postsPerPage: 5, pageNumber: 1 });
+        gocTuVan.data.postsResult = gocTuVan.data.postsResult.map(post => {
+            return {
+                ...post,
+                url_post: "/tu-van/" + post.slug
+            }
+        })
         console.log({ gocTuVan })
         // console.log("LIST BY PAGE: ", listPostByPage);
         return {
