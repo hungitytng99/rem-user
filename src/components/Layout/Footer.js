@@ -9,6 +9,11 @@ import Image from 'next/image'
 import { faFacebook, faPinterest, faTelegramPlane, faYoutube } from '@fortawesome/free-brands-svg-icons';
 function Footer(props) {
     const { listCategory } = props
+    function showAlert() {
+        setTimeout(() => {
+            sendEmail.checked = false
+        }, 2000);
+    }
     return (
         <>
             <footer className="footer__background ">
@@ -85,8 +90,11 @@ function Footer(props) {
                             </div>
                             <div className="enter_email">
                                 <input type="text" placeholder="Enter email..."></input>
-                                <span><FontAwesomeIcon icon={faTelegramPlane}></FontAwesomeIcon></span>
+                                <label htmlFor="sendEmail" style={{ display: 'inline' }} onClick={showAlert}><span ><FontAwesomeIcon icon={faTelegramPlane}></FontAwesomeIcon></span></label>
+                                <input id='sendEmail' type='checkbox' style={{ display: 'none' }} />
+                                <div className='alert'>Gửi thành công</div>
                             </div>
+
                             <p>
                                 Mỗi tháng chúng tôi đều có những đợt giảm giá dịch vụ và sản phẩm nhằm tri ân khách hàng. Vui lòng nhập địa chỉ email để cập nhật những chương trình khuyến mãi mới nhất từ Rèm Vương Hồng.
                             </p>

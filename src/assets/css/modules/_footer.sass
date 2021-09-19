@@ -134,5 +134,19 @@
                 color: $white
             &-icon
                 color: #ff4628
+    & .alert
+        position: fixed
+        z-index: 100000
+        background: #94ff8a
+        transition: 0.5s
+        color: black
+        box-shadow: 0px 0px 10px 0px #94ff8a
+
+    & #sendEmail + .alert
+        top: -100%
+        right: 45px
+    & #sendEmail:checked + .alert
+        top: 25%
+        right: 45px
 .layout__footer
     margin-top: 15px

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { ImagesPath } from 'constants/ImagesPath';
 import Link from 'next/link'
 import Image from 'next/image'
@@ -40,18 +40,18 @@ Modal.setAppElement('#__next');
 const Header = (props) => {
 
     const { menu } = props
-
+    const url = useRouter().route
 
     const [searchBarOpen, setSearchBarOpen] = useState(false)
-    const [searchParams, setSearchParams] = useState('');
+    const searchParams = useRef();
 
     function toggleSearhBar() {
         setSearchBarOpen(!searchBarOpen)
     }
 
     const search = () => {
-        if (searchParams) {
-            location.href = "/tim-kiem/" + searchParams;
+        if (searchParams.current.value) {
+            location.href = "/tim-kiem/" + searchParams.current.value;
         }
     }
     const searchParamsChange = (e) => {
@@ -103,12 +103,12 @@ const Header = (props) => {
                     <div className="nav">
                         <div className='nav-item'>
                             <Link href="/" passHref>
-                                <span className='title'>Trang chủ</span>
+                                <span className='title' style={{ color: url == "/" ? '#d61c1f' : '' }}>Trang chủ</span>
                             </Link>
                         </div>
                         <div className='nav-item'>
                             <Link href="/danh-muc/all" passHref>
-                                <span className='title'>Danh mục</span>
+                                <span className='title' style={{ color: url.includes('/danh-muc') ? '#d61c1f' : '' }}>Danh mục</span>
                             </Link>
                             <div className='submenu submenu_max_width'>
                                 {
@@ -133,21 +133,21 @@ const Header = (props) => {
                         </div>
                         <div className='nav-item'>
                             <Link href="/tu-van" passHref>
-                                <span className='title'>Tư vấn</span>
+                                <span className='title' style={{ color: url.includes('/tu-van') ? '#d61c1f' : '' }}>Tư vấn</span>
                             </Link>
                         </div>
                         <div className='nav-item'>
                             <Link href="/cong-trinh" passHref>
-                                <span className='title'>Công trình</span>
+                                <span className='title' style={{ color: url.includes('/cong-trinh') ? '#d61c1f' : '' }}>Công trình</span>
                             </Link>
                         </div>
                         <div className='nav-item'>
                             <Link href="/lien-he" passHref>
-                                <span className='title'>Liên Hệ</span>
+                                <span className='title' style={{ color: url.includes('/lien-he') ? '#d61c1f' : '' }}>Liên Hệ</span>
                             </Link>
                         </div>
                         <div className='nav-item'>
-                            <span className='title'>Thư Viện Ảnh</span>
+                            <span className='title' style={{ color: url.includes('/thu-vien-anh') ? '#d61c1f' : '' }}>Thư Viện Ảnh</span>
                             <div className='submenu'>
                                 {
                                     productPath[5].childs.map((item, index) => {
@@ -174,8 +174,11 @@ const Header = (props) => {
                                     <FontAwesomeIcon onClick={toggleSearhBar} icon={faTimes}></FontAwesomeIcon>
                                 </div>
                                 <div style={{ height: '40px' }}>
-                                    <input style={{ height: 'inherit', border: "0.5px solid gray", width: "240px", fontSize: 'initial', padding: '0 10px' }} type="text" placeholder="Tìm kiếm sản phẩm..." />
-                                    <span style={{ height: 'inherit', display: 'inline-block', width: '40px', borderRadius: '5px', background: '#22232b', textAlign: 'center', lineHeight: '40px', color: 'white' }}>
+                                    <input ref={searchParams} style={{ height: 'inherit', border: "0.5px solid gray", width: "240px", fontSize: 'initial', padding: '0 10px' }} type="text" placeholder="Tìm kiếm sản phẩm..." />
+                                    <span
+                                        style={{ height: 'inherit', display: 'inline-block', width: '40px', borderRadius: '5px', background: '#22232b', textAlign: 'center', lineHeight: '40px', color: 'white' }}
+                                        onClick={search}
+                                    >
                                         <FontAwesomeIcon icon={faSearch} />
                                     </span>
                                 </div>
