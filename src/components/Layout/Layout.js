@@ -31,7 +31,7 @@ function Layout(props) {
                         <h3 style={{ textAlign: 'center', textTransform: 'uppercase', fontWeight: '500' }}>Rèm Vương Hồng BẮC NINH</h3>
                         <h4 style={{ textAlign: 'center', fontWeight: '500' }}>Sang trọng và đẳng cấp, hoàn hảo cho mọi không gian.</h4>
 
-                        <p><b>Rèm Vương Hồng BẮC NINH</b> địa chỉ số 1 về phân phối http://rembacninh.com.vn/. Với 20 năm kinh nghiệp sản xuất và kinh doanh các loại rèm cửa - màn cửa. Rèm Vương Hồng là nhà cung cấp cho nhiều công trình như các văn phòng cao cấp, chung cư cao cấp, khu chế xuất, khu công nghiệp, nhà phố, biệt thự, và trụ sở các cơ quan nhà nước.</p>
+                        <p><b>Rèm Vương Hồng BẮC NINH</b> địa chỉ số 1 về phân phối <a href="http://rembacninh.com.vn/">http://rembacninh.com.vn/</a>. Với 20 năm kinh nghiệp sản xuất và kinh doanh các loại rèm cửa - màn cửa. Rèm Vương Hồng là nhà cung cấp cho nhiều công trình như các văn phòng cao cấp, chung cư cao cấp, khu chế xuất, khu công nghiệp, nhà phố, biệt thự, và trụ sở các cơ quan nhà nước.</p>
 
                         <p style={{ textIndent: '30px' }}>Đến với Rèm Vương Hồng quý khách sẽ cảm nhận được những bộ rèm cửa, rèm vải, rèm sáo,thảm trải sàn, giấy dán tường cao cấp.http://rembacninh.com.vn/. được thiết kế một cách độc đáo, chuyên nghiệp mang phong cách hiện đại, sang trọng, bên cạnh đó là sự đa dạng về chất liệu, màu sắc, kích thước với nhiều kiểu mẫu phù hợp với nhu cầu trang trí cho mọi không gian. Chúng tôi có đội ngũ kiến trúc sư hàng đầu.</p>
                         <br />
@@ -46,7 +46,7 @@ function Layout(props) {
                             <li>+ Bảo hành dài hạn</li>
                         </ul>
 
-                        <p >Tại rèm Vương Hồng luôn luôn cập nhật http://rembacninh.com.vn/ mang phong cách hiện đại, cổ điển thích hợp với mọi không gian của gia đình, văn phòng, nhà hàng, khách sạn</p>
+                        <p >Tại rèm Vương Hồng luôn luôn cập nhật  <a href="http://rembacninh.com.vn/">http://rembacninh.com.vn/</a> mang phong cách hiện đại, cổ điển thích hợp với mọi không gian của gia đình, văn phòng, nhà hàng, khách sạn</p>
                         <p>Rèm Vương Hồng BẮC NINH sự lựa chọn hoàn hảo của bạn!</p>
 
                         <p>Quan Điểm Kinh Doanh.</p>

@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const options = {
     settings: {
-        overlayColor: "rgb(0, 0, 0, 0.75)",
+        overlayColor: "rgb(0, 0, 0, 0.9)",
         autoplaySpeed: 1500,
         transitionSpeed: 900,
         slideAnimationType: "both",
@@ -37,14 +37,15 @@ export default function SimGalleryLightBox(props) {
                 alt='Rèm Vương Hồng'
             />
         )
+    } else {
+
+        return (
+            <div className="gallery_wrapper">
+                <SRLWrapper options={options} >
+                    <Gallery photos={photos} />
+                </SRLWrapper>
+            </div>
+
+        )
     }
-
-    return (
-        <div className="gallery_wrapper">
-            <SRLWrapper options={options} >
-                <Gallery photos={photos} />
-            </SRLWrapper>
-        </div>
-
-    )
 }

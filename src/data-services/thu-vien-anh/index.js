@@ -6,8 +6,8 @@ export const galleryService = {
             response.data = response.data.map(product => {
                 return {
                     src: product.list_product_images[0],
-                    width: 1,
-                    height: 1,
+                    // width: 2,
+                    // height: 1,
                     alt: product.name,
                     key: product.slug
                 }
