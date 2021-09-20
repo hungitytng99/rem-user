@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CardProduct from 'ui-source/Card/CardProduct'
 import CardPolicy from 'ui-source/Card/CardPolicy'
 import CardPost from 'ui-source/Card/CardPost'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import SmallBanner from 'ui-source/Carousel_custom/SmallBanner'
 import { productPath } from 'constants/productPath'
 import { getListCategory } from 'constants/productPath'
@@ -75,7 +75,12 @@ export default function Home(props) {
     const [titleFilterActive, setTitleFilterActive] = useState('')
     const [mainCategory, setMainCategory] = useState([])
     const [listHotProduct, setListHotProduct] = useState(props.listHotProduct)
-
+    const searchParams = useRef();
+    const search = () => {
+        if (searchParams.current.value) {
+            location.href = "/tim-kiem/" + searchParams.current.value;
+        }
+    }
     useEffect(() => {
         (async function () {
             let result = await getListCategory();
@@ -109,8 +114,8 @@ export default function Home(props) {
                     <Container>
                         <div className="home_search_bar">
                             <div style={{ height: '40px', display: 'flex' }}>
-                                <input style={{ height: 'inherit', border: "0.5px solid gray", width: "calc(100% - 50px)", fontSize: 'initial', padding: "0px 10px" }} type="text" placeholder="Tìm kiếm sản phẩm..." />
-                                <span style={{ height: 'inherit', display: 'inline-block', width: '40px', borderRadius: '5px', background: '#22232b', textAlign: 'center', lineHeight: '40px', color: 'white' }}>
+                                <input ref={searchParams} style={{ height: 'inherit', border: "0.5px solid gray", width: "calc(100% - 50px)", fontSize: 'initial', padding: "0px 10px" }} type="text" placeholder="Tìm kiếm sản phẩm..." />
+                                <span onClick={search} style={{ height: 'inherit', display: 'inline-block', width: '40px', borderRadius: '5px', background: '#22232b', textAlign: 'center', lineHeight: '40px', color: 'white' }}>
                                     <FontAwesomeIcon icon={faSearch} />
                                 </span>
                             </div>
@@ -249,7 +254,7 @@ export default function Home(props) {
                         {
                             props.gocTuVan.map((item, index) => {
                                 return (
-                                    <Col key={"PostItem" + index} md={4} style={{ marginBottom: "30px" }}>
+                                    <Col key={"PostItem" + index} md={4} xs={6} style={{ marginBottom: "30px" }}>
                                         <CardPost post={item} />
                                     </Col>
                                 )
@@ -258,7 +263,7 @@ export default function Home(props) {
                     </Row>
 
                 </div>
-            </Layout>
+            </Layout >
         </>
     )
 }

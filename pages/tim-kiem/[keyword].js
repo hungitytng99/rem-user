@@ -1,15 +1,20 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Col, Row } from 'react-bootstrap';
-import Link from 'next/link'
 import Layout from "components/Layout/Layout";
-import CardWithTitle from "ui-source/Card/CardWithTitle";
 import { productService } from "data-services/product";
 import Head from 'next/head'
 import CardProduct from "ui-source/Card/CardProduct";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useRef } from "react";
 const Search = (props) => {
     const { mainCategoryAndSubCategory = {}, listProduct = {}, keyword = "", suggestProduct = {} } = props;
-
+    const searchParams = useRef();
+    const search = () => {
+        if (searchParams.current.value) {
+            location.href = "/tim-kiem/" + searchParams.current.value;
+        }
+    }
     return (
         <>
             <Head>
@@ -17,6 +22,14 @@ const Search = (props) => {
             </Head>
             <Layout>
                 <Row>
+                    <div className="home_search_bar">
+                        <div style={{ height: '40px', display: 'flex' }}>
+                            <input ref={searchParams} style={{ height: 'inherit', border: "0.5px solid gray", width: "calc(100% - 50px)", fontSize: 'initial', padding: "0px 10px" }} type="text" placeholder="Tìm kiếm sản phẩm..." />
+                            <span onClick={search} style={{ height: 'inherit', display: 'inline-block', width: '40px', borderRadius: '5px', background: '#22232b', textAlign: 'center', lineHeight: '40px', color: 'white' }}>
+                                <FontAwesomeIcon icon={faSearch} />
+                            </span>
+                        </div>
+                    </div>
                     <div className="search">
                         {
                             listProduct.length == 0 ?
@@ -35,7 +48,7 @@ const Search = (props) => {
                     {
                         listProduct.map(product => {
                             return (
-                                <Col key={product.id} xs={12} sm={6} md={4} lg={3}>
+                                <Col key={product.id} xs={6} sm={6} md={4} lg={3}>
                                     <CardProduct product={product} />
                                 </Col>
                             )
@@ -56,7 +69,7 @@ export async function getServerSideProps(context) {
         listProduct = await productService.listProduct({ search: keyword });
         return {
             props: {
-                listProduct: listProduct.data,
+                listProduct: listProduct.data.listProductReturn,
                 keyword: keyword,
             },
         };

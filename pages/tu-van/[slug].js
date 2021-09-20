@@ -29,7 +29,7 @@ export default function slugTuVan({ gocTuVan, detailPost, baiLienQuan }) {
                             </div>
                         </Col>
                         <Col lg={3} className="news_recently">
-                            <h4 style={{ fontWeight: "400" }}>Công TRÌNH</h4>
+                            <h4 style={{ fontWeight: "400" }}>Công trình</h4>
                             {
                                 gocTuVan.map((item, index) => {
                                     return (
