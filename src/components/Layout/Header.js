@@ -54,9 +54,6 @@ const Header = (props) => {
             location.href = "/tim-kiem/" + searchParams.current.value;
         }
     }
-    const searchParamsChange = (e) => {
-        setSearchParams(e.target.value);
-    }
 
     const handlePressEnter = (e) => {
         if (e.key === "Enter") {
@@ -89,6 +86,12 @@ const Header = (props) => {
                                 </div>
                             </a>
                         </Link>
+                    </div>
+                    <div style={{ position: 'absolute', right: '0', top: '0' }}>
+                        <p>Hỗ trợ kĩ thuật:</p>
+                        <div className="">
+                            <FontAwesomeIcon icon={faMobileAlt} />   0981.199.350
+                        </div>
                     </div>
                 </div>
             </Container>
