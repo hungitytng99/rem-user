@@ -43,8 +43,11 @@ export default function RemVai(props) {
             })
             setGallery(data)
             setLoading(false)
-
-        }, 2500)
+        }, 1900)
+        return () => {
+            setLoading(true)
+            setGallery([])
+        }
     }, [props.dataShowOnScreen])
 
     return (
