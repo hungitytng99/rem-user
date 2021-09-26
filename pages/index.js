@@ -123,13 +123,13 @@ export default function Home(props) {
                                 emulateTouch={true}
                             >
                                 <div className="home__banner-img">
-                                    <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_1} alt="giang minh viet banner" />
+                                    <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_2} alt="giang minh viet banner" />
                                 </div>
                                 <div className="home__banner-img">
                                     <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_2} alt="giang minh viet banner handmade" />
                                 </div>
                                 <div className="home__banner-img">
-                                    <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_3} alt="giang minh viet banner handmade" />
+                                    <Image layout="fill" objectFit="cover" src={ImagesPath.HOME_BANNER_2} alt="giang minh viet banner handmade" />
                                 </div>
                             </Carousel>
                         </Col>
