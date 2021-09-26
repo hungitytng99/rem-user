@@ -10,11 +10,6 @@ export default function Sidebar() {
 
     const [menu, setMenu] = useState(productPath)
     useEffect(() => {
-        // (async function () {
-        //     let result = await getListCategory();
-        //     // console.log(result);
-        //     setMenu([...result])
-        // })();
         setMenu(productPath)
     }, [])
 
