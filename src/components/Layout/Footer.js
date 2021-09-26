@@ -105,7 +105,11 @@ function Footer(props) {
                 <Container >
                     <footer className="footer">
                         <div className="footer-cpright">
-                            Copyrights © 2018 by <Link href='/'> Rèm Vương Hồng</Link>.
+                            Copyrights © 2018 by <Link href='/' >
+                                <a style={{ paddingLeft: '4px' }}>
+                                    Rèm Vương Hồng
+                                </a>
+                            </Link>.
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'blue' }} icon={faFacebook}></FontAwesomeIcon>
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'red' }} icon={faYoutube}></FontAwesomeIcon>
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'purple' }} icon={faPinterest}></FontAwesomeIcon>
