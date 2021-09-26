@@ -29,7 +29,6 @@ export const productService = {
 
     listProduct: function (params) {
         return apiListProduct(params).then(response => {
-            console.log(response)
             response.data.listProductReturn = response.data.listProductReturn.map(product => {
                 return filterFieldProduct(product);
             })

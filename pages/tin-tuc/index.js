@@ -18,7 +18,6 @@ const News = (props) => {
     const getMorePost = async (e) => {
         let nextPage = e.target.dataset.nextpage;
         const morePost = await postService.listPost({ postsPerPage: 6, pageNumber: nextPage });
-        console.log(morePost, nextPage);
         setListPostState([...listPostState, ...morePost.data]);
         setNextPage(++nextPage);
     }
@@ -31,7 +30,6 @@ const News = (props) => {
         checkShowHasMore();
     }, [nextPage])
 
-    console.log(listPostState);
     return (
         <>
             <Head>
@@ -92,7 +90,6 @@ export async function getServerSideProps(context) {
     const listPost = await postService.listPost({ postsPerPage: 18, pageNumber: 1 });
     const nextPost = await postService.listPost({ postsPerPage: 6, pageNumber: 4 });
     let hasMore = false;
-    console.log("NEXT: ", nextPost);
     if (nextPost.data.length > 0) {
         hasMore = true;
     }

@@ -12,7 +12,6 @@ import { categoryService } from 'data-services/category';
 
 const DetailNews = (props) => {
     const { detailPost = {}, otherPost = [], listCategory = [] } = props;
-    console.log(detailPost);
     return (
         <>
             <Head>

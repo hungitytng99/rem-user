@@ -34,7 +34,6 @@ export default function LightGalleryCustom() {
     ]);
 
     const onInit = () => {
-        console.log('lightGallery has been initialized');
     };
     return (
         <div className="App">

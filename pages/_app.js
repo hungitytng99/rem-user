@@ -1,7 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'assets/css/globals.sass'
 import "nprogress/nprogress.css";
+import Head from 'next/head'
 import dynamic from 'next/dynamic'
+
 const TopProgressBar = dynamic(
   () => {
     return import("components/TopProgressBar");

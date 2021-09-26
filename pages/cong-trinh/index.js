@@ -60,7 +60,6 @@ export default function CongTrinh({
 export async function getServerSideProps(context) {
     const { page = 1 } = context.query;
     const itemsPerPage = 8;
-    console.log("PAGE: ", page);
     let totalData = 0
 
     try {
@@ -82,8 +81,6 @@ export async function getServerSideProps(context) {
                 url_post: "/tu-van/" + post.slug
             }
         })
-        console.log({ gocTuVan })
-        // console.log("LIST BY PAGE: ", listPostByPage);
         return {
             props: {
                 pageIndex: page,
