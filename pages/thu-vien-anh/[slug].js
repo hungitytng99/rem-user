@@ -75,12 +75,10 @@ export default function RemVai(props) {
 
 export async function getServerSideProps(context) {
     const { slug } = context.params;
-    console.log(slug)
     let dataShowOnScreen = []
     try {
         let result = await galleryService.listImgByMainCategorySlug(slug);
         dataShowOnScreen = [...result.data]
-        // console.log(dataShowOnScreen)
         return {
             props: {
                 dataShowOnScreen: dataShowOnScreen,

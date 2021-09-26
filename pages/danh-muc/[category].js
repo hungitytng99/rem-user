@@ -32,7 +32,6 @@ export function findNameProductByRouter(urlPath, arr) {
     function findTitleInArr(urlPath, arr) {
         let length = arr.length
         for (let i = 0; i < length; i++) {
-            // console.log(arr[i].url.split('/').pop())
             if (arr[i].url.split('/').pop() === urlPath) {
                 result = arr[i]
                 break;
@@ -114,9 +113,7 @@ export default function Category(props) {
 
     let filterType = strFilterToArrStr(router.query?.type || '') // nếu truyền vào '' => [0] (mảng có số 0)
     function toggleCheckbox(type) {
-        console.log(router.query)
         let url = props.baseUrl;
-        // console.log(filterType)
         if (filterType.includes(type)) {
             filterType = removeItemInArr(type, filterType)
             url = filterType.length != 0 ? url + "?type=" + filterType.join() : url
@@ -129,7 +126,6 @@ export default function Category(props) {
     }
 
     function sortSelectionChange(event) {
-        // console.log(event.target.value)
         let url = renderBaseUrlSort(props.baseUrl, router.query)
         url = url + event.target.value
         router.replace(url)
@@ -237,7 +233,6 @@ export async function getServerSideProps(context) {
             }
         }
 
-        console.log({ category, page, sort, filterType, dataShowOnScreen });
 
         const totalItem = dataShowOnScreen.length
 

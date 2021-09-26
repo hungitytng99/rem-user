@@ -14,7 +14,6 @@ import CardPolicy from 'ui-source/Card/CardPolicy'
 import CardPost from 'ui-source/Card/CardPost'
 import { useEffect, useState, useRef } from 'react'
 import SmallBanner from 'ui-source/Carousel_custom/SmallBanner'
-import { productPath } from 'constants/productPath'
 import { getListCategory } from 'constants/productPath'
 import { productService } from 'data-services/product'
 import { postService } from 'data-services/post'
@@ -27,14 +26,6 @@ const attr = {
     desc: "Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
     date: "09/06/2025",
     vertical: false
-}
-const attr2 = {
-    image: "https://remcuahoanggia.vn/wp-content/uploads/2019/09/rem-cua-vung-tau.jpg",
-    name: "So sánh các loại đồ gỗ được sử dụng làm rèm cửa hiện nay",
-    content: "Rèm gỗ tự nhiên với vẻ đẹp mang đến sự gần gũi thiên nhiên cho không gian nội thất đang ngày càng chiếm được cảm tình của người tiêu dùng. Đặc biệt nhờ sự sang trọng đẳng cấp mà khó loại rèm cao cấp nào sánh kịp, rèm gỗ vô cùng phù hợp với những ô cửa sổ kính và phong cách nội thất hiện đại.",
-    update_at: "09/06/2025",
-    vertical: false,
-    slug: "#"
 }
 const policy1 = {
     img: ImagesPath.POLICY1,
@@ -275,7 +266,6 @@ export async function getServerSideProps() {
     try {
         let result = await productService.listHotProduct();
         listHotProduct = [...result.data]
-        // console.log(listHotProduct)
         let result2 = await postService.listPostByTagId(10, { postsPerPage: 3, pageNumber: 1 });
         gocTuVan = [...result2.data.postsResult]
         gocTuVan = gocTuVan.map(post => {
@@ -284,7 +274,6 @@ export async function getServerSideProps() {
                 url_post: "/tu-van/" + post.slug
             }
         })
-        // console.log(gocTuVan)
         return {
             props: {
                 listHotProduct: listHotProduct,
