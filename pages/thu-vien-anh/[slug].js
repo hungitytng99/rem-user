@@ -3,7 +3,6 @@ import SimGalleryLightBox from 'ui-source/lightGallery/SimGalleryLightBox'
 import ImgGallery from '.'
 import { findNameProductByRouter } from '../danh-muc/[category]'
 import { productPath } from 'constants/productPath'
-
 import { useRouter } from 'next/router'
 import { galleryService } from 'data-services/thu-vien-anh'
 import LoadingApart from 'ui-source/Loading/LoadingApart'
@@ -57,7 +56,7 @@ export default function RemVai(props) {
                     {
                         props.dataShowOnScreen.map((item, index) => {
                             return (
-                                <img ref={el => listimg.current[index] = el} key={"thuvienanh" + index} src={item.src}></img>
+                                <img ref={el => listimg.current[index] = el} key={"thuvienanh" + index} src={item.src} alt="RÈM CỬA BẮC NINH - RÈM VƯƠNG HỒNG" />
                             )
                         })
                     }

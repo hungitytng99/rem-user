@@ -33,17 +33,17 @@ function Footer(props) {
                                             <span>
                                                 <FontAwesomeIcon className="footer-contact__info-icon" icon={faMap} />
                                             </span>
-                                            Đường XXX YYY ZZZ Thành phố Bắc Ninh
+                                            Đường: 330 Ngô Gia Tự, P.Tiền An, Bắc Ninh
                                         </a>
                                     </Link>
                                 </li>
                                 <li className="footer-contact__info-item">
-                                    <Link href={{ pathname: 'tel:84966854224' }} passHref>
+                                    <Link href={{ pathname: 'tel:0962020446' }} passHref>
                                         <a className="footer-contact__info-link">
                                             <span>
                                                 <FontAwesomeIcon className="footer-contact__info-icon" icon={faPhoneAlt} />
                                             </span>
-                                            +1 23456789
+                                            0962.020.446
                                         </a>
                                     </Link>
                                 </li>
@@ -53,15 +53,14 @@ function Footer(props) {
                                             <span>
                                                 <FontAwesomeIcon className="footer-contact__info-icon" icon={faEnvelope} />
                                             </span>
-                                            contact@camera.com
+                                            manhremvuonghong@gmail.com
 
                                         </a>
                                     </Link>
                                 </li>
                                 <li>
-                                    Giấy CNĐKKD: đang cập nhật <br />
-                                    Cơ quan cấp: đang cập nhật <br />
-                                    Địa chỉ :
+                                    Giấy CNĐKKD: 2300942862 <br />
+                                    Cơ quan cấp: Sở KHĐT Tỉnh Bắc Ninh <br />
                                 </li>
                             </ul>
                         </Col>
@@ -105,12 +104,16 @@ function Footer(props) {
                 <Container >
                     <footer className="footer">
                         <div className="footer-cpright">
-                            Copyrights © 2018 by <Link href='/' >
+                            Copyrights © 2021 by <Link href='/' >
                                 <a style={{ paddingLeft: '4px' }}>
-                                    Rèm Vương Hồng
+                                    Rèm Cửa Bắc Ninh - Rèm Vương Hồng
                                 </a>
                             </Link>.
-                            <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'blue' }} icon={faFacebook}></FontAwesomeIcon>
+                            <Link href="https://www.facebook.com/VuongHongManhRem/" passHref >
+                                <a target="_blank">
+                                    <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'blue' }} icon={faFacebook}></FontAwesomeIcon>
+                                </a>
+                            </Link>
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'red' }} icon={faYoutube}></FontAwesomeIcon>
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'purple' }} icon={faPinterest}></FontAwesomeIcon>
                         </div>
