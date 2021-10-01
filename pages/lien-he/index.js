@@ -25,17 +25,16 @@ const Search = (props) => {
                                 <li className="contact-page__address-item">
                                     <FontAwesomeIcon className="contact-page__address-icon" icon={faMapMarked} />
                                     <span>Địa chỉ: </span>
-                                    Số xxx, yyy, đường zzz, Thành phố Bắc Ninh
+                                    Đường: 330 Ngô Gia Tự, P.Tiền An, Bắc Ninh
                                 </li>
                                 <li className="contact-page__address-item">
                                     <FontAwesomeIcon className="contact-page__address-icon" icon={faPhoneAlt} />
-                                    <span>Phone: </span>
-                                    <soan>0981199350 - 0935276778</soan>
+                                    <span>Phone: </span> 0962.020.446
                                 </li>
                                 <li className="contact-page__address-item">
                                     <FontAwesomeIcon className="contact-page__address-icon" icon={faEnvelope} />
                                     <span>Email: </span>
-                                    lienhe@camera.com
+                                    manhremvuonghong@gmail.com
                                 </li>
                             </ul>
                         </div>
@@ -46,22 +45,22 @@ const Search = (props) => {
                         </div>
                         <div className="contact-page__collapse">
                             <div className="contact-page__collapse-title">
-                                Tại sao chọn Rèm MH?
+                                Tại sao chọn Rèm Vương Hồng?
                             </div>
                             <div className="contact-page__collapse-content">
-                                CameraXXX chuyên Phân phối Sỉ, Lẻ các dòng <span>Camera an ninh wifi không dây & camera có dây cao cấp được ưa chuộng nhất hiện nay</span> & Dịch vụ Lắp đặt Camera giám sát UY TÍN nhất hiện nay. Với phương châm “Mang đến khách hàng giá trị tốt nhất, nâng cao cuộc sống tiện nghi”, Hải Nam không ngừng tìm kiếm và cung cấp <span>SẢN PHẨM CHÍNH HÃNG – CHẤT LƯỢNG CAO – GIÁ CẢ PHẢI CHĂNG</span> Cùng với những <span>CHÍNH SÁCH CHĂM SÓC khách hàng THẬT CHU ĐÁO</span>:
+                                Rèm Cửa Bắc Ninh - Rèm Vương Hồng chuyên sản xuất và kinh doanh các loại rèm cửa - màn cửa. Với phương châm “Mang đến khách hàng giá trị tốt nhất, nâng cao cuộc sống tiện nghi”, Rèm Cửa Bắc Ninh - Rèm Vương Hồng không ngừng tìm kiếm và cung cấp <span>SẢN PHẨM CHÍNH HÃNG – CHẤT LƯỢNG CAO – GIÁ CẢ PHẢI CHĂNG</span> Cùng với những <span>CHÍNH SÁCH CHĂM SÓC khách hàng THẬT CHU ĐÁO</span>:
                                 <ul className="contact-page__collapse-list">
                                     <li className="contact-page__collapse-item">
                                         Hàng chính hãng GIÁ SIÊU MỀM GIẢM LIÊN TỤC
                                     </li>
                                     <li className="contact-page__collapse-item">
-                                        Bảo trì vĩnh viễn, Bảo hành chu đáo
+                                        Bảo hành chu đáo
                                     </li>
                                     <li className="contact-page__collapse-item">
                                         Hỗ trợ qua điện thoại nhiệt tình, tận tâm
                                     </li>
                                     <li className="contact-page__collapse-item">
-                                        Giao hàng & Hướng dẫn sử dụng tại nhà
+                                        Giao hàng tại nhà
                                     </li>
                                 </ul>
                             </div>

@@ -47,7 +47,7 @@ const policy3 = {
 }
 const policy4 = {
     img: ImagesPath.POLICY4,
-    title: "Thương hiệu uy tín",
+    title: "Chế độ bảo hành",
     desc: "Bảo hành sản phẩm 1 năm - bảo trì trọn đời.",
 
 }

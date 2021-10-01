@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons'
 import ReactTooltip from 'react-tooltip';
-
+import zalo from 'assets/images/homepage/zalo.png';
 
 const ContactPop = (props) => {
     return (
@@ -15,6 +15,22 @@ const ContactPop = (props) => {
             <Link href={{ pathname: 'tel:0962020446' }} passHref>
                 <a target="_blank" data-offset="{'top': 10, 'left': 10}" data-tip="Gọi ngay: 0962020446" className="contact-pop__box">
                     <FontAwesomeIcon className="contact-pop__icon has-animation" icon={faPhone} />
+                </a>
+            </Link>
+            <Link href={{ pathname: 'https://zalo.me/0962020446' }} passHref>
+                <a
+                    target="_blank"
+                    data-tip="Zalo: 0962020446"
+                    className="contact-pop__box"
+                >
+                    <div className="contact-pop__img">
+                        <Image
+                            layout="fill"
+                            src={zalo.src}
+                            alt="zalo"
+                            className="contact-pop__img"
+                        />
+                    </div>
                 </a>
             </Link>
             <Link href={{ pathname: 'https://www.messenger.com/t/VuongHongManhRem' }} passHref>

@@ -92,6 +92,7 @@ export const filterFieldProduct = (product) => {
         material: product.material || '',
         brand: product.brand || '',
         origin: product.origin || '',
+        unit_cost: product.unit_cost || '',
         weight: product.weight || '',
         repeat_deg: product.repeat_deg || '',
         feature: product.feature || '',

@@ -3,7 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ImagesThumb from 'ui-source/Images/ImagesThumb';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ContactForm from 'components/ContactForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Link from 'next/link'
 import Head from 'next/head'
@@ -18,6 +18,9 @@ import { categoryService } from 'data-services/category';
 
 Modal.setAppElement('#__next');
 // detailProduct = {},
+export function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 const Product = (props) => {
     const {
         relatedProducts = [],
@@ -26,6 +29,15 @@ const Product = (props) => {
         detailCategory = {}
     } = props;
     const [contactModal, setContactModal] = useState(false);
+
+    // state for compute
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+    const [area, setArea] = useState(0);
+    const [count, setCount] = useState(1);
+    const [price, setPrice] = useState(0);
+
+    // handle change
     const showContactModal = (e) => {
         e.stopPropagation();
         setContactModal(true);
@@ -39,6 +51,13 @@ const Product = (props) => {
         e.preventDefault();
         setContactModal(false);
     }
+    useEffect(() => {
+        const pricePerArea = detailProduct.unit_cost || 0;
+        setArea(width * height / 1000000);
+        setPrice(((width * height) / 1000000) * pricePerArea * 1000 * count)
+    }, [width, height, count]);
+
+    console.log("DETAIL PRODUCT: ", detailProduct);
 
     return (
         <>
@@ -175,8 +194,9 @@ const Product = (props) => {
                                     <div className="product__detail-type-item">
                                         <p>Mã sản phẩm: </p> <span> {detailProduct.model}</span>
                                     </div>
-                                </div>
-
+                                </div> 
+                                {detailProduct.unit_cost &&  <div style={{fontSize: '20px', fontWeight: '700', marginTop: '8px', color: 'rgb(214,28,31)'}}>{detailProduct.unit_cost}/m2</div>}
+                               
                                 <div className="product__compute-header">
                                     Báo giá sơ bộ
                                 </div>
@@ -186,27 +206,29 @@ const Product = (props) => {
                                         <div className="product__compute-item-title">
                                             Chiều rộng (mm)
                                         </div>
-                                        <input type="number" className="product__compute-item-input" placeholder="Chiều rộng" />
+                                        <input type="number" value={width} onChange={(e) => setWidth(e.target.value)} className="product__compute-item-input" placeholder="Chiều rộng" />
                                     </Col>
                                     <Col xs={6} className="product__compute-item">
                                         <div className="product__compute-item-title">
                                             Chiều dài (mm)
                                         </div>
-                                        <input type="number" className="product__compute-item-input" placeholder="Chiều dài" />
+                                        <input type="number" value={height} onChange={e => setHeight(e.target.value)} className="product__compute-item-input" placeholder="Chiều dài" />
                                     </Col>
 
                                     <Col xs={6} className="product__compute-item">
                                         <div className="product__compute-item-title">
-                                            Chiều rộng (mm)
+                                            Diện tích (m2)
                                         </div>
-                                        <input disabled type="text" className="product__compute-item-input" placeholder="0" />
+                                        <input disabled readOnly type="text" value={area} className="product__compute-item-input" placeholder="0" />
                                     </Col>
 
                                     <Col xs={6} className="product__compute-item">
                                         <div className="product__compute-item-title">
                                             Số bộ
                                         </div>
-                                        <input type="number" min={1} className="product__compute-item-input" placeholder="1" />
+                                        <input type="number" value={count} onChange={(e) => {
+                                            setCount(e.target.value)
+                                        }} className="product__compute-item-input" placeholder="0" />
                                     </Col>
                                 </Row>
                                 <Row className="product__compute-result">
@@ -214,7 +236,7 @@ const Product = (props) => {
                                         Ước tính
                                     </Col>
                                     <Col xs={6} className="product__compute-result-price">
-                                        <div className="product__compute-result-price-box">880,000đ</div>
+                                        <div className="product__compute-result-price-box">{numberWithCommas(price)}đ</div>
                                     </Col>
                                 </Row>
                                 <div className="product__detail-contact">

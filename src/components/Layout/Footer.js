@@ -25,9 +25,6 @@ function Footer(props) {
                             </div>
                             <ul className="footer-contact__info-list ">
                                 <li className="footer-contact__info-item">
-                                    GPKD
-                                </li>
-                                <li className="footer-contact__info-item">
                                     <Link href="" passHref>
                                         <a href="" className="footer-contact__info-link">
                                             <span>
@@ -59,8 +56,11 @@ function Footer(props) {
                                     </Link>
                                 </li>
                                 <li>
-                                    Giấy CNĐKKD: 2300942862 <br />
-                                    Cơ quan cấp: Sở KHĐT Tỉnh Bắc Ninh <br />
+                                    <strong>Liên hệ kĩ thuật:</strong> 0981.199.350 <br />
+                                    <strong>Giấy CNĐKKD:</strong> 2300942862 <br />
+                                    <strong>Cơ quan cấp: </strong>Sở KHĐT Tỉnh Bắc Ninh <br />
+
+
                                 </li>
                             </ul>
                         </Col>
@@ -114,8 +114,6 @@ function Footer(props) {
                                     <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'blue' }} icon={faFacebook}></FontAwesomeIcon>
                                 </a>
                             </Link>
-                            <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'red' }} icon={faYoutube}></FontAwesomeIcon>
-                            <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'purple' }} icon={faPinterest}></FontAwesomeIcon>
                         </div>
                     </footer>
                 </Container>
