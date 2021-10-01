@@ -66,13 +66,13 @@ const Header = (props) => {
             <Container>
                 <div className="header-top">
                     <div className="contact">
-                        <Link href={{ pathname: 'tel:84966854224' }} passHref>
+                        <Link href={{ pathname: 'tel:0962020446' }} passHref>
                             <a className="contact-item">
                                 <div className="contact-item-icon">
                                     <FontAwesomeIcon icon={faMobileAlt} />
                                 </div>
                                 <div className="contact-item-title">
-                                    0982.345.6789
+                                    0962.020.446
                                 </div>
                             </a>
                         </Link>
@@ -82,7 +82,7 @@ const Header = (props) => {
                                     <FontAwesomeIcon icon={faEnvelope} />
                                 </div>
                                 <div className="contact-item-title">
-                                    rem@gmail.com
+                                    manhremvuonghong@gmail.com
                                 </div>
                             </a>
                         </Link>
