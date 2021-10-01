@@ -17,14 +17,14 @@ export const apiSendCustomerInquiry = async (params) => {
         const response = await POST("/inquiry", params, { isFullPath: false });
         return {
             state: REQUEST_STATE.SUCCESS,
-            message: "Thank for your information. We will contact you as soon as possible!"
+            message: "Cảm ơn bạn đã để lại lời nhắn. Chúng tôi sẽ liên lạc với bạn sớm nhất có thể."
         };
 
     } catch (error) {
         console.log("error", error);
         return {
             state: REQUEST_STATE.ERROR,
-            message: "An error occur when send your contact information! Please try again latter!"
+            message: "Một lỗi đã xảy ra. Vui lòng gọi cho chúng tôi để được tư vấn."
         };
     }
 };

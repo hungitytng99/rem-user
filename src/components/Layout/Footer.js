@@ -61,7 +61,8 @@ function Footer(props) {
                                 <li>
                                     Giấy CNĐKKD: đang cập nhật <br />
                                     Cơ quan cấp: đang cập nhật <br />
-                                    Địa chỉ :
+                                    Địa chỉ : <br/>
+                                    Hỗ trợ kĩ thuật: <strong>0981199350</strong>
                                 </li>
                             </ul>
                         </Col>
@@ -89,7 +90,7 @@ function Footer(props) {
                                 CẬP NHẬT CHƯƠNG TRÌNH KHUYẾN MÃI
                             </div>
                             <div className="enter_email">
-                                <input type="text" placeholder="Enter email..."></input>
+                                <input type="text" placeholder="Nhập địa chỉ email..."></input>
                                 <label htmlFor="sendEmail" style={{ display: 'inline' }} onClick={showAlert}><span ><FontAwesomeIcon icon={faTelegramPlane}></FontAwesomeIcon></span></label>
                                 <input id='sendEmail' type='checkbox' style={{ display: 'none' }} />
                                 <div className='alert'>Gửi thành công</div>
@@ -105,11 +106,12 @@ function Footer(props) {
                 <Container >
                     <footer className="footer">
                         <div className="footer-cpright">
-                            Copyrights © 2018 by <Link href='/' >
-                                <a style={{ paddingLeft: '4px' }}>
+                            Copyrights © {new Date().getFullYear()} by <Link href='/' >
+                                <a style={{ paddingLeft: '0px' }}>
                                     Rèm Vương Hồng
                                 </a>
                             </Link>.
+
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'blue' }} icon={faFacebook}></FontAwesomeIcon>
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'red' }} icon={faYoutube}></FontAwesomeIcon>
                             <FontAwesomeIcon style={{ margin: "0px 10px", fontSize: "24px", cursor: 'pointer', color: 'purple' }} icon={faPinterest}></FontAwesomeIcon>
