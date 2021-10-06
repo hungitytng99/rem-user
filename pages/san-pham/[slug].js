@@ -57,8 +57,6 @@ const Product = (props) => {
         setPrice(((width * height) / 1000000) * pricePerArea * 1000 * count)
     }, [width, height, count]);
 
-    console.log("DETAIL PRODUCT: ", detailProduct);
-
     return (
         <>
             <Head>
@@ -195,7 +193,7 @@ const Product = (props) => {
                                         <p>Mã sản phẩm: </p> <span> {detailProduct.model}</span>
                                     </div>
                                 </div> 
-                                {detailProduct.unit_cost &&  <div style={{fontSize: '20px', fontWeight: '700', marginTop: '8px', color: 'rgb(214,28,31)'}}>{detailProduct.unit_cost}/m2</div>}
+                                {detailProduct.unit_cost &&  <div style={{fontSize: '20px', fontWeight: '700', marginTop: '8px', color: 'rgb(214,28,31)'}}>{detailProduct.unit_cost}.000đ/m2</div>}
                                
                                 <div className="product__compute-header">
                                     Báo giá sơ bộ
