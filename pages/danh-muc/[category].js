@@ -209,32 +209,34 @@ export async function getServerSideProps(context) {
         orderType: sort === "oldest" ? 1 : 2,
     }
 
+    let totalItem = 0;
 
     try {
         if (category === "all") {
             if (lengthFilterArr == 0) {
                 let result = await productService.listProduct(paramsPost);
+                totalItem = result.data.total;
                 dataShowOnScreen = [...result.data.listProductReturn]
             } else {
                 for (let i = 0; i < lengthFilterArr; i++) {
                     let result = await productService.listProductByMixCategorySlug(filterType[i], paramsPost);
+                    totalItem = result.data.total;
                     dataShowOnScreen = [...dataShowOnScreen, ...result.data.listProductReturn]
                 }
             }
         } else {
             if (lengthFilterArr == 0) {
                 let result = await productService.listProductByMixCategorySlug(category, paramsPost);
+                totalItem = result.data.total;
                 dataShowOnScreen = [...result.data.listProductReturn]
             } else {
                 for (let i = 0; i < lengthFilterArr; i++) {
                     let result = await productService.listProductByMixCategorySlug(filterType[i], paramsPost);
+                    totalItem = result.data.total;
                     dataShowOnScreen = [...dataShowOnScreen, ...result.data.listProductReturn]
                 }
             }
         }
-
-
-        const totalItem = dataShowOnScreen.length
 
         return {
             props: {
